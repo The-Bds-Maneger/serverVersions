@@ -1,0 +1,755 @@
+{
+  "latest": "1.18.2.03",
+  "versions": {
+    "1.18.2.03": {
+      "data": "2021-12-09T18:09:09.145Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.2.03.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.2.03.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.18.1.02": {
+      "data": "2021-12-03T02:24:04.190Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.1.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.1.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.18.0.02": {
+      "data": "2021-11-30T18:09:01.847Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.0.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.41.01": {
+      "data": "2021-10-27T20:49:26.090Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.41.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.40.06": {
+      "data": "2021-11-19T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.40.06.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.34.02": {
+      "data": "2021-11-06T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.34.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.34.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.33.01": {
+      "data": "2021-11-04T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.33.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.33.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.32.02": {
+      "data": "2021-10-30T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.32.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.32.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.31.01": {
+      "data": "2021-10-23T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.31.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.31.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.30.04": {
+      "data": "2021-10-21T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.30.04.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.30.04.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.11.01": {
+      "data": "2021-09-09T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.11.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.11.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.10.04": {
+      "data": "2021-08-13T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.10.04.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.10.04.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.2.01": {
+      "data": "2021-07-22T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.2.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.2.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.1.01": {
+      "data": "2021-07-14T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.1.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.1.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.17.0.03": {
+      "data": "2021-07-08T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.0.03.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.0.03.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.221.01": {
+      "data": "2021-05-22T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.221.01.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.221.01.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.220.02": {
+      "data": "2021-05-07T03:00:00.000Z",
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.220.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.220.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.210.06": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.210.06.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.210.06.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.210.05": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.210.05.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.210.05.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.201.03": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.201.03.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.201.03.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.201.02": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.201.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.201.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.200.02": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.200.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.200.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.100.04": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.100.04.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.100.04.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.40.02": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.40.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.40.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.20.03": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.20.03.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.20.03.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.1.02": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.1.02.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.1.02.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.16.0.2": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.0.2.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.0.2.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.60.5": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.60.5.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.60.5.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.32.1": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.32.1.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.32.1.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.30.2": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.30.2.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.30.2.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.21.0": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.21.0.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.21.0.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.20.1": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.20.1.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.20.1.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.1.4": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.1.4.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.1.4.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.14.0.9": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.0.9.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.0.9.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.13.3.0": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.3.0.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.3.0.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.13.2.0": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.2.0.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.2.0.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.13.1.5": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.1.5.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.1.5.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.13.0.34": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.0.34.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.0.34.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.12.1.1": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.12.1.1.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.12.1.1.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.12.0.28": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.12.0.28.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.12.0.28.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.11.4.2": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.4.2.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.4.2.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.11.2.1": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.2.1.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.2.1.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.11.1.2": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.1.2.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.1.2.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.11.0.23": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.0.23.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.0.23.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.10.0.7": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.10.0.7.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.10.0.7.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.9.0.15": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.9.0.15.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.9.0.15.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.8.1.2": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.1.2.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.8.1.2.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.8.0.24": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.8.0.24.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.7.0.13": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.7.0.13.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.7.0.13.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    },
+    "1.6.1.0": {
+      "data": null,
+      "linux": {
+        "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.6.1.0.zip",
+        "aarch64": null
+      },
+      "win32": {
+        "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.6.1.0.zip",
+        "aarch64": null
+      },
+      "darwin": {
+        "x64": null,
+        "aarch64": null
+      }
+    }
+  }
+}

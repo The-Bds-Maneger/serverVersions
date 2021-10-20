@@ -1,0 +1,35 @@
+on: 
+  schedule:
+    - cron: 0 */2 * * *
+  push:
+    branches:
+      - main
+
+
+name: Update Servers Versions (schedule)
+jobs:
+  json_update:
+    name: Sever.json update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install Node Packages
+        run: npm install -d --no-save
+
+      - name: Check Versions
+        run: node --no-warnings index.js
+
+      - name: Create Commit Files
+        continue-on-error: true
+        if: env.COMMIT_CHANGES == 'true'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -F GitMessage.txt
+          git push

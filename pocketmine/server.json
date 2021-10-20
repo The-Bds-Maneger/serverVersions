@@ -1,0 +1,401 @@
+{
+  "latest": "4.0.3",
+  "versions": {
+    "4.0.3": {
+      "data": "2021-12-16T01:40:24Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.3/PocketMine-MP.phar"
+    },
+    "3.26.4": {
+      "data": "2021-12-16T01:29:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.4/PocketMine-MP.phar"
+    },
+    "4.0.2": {
+      "data": "2021-12-13T00:07:58Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.2/PocketMine-MP.phar"
+    },
+    "3.26.3": {
+      "data": "2021-12-10T18:00:16Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.3/PocketMine-MP.phar"
+    },
+    "4.0.1": {
+      "data": "2021-12-09T00:53:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.1/PocketMine-MP.phar"
+    },
+    "3.26.2": {
+      "data": "2021-12-09T00:32:24Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.2/PocketMine-MP.phar"
+    },
+    "4.0.0": {
+      "data": "2021-12-01T22:41:02Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0/PocketMine-MP.phar"
+    },
+    "3.26.1": {
+      "data": "2021-11-30T22:32:16Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.1/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA15": {
+      "data": "2021-11-30T19:31:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA15/PocketMine-MP.phar"
+    },
+    "3.26.0": {
+      "data": "2021-11-30T18:59:18Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.0/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA14": {
+      "data": "2021-11-30T01:30:36Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA14/PocketMine-MP.phar"
+    },
+    "3.25.6": {
+      "data": "2021-11-26T23:41:27Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.6/PocketMine-MP.phar"
+    },
+    "3.25.5": {
+      "data": "2021-11-26T23:30:59Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.5/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA13": {
+      "data": "2021-11-25T00:46:43Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA13/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA12": {
+      "data": "2021-11-09T16:56:38Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA12/PocketMine-MP.phar"
+    },
+    "3.25.4": {
+      "data": "2021-11-08T22:34:40Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.4/PocketMine-MP.phar"
+    },
+    "3.25.3": {
+      "data": "2021-11-08T20:40:10Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.3/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA11": {
+      "data": "2021-11-06T01:19:57Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA11/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA10": {
+      "data": "2021-11-02T19:23:17Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA10/PocketMine-MP.phar"
+    },
+    "3.25.2": {
+      "data": "2021-11-02T17:27:09Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.2/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA8": {
+      "data": "2021-10-29T21:40:46Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA8/PocketMine-MP.phar"
+    },
+    "3.25.1": {
+      "data": "2021-10-29T21:37:20Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.1/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA7": {
+      "data": "2021-10-28T16:30:39Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA7/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA6": {
+      "data": "2021-10-19T19:25:09Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA6/PocketMine-MP.phar"
+    },
+    "3.25.0": {
+      "data": "2021-10-19T17:37:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.0/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA5": {
+      "data": "2021-10-12T23:15:48Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA5/PocketMine-MP.phar"
+    },
+    "3.24.0": {
+      "data": "2021-10-09T19:25:31Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.24.0/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA4": {
+      "data": "2021-10-06T23:01:42Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA4/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA3": {
+      "data": "2021-09-23T21:23:13Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA3/PocketMine-MP.phar"
+    },
+    "3.23.1": {
+      "data": "2021-09-22T00:03:54Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.23.1/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA2": {
+      "data": "2021-09-10T16:20:37Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA2/PocketMine-MP.phar"
+    },
+    "3.22.5": {
+      "data": "2021-09-10T16:13:08Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.5/PocketMine-MP.phar"
+    },
+    "4.0.0-BETA1": {
+      "data": "2021-09-07T13:25:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA1/PocketMine-MP.phar"
+    },
+    "3.22.4": {
+      "data": "2021-09-05T14:50:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.4/PocketMine-MP.phar"
+    },
+    "3.22.2": {
+      "data": "2021-08-18T13:18:27Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.2/PocketMine-MP.phar"
+    },
+    "3.22.1": {
+      "data": "2021-07-23T12:34:21Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.1/PocketMine-MP.phar"
+    },
+    "3.22.0": {
+      "data": "2021-07-13T17:38:21Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.0/PocketMine-MP.phar"
+    },
+    "3.21.1": {
+      "data": "2021-07-05T17:58:24Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.21.1/PocketMine-MP.phar"
+    },
+    "3.21.0": {
+      "data": "2021-06-13T18:45:25Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.21.0/PocketMine-MP.phar"
+    },
+    "3.20.0": {
+      "data": "2021-06-08T19:29:37Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.20.0/PocketMine-MP.phar"
+    },
+    "3.19.3": {
+      "data": "2021-06-08T18:25:44Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.3/PocketMine-MP.phar"
+    },
+    "3.19.2": {
+      "data": "2021-05-19T22:25:05Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.2/PocketMine-MP.phar"
+    },
+    "3.19.1": {
+      "data": "2021-04-25T19:40:33Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.1/PocketMine-MP.phar"
+    },
+    "3.19.0": {
+      "data": "2021-04-07T18:13:45Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.0/PocketMine-MP.phar"
+    },
+    "3.18.2": {
+      "data": "2021-04-07T17:39:39Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.2/PocketMine-MP.phar"
+    },
+    "3.18.1": {
+      "data": "2021-03-28T20:35:58Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.1/PocketMine-MP.9.phar"
+    },
+    "3.18.0": {
+      "data": "2021-03-12T22:14:53Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.0/PocketMine-MP.phar"
+    },
+    "3.17.7": {
+      "data": "2021-03-11T00:32:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.7/PocketMine-MP.phar"
+    },
+    "3.17.6": {
+      "data": "2021-03-10T20:54:26Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.6/PocketMine-MP.phar"
+    },
+    "3.17.5": {
+      "data": "2021-02-16T22:23:56Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.5/PocketMine-MP.phar"
+    },
+    "3.17.4": {
+      "data": "2021-02-02T14:09:48Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.4/PocketMine-MP.phar"
+    },
+    "3.17.3": {
+      "data": "2021-01-26T22:02:07Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.3/PocketMine-MP.phar"
+    },
+    "3.17.2": {
+      "data": "2020-12-28T23:07:47Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.2/PocketMine-MP.phar"
+    },
+    "3.17.1": {
+      "data": "2020-12-23T22:24:29Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.1/PocketMine-MP.phar"
+    },
+    "3.17.0": {
+      "data": "2020-12-08T21:10:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.0/PocketMine-MP.phar"
+    },
+    "3.16.1": {
+      "data": "2020-12-07T17:21:17Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.16.1/PocketMine-MP.phar"
+    },
+    "3.16.0": {
+      "data": "2020-11-21T11:28:38Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.16.0/PocketMine-MP.phar"
+    },
+    "3.15.4": {
+      "data": "2020-11-10T17:15:42Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.4/PocketMine-MP.phar"
+    },
+    "3.15.3": {
+      "data": "2020-11-08T19:40:07Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.3/PocketMine-MP.phar"
+    },
+    "3.15.2": {
+      "data": "2020-10-06T13:00:59Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.2/PocketMine-MP.phar"
+    },
+    "3.15.1": {
+      "data": "2020-09-03T14:48:05Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.1/PocketMine-MP.phar"
+    },
+    "3.15.0": {
+      "data": "2020-08-11T20:36:36Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.0/PocketMine-MP.phar"
+    },
+    "3.14.3": {
+      "data": "2020-08-11T20:14:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.3/PocketMine-MP.phar"
+    },
+    "3.14.2": {
+      "data": "2020-07-13T09:56:09Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.2/PocketMine-MP.phar"
+    },
+    "3.14.1": {
+      "data": "2020-07-08T09:41:40Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.1/PocketMine-MP.phar"
+    },
+    "3.14.0": {
+      "data": "2020-06-26T13:28:31Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.0/PocketMine-MP.phar"
+    },
+    "3.13.1": {
+      "data": "2020-06-26T11:38:35Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.13.1/PocketMine-MP.phar"
+    },
+    "3.13.0": {
+      "data": "2020-06-04T19:07:26Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.13.0/PocketMine-MP.phar"
+    },
+    "3.12.6": {
+      "data": "2020-06-04T18:59:11Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.6/PocketMine-MP.phar"
+    },
+    "3.12.5": {
+      "data": "2020-06-03T11:08:22Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.5/PocketMine-MP.phar"
+    },
+    "3.12.4": {
+      "data": "2020-06-02T20:42:14Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.4/PocketMine-MP.phar"
+    },
+    "3.12.3": {
+      "data": "2020-06-01T12:25:26Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.3/PocketMine-MP.phar"
+    },
+    "3.12.2": {
+      "data": "2020-05-18T09:24:09Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.2/PocketMine-MP.phar"
+    },
+    "3.12.1": {
+      "data": "2020-05-13T12:14:22Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.1/PocketMine-MP.phar"
+    },
+    "3.12.0": {
+      "data": "2020-04-17T17:57:11Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.0/PocketMine-MP.phar"
+    },
+    "3.11.7": {
+      "data": "2020-04-14T02:07:40Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.7/PocketMine-MP.phar"
+    },
+    "3.11.6": {
+      "data": "2020-02-21T23:34:31Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.6/PocketMine-MP.phar"
+    },
+    "3.11.5": {
+      "data": "2020-02-02T18:37:11Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.5/PocketMine-MP.phar"
+    },
+    "3.11.4": {
+      "data": "2020-01-20T18:11:06Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.4/PocketMine-MP.phar"
+    },
+    "3.11.3": {
+      "data": "2020-01-04T17:09:35Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.3/PocketMine-MP.phar"
+    },
+    "3.11.2": {
+      "data": "2019-12-29T13:18:10Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.2/PocketMine-MP.phar"
+    },
+    "3.11.1": {
+      "data": "2019-12-11T20:23:25Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.1/PocketMine-MP.phar"
+    },
+    "3.11.0": {
+      "data": "2019-12-11T18:45:51Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.0/PocketMine-MP.phar"
+    },
+    "3.10.1": {
+      "data": "2019-12-07T16:49:27Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.10.1/PocketMine-MP.phar"
+    },
+    "3.10.0": {
+      "data": "2019-12-06T21:01:14Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.10.0/PocketMine-MP.phar"
+    },
+    "3.9.8": {
+      "data": "2019-12-06T20:37:12Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.8/PocketMine-MP.phar"
+    },
+    "3.9.7": {
+      "data": "2019-10-28T16:12:26Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.7/PocketMine-MP.phar"
+    },
+    "3.9.6": {
+      "data": "2019-10-22T13:41:42Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.6/PocketMine-MP.phar"
+    },
+    "3.9.5": {
+      "data": "2019-10-01T14:06:23Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.5/PocketMine-MP.phar"
+    },
+    "3.9.4": {
+      "data": "2019-08-16T17:01:09Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.4/PocketMine-MP.phar"
+    },
+    "3.9.3": {
+      "data": "2019-07-29T16:30:26Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.3/PocketMine-MP.phar"
+    },
+    "3.9.2": {
+      "data": "2019-07-22T16:31:49Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.2/PocketMine-MP.phar"
+    },
+    "3.9.1": {
+      "data": "2019-07-14T18:14:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.1/PocketMine-MP.phar"
+    },
+    "3.9.0": {
+      "data": "2019-07-12T18:09:31Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.0/PocketMine-MP.phar"
+    },
+    "3.8.7": {
+      "data": "2019-07-12T17:27:52Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.7/PocketMine-MP.phar"
+    },
+    "3.8.6": {
+      "data": "2019-07-07T17:00:00Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.6/PocketMine-MP.phar"
+    },
+    "3.8.5": {
+      "data": "2019-06-24T14:03:34Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.5/PocketMine-MP.phar"
+    },
+    "3.8.4": {
+      "data": "2019-06-10T17:08:54Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.4/PocketMine-MP.phar"
+    },
+    "3.8.3": {
+      "data": "2019-05-27T18:09:01Z",
+      "url": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.3/PocketMine-MP.phar"
+    }
+  }
+}

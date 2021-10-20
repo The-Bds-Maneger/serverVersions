@@ -1,0 +1,201 @@
+{
+  "latest": "1.18.1",
+  "versions": {
+    "1.18.1": {
+      "url": "https://getbukkit.org/get/bf7ac3b5bc08ea97d22919680d240a80",
+      "data": "2021-12-10T00:00:00.000Z"
+    },
+    "1.18": {
+      "url": "https://getbukkit.org/get/3d9266f4af6057da7696026b2c8ab59f",
+      "data": "2021-11-30T00:00:00.000Z"
+    },
+    "1.17.1": {
+      "url": "https://getbukkit.org/get/bf44510c50ddefccbaee1379c1f751de",
+      "data": "2021-07-06T03:00:00.000Z"
+    },
+    "1.17": {
+      "url": "https://getbukkit.org/get/67c4d7b1f88726687c09137464efed99",
+      "data": "2021-06-11T03:00:00.000Z"
+    },
+    "1.16.5": {
+      "url": "https://getbukkit.org/get/RD0y91OTotryPrElNQe4ovBLDNweoO5Z",
+      "data": "2021-01-17T03:00:00.000Z"
+    },
+    "1.16.4": {
+      "url": "https://getbukkit.org/get/MvbtKzCMFRVUPyKHvZ0cmiThXiiTSe92",
+      "data": "2020-10-29T03:00:00.000Z"
+    },
+    "1.16.3": {
+      "url": "https://getbukkit.org/get/gE0q5n55ASwgaQDavi0Bd3eA1u6gcJ4A",
+      "data": "2020-09-15T03:00:00.000Z"
+    },
+    "1.16.2": {
+      "url": "https://getbukkit.org/get/7LUCnzySfT9MMjs7oKi6SVW9ABSFQOTO",
+      "data": "2020-08-12T03:00:00.000Z"
+    },
+    "1.16.1": {
+      "url": "https://getbukkit.org/get/fDoqnvFqdhjFcURmY7Oqtzu0giKFAiyY",
+      "data": "2020-06-24T03:00:00.000Z"
+    },
+    "1.15.2": {
+      "url": "https://getbukkit.org/get/hJhavPDjhYFfqjyPAibsKAJecPpl7Z2V",
+      "data": "2020-01-21T03:00:00.000Z"
+    },
+    "1.15.1": {
+      "url": "https://getbukkit.org/get/1eb34a7d4db660bb88d02b6c8845957c",
+      "data": "2019-12-17T03:00:00.000Z"
+    },
+    "1.15": {
+      "url": "https://getbukkit.org/get/f7a491b66aa48e6c27951bea8eb0a96e",
+      "data": "2019-12-10T03:00:00.000Z"
+    },
+    "1.14.4": {
+      "url": "https://getbukkit.org/get/68aef01121494a41fe71890b81d69d07",
+      "data": "2019-07-19T03:00:00.000Z"
+    },
+    "1.14.3": {
+      "url": "https://getbukkit.org/get/OXb8OjkAKGTsilBzqRFLVHieYtApFLIa",
+      "data": "2019-06-24T03:00:00.000Z"
+    },
+    "1.14.2": {
+      "url": "https://getbukkit.org/get/rOScz7MyLKUMBoi0E0JcE70Mw7xpTkjk",
+      "data": "2019-05-27T03:00:00.000Z"
+    },
+    "1.14.1": {
+      "url": "https://getbukkit.org/get/7bOYW7B8tGXIbjU0lnomOa0fzL1q7PES",
+      "data": "2019-05-15T03:00:00.000Z"
+    },
+    "1.14": {
+      "url": "https://getbukkit.org/get/X4NhV4o180euQ3sd2noaYxUovXfspBIa",
+      "data": "2019-04-28T03:00:00.000Z"
+    },
+    "1.13.2": {
+      "url": "https://getbukkit.org/get/QMerkBxNGNl3EnQl8gACGfWuJnJtJuWB",
+      "data": "2018-10-23T03:00:00.000Z"
+    },
+    "1.13.1": {
+      "url": "https://getbukkit.org/get/Qfl9O9F65B2GaPvSPRDb89U0Sa7GNaUj",
+      "data": "2018-08-27T03:00:00.000Z"
+    },
+    "1.13": {
+      "url": "https://getbukkit.org/get/uedXO8YBkhXjZwDTUVfO85a7DzAn01aD",
+      "data": "2018-07-22T03:00:00.000Z"
+    },
+    "1.12.2": {
+      "url": "https://getbukkit.org/get/Fpt2yFn7HRTrot5uE1b8NFWtpQlYITgK",
+      "data": "2017-09-18T03:00:00.000Z"
+    },
+    "1.12.1": {
+      "url": "https://getbukkit.org/get/eIspoUd16rvAedlPFbWoixwdWvVzH1Uf",
+      "data": "2017-08-04T03:00:00.000Z"
+    },
+    "1.12": {
+      "url": "https://getbukkit.org/get/5de3b1b274cdfa6dc8d9ce338e340a22",
+      "data": "2017-06-07T03:00:00.000Z"
+    },
+    "1.11.2": {
+      "url": "https://getbukkit.org/get/FnLNb42htOpfvn3NaEmYKXGmptFx4CjU",
+      "data": "2017-05-18T03:00:00.000Z"
+    },
+    "1.11.1": {
+      "url": "https://getbukkit.org/get/PjKHpa0uqjBsBspBqRJ9KqGnrOk1RFad",
+      "data": "2016-12-21T02:00:00.000Z"
+    },
+    "1.11": {
+      "url": "https://getbukkit.org/get/kKRwYhR9rYKVNqdYDWRS4imesZtxrIkp",
+      "data": "2016-12-20T02:00:00.000Z"
+    },
+    "1.10.2": {
+      "url": "https://getbukkit.org/get/GE9W5jg4MkD62LHEDIC6BiijPbkxoWb3",
+      "data": "2016-11-16T02:00:00.000Z"
+    },
+    "1.10": {
+      "url": "https://getbukkit.org/get/fEz2lZqYIFfzdPbyKQyq41EePiAcYgHW",
+      "data": "2016-06-26T03:00:00.000Z"
+    },
+    "1.9.4": {
+      "url": "https://getbukkit.org/get/aVtd1rm66P6ut7XRlr5BzInJ409qEFCo",
+      "data": "2016-06-09T03:00:00.000Z"
+    },
+    "1.9.2": {
+      "url": "https://getbukkit.org/get/7VixMoIblTnCdTeJeXVXRW5pcQ1XRzJi",
+      "data": "2016-03-30T03:00:00.000Z"
+    },
+    "1.9": {
+      "url": "https://getbukkit.org/get/jVOffEqHFAlYjYFvN7eUa7CVQ9utK1Hf",
+      "data": "2016-02-29T03:00:00.000Z"
+    },
+    "1.8.8": {
+      "url": "https://getbukkit.org/get/hNiHm0tuqAg1Xg7w7zudk63uHr0xo48D",
+      "data": "2015-07-28T03:00:00.000Z"
+    },
+    "1.8.7": {
+      "url": "https://getbukkit.org/get/ZfA7Vh1Su9xUo43wJsQ9eT4EtOyCQlIM",
+      "data": "2015-06-05T03:00:00.000Z"
+    },
+    "1.8.6": {
+      "url": "https://getbukkit.org/get/CxDnpIsOg4ZnOv7UfIMf8iOyVYPjWlX1",
+      "data": "2015-05-25T03:00:00.000Z"
+    },
+    "1.8.5": {
+      "url": "https://getbukkit.org/get/Nzt8ugpvQN7vpQvpiZzf3NqxCh4OgyEC",
+      "data": "2015-05-22T03:00:00.000Z"
+    },
+    "1.8.4": {
+      "url": "https://getbukkit.org/get/xbGOoq96qVM11glAHHcTWPk5eh6m6CRv",
+      "data": "2015-04-17T03:00:00.000Z"
+    },
+    "1.8.3": {
+      "url": "https://getbukkit.org/get/zId4E0jbd76ubLgiVP5aMfYoiJXFCYGf",
+      "data": "2015-02-20T02:00:00.000Z"
+    },
+    "1.8": {
+      "url": "https://getbukkit.org/get/WAH0jXqYA2s3Gzzg3toWHG1R3lHNCNZY",
+      "data": "2014-08-02T03:00:00.000Z"
+    },
+    "1.7.10": {
+      "url": "https://getbukkit.org/get/jWPoIQARZsxCjUaqXgj2UwcQWqQdUYDo",
+      "data": "2014-06-26T03:00:00.000Z"
+    },
+    "1.7.9": {
+      "url": "https://getbukkit.org/get/cV7cdkEtUZtsphLBfCVDlPhyJgjjU7Fl",
+      "data": "2014-04-14T03:00:00.000Z"
+    },
+    "1.7.8": {
+      "url": "https://getbukkit.org/get/YTYtYcRGzJAOdmQPhDZZn61dcfooa84n",
+      "data": "2014-04-11T03:00:00.000Z"
+    },
+    "1.7.5": {
+      "url": "https://getbukkit.org/get/q084rUh9FQIkKsEm806J7C6VFUuD5qvU",
+      "data": "2014-02-26T03:00:00.000Z"
+    },
+    "1.7.2": {
+      "url": "https://getbukkit.org/get/pNcKEbnVEmAccBdxJOf7dR3bF19Td3cq",
+      "data": "2013-10-25T02:00:00.000Z"
+    },
+    "1.6.4": {
+      "url": "https://getbukkit.org/get/REwrpCh6mMnUa0P41aGkD4qFPovoN8zm",
+      "data": "2013-09-19T03:00:00.000Z"
+    },
+    "1.6.2": {
+      "url": "https://getbukkit.org/get/QTe2gi4zCP8J7OBKNIf9V0hyIu0gFdUi",
+      "data": "2013-07-08T03:00:00.000Z"
+    },
+    "1.5.2": {
+      "url": "https://getbukkit.org/get/tkNg9YxulAy0eO5f50WzijtK03qJLs6r",
+      "data": "2013-05-02T03:00:00.000Z"
+    },
+    "1.5.1": {
+      "url": "https://getbukkit.org/get/wTxqiQqJRxhL4qAiPR1zHSxtLx2RzY6Y",
+      "data": "2013-03-21T03:00:00.000Z"
+    },
+    "1.4.7": {
+      "url": "https://getbukkit.org/get/YZ4WcsFdKdqlMuJFhFRobcDmJNYoWL0l",
+      "data": "2013-01-09T02:00:00.000Z"
+    },
+    "1.4.6": {
+      "url": "https://getbukkit.org/get/29mixbrJ32rlDGLn8L3dIe4jvkLPdgom",
+      "data": "2012-12-20T02:00:00.000Z"
+    }
+  }
+}

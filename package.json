@@ -1,0 +1,30 @@
+{
+  "name": "@the-bds-maneger/server-list",
+  "version": "1.0.0",
+  "description": "Auto Find Minecraft Server Versions",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Bds-Maneger/ServerVersions.git"
+  },
+  "keywords": [
+    "Minecraft",
+    "Server",
+    "automatic"
+  ],
+  "author": "The Bds Maneger Project Authors",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/The-Bds-Maneger/ServerVersions/issues"
+  },
+  "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "cli-color": "^2.0.1",
+    "jsdom": "^18.0.0",
+    "node-fetch": "^3.0.0"
+  }
+}
