@@ -1,9 +1,9 @@
-const HTTP_Request = require("../HTTP_Request");
+const HTTP_Request = require("../../HTTP_Request");
 const cli_color = require("cli-color");
 const fs = require("fs");
 const path = require("path");
 const actions_core = require("@actions/core");
-const CommitMessage = require("../lib/GitCommit");
+const CommitMessage = require("../../lib/GitCommit");
 
 async function MinecraftNetRequest(Host = "") {
   const Request = await HTTP_Request.RAW_TEXT(Host,  {
@@ -61,7 +61,7 @@ async function main() {
   });
 
   const MinecraftVersion = Htmll[0].replace(/[a-zA-Z:\/\-]/gi, "").replace(/^\.*/gi, "").replace(/\.*$/gi, "").trim();
-  const OldSeverVersions = require(path.resolve(__dirname, "../bedrock/server.json"));
+  const OldSeverVersions = require(path.resolve(__dirname, "../../bedrock/server.json"));
   const NewSeverVersions = {
     latest: "",
     versions: {}
@@ -89,7 +89,7 @@ async function main() {
   Object.keys(OldSeverVersions.versions).forEach(version => NewSeverVersions.versions[version] = OldSeverVersions.versions[version]);
 
   // Write new versions to Bedrock Server.json file
-  fs.writeFileSync(path.resolve(__dirname, "../bedrock/server.json"), JSON.stringify(NewSeverVersions, null, 2));
+  fs.writeFileSync(path.resolve(__dirname, "../../bedrock/server.json"), JSON.stringify(NewSeverVersions, null, 2));
   
   // Export new versions to action
   actions_core.exportVariable("bedrock", MinecraftVersion);

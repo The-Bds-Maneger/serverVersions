@@ -1,15 +1,15 @@
-const HTTP_Request = require("../HTTP_Request");
+const HTTP_Request = require("../../HTTP_Request");
 const cli_color = require("cli-color");
 const fs = require("fs");
 const path = require("path");
 const { JSDOM } = require("jsdom");
 const actions_core = require("@actions/core");
-const CommitMessage = require("../lib/GitCommit");
+const CommitMessage = require("../../lib/GitCommit");
 
 async function main() {
   console.log("");
   console.log(cli_color.green("[+]"), "Starting Find New Version to Minecraft Spigot");
-  const OldVersion = require("../spigot/server.json");
+  const OldVersion = require("../../spigot/server.json");
   const NewVersion = {
     latest: "",
     versions: {}
@@ -43,7 +43,7 @@ async function main() {
     }
   });
   Object.keys(OldVersion.versions).forEach(Version => NewVersion.versions[Version] = OldVersion.versions[Version]);
-  fs.writeFileSync(path.join(__dirname, "../spigot/server.json"), JSON.stringify(NewVersion, null, 2));
+  fs.writeFileSync(path.join(__dirname, "../../spigot/server.json"), JSON.stringify(NewVersion, null, 2));
   console.log(cli_color.green("[+]"), "New version found", NewVersion.latest);
   CommitMessage.AddText(`[+] Spigot ${OldVersion.latest} -> ${NewVersion.latest}`);
   actions_core.exportVariable("spigot", NewVersion.latest);

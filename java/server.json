@@ -1,8 +1,6 @@
 {
+  "latest": "1.18.1",
   "versions": {
-    "undefined": {
-      "data": "2021-12-15T22:08:02.119Z"
-    },
     "1.18.1": {
       "data": "2021-12-10T12:12:21.388Z",
       "url": "https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar"

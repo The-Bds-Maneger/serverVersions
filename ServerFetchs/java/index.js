@@ -1,4 +1,4 @@
-const HTTP_Request = require("../HTTP_Request");
+const HTTP_Request = require("../../HTTP_Request");
 const cli_color = require("cli-color");
 const fs = require("fs");
 const actions_core = require("@actions/core");
@@ -37,9 +37,9 @@ async function main() {
     data: new Date(),
     url: URL_JAR
   }
-  const OldSeverVersions = require("../java/server.json");
+  const OldSeverVersions = require("../../java/server.json");
   const NewSeverVersions = {
-    latest: "",
+    latest: "Version",
     versions: {}
   };
 
@@ -70,7 +70,7 @@ async function main() {
   Object.keys(OldSeverVersions.versions).forEach(a => NewSeverVersions.versions[a] = OldSeverVersions.versions[a]);
 
   // Save new versions to file
-  fs.writeFileSync("./java/server.json", JSON.stringify(NewSeverVersions, null, 2));
+  fs.writeFileSync("../../java/server.json", JSON.stringify(NewSeverVersions, null, 2));
 
   // return new version
   return Version;

@@ -5,8 +5,7 @@ on:
     branches:
       - main
 
-
-name: Update Servers Versions (schedule)
+name: Update Servers Versions
 jobs:
   json_update:
     name: Sever.json update
