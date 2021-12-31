@@ -1,5 +1,3 @@
-const chai = require("chai");
-const { assert } = chai;
 const VersionManeger = require("../src/cjs/index");
 
 describe("Find Version", () => {
