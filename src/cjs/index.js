@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Create Function Object Modules
-const GithubRawUrl = "https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/"+(process.env.BranchCI ? process.env.BranchCI : "main");
+const GithubRawUrl = "https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/"+(process.env.BranchCI !== undefined ? process.env.BranchCI : "main");
 const Mod = {};
 
 function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList = require("../Versions.json")) {

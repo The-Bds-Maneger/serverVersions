@@ -1,5 +1,4 @@
 const VersionManeger = require("../src/cjs/index");
-
 if (process.env.CI) {
   process.env.BranchCI = process.env.CI_COMMIT_REF_NAME.replace(/.*\/.*\//, "");
   console.log(`Branch: ${process.env.BranchCI}`);
