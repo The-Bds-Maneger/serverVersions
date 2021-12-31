@@ -23,7 +23,7 @@ jobs:
 
       - name: Test
         env:
-          CI_COMMIT_REF_NAME: ${{ github.ref }}
+          CI_COMMIT_REF_NAME: ${{ github.ref_name }}
         run: npm run test
 
   publish:
