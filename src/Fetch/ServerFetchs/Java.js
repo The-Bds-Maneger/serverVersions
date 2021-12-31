@@ -1,4 +1,4 @@
-const HTTP_Request = require("../../HTTP_Request");
+const HTTP_Request = require("../HTTP_Request");
 const cli_color = require("cli-color");
 const fs = require("fs");
 const actions_core = require("@actions/core");

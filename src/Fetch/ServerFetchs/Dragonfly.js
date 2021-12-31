@@ -1,16 +1,11 @@
-const HTTP_Request = require("../../HTTP_Request");
+const HTTP_Request = require("../HTTP_Request");
 const cli_color = require("cli-color");
-const fs = require("fs");
-const path = require("path");
-const actions_core = require("@actions/core");
-const JSON_HTTP = async (...args) => JSON.parse(await HTTP_Request.RAW_TEXT(...args));
-const CommitMessage = require("../../lib/GitCommit");
+
+const Versions = require("../../Versions.json");
 
 async function main() {
   console.log("");
-  console.log(cli_color.green("[+]"), "Starting Find New Version to Dragonfly");
-  const ReleaseArray = [...(await JSON_HTTP("https://api.github.com/repos/The-Bds-Maneger/Dragonfly_Build/releases?per_page=100"))];
-  const OldVersion = require("../../dragonfly/server.json");
+  const ReleaseArray = [...(await HTTP_Request.RAW_TEXT("https://api.github.com/repos/The-Bds-Maneger/Dragonfly_Build/releases?per_page=100"))];
   const mapVersion = ReleaseArray.map(Release => {
     const Version = Release.tag_name;
     const JJ = {
@@ -59,28 +54,12 @@ async function main() {
     };
   });
 
-  if (OldVersion.latest === mapVersion[0].Version) {
-    console.log(cli_color.yellow("[!]"), "No new version");
-    actions_core.exportVariable("dragonfly", OldVersion.latest);
+  return mapVersion.filter(Version => {
+    let a = Versions.platform.filter(Platform => Platform.name === "dragonfly").filter(Platform => Platform.version === Version.Version);
+    if (a.length === 0) return true;
     return false;
-  } else {
-    actions_core.exportVariable("COMMIT_CHANGES", true);
-    const NewVersion = {
-      latest: mapVersion[0].Version,
-      versions: {}
-    }
-    mapVersion.forEach(Version => {
-      if (!(OldVersion[Version.Version])) {
-        console.log(cli_color.green("[+]"), "Dragonfly:", Version.Version);
-        CommitMessage.AddText(`Dragonfly: ${Version.Version}`);
-        NewVersion.versions[Version.Version] = Version.Object;
-      }
-    });
-    Object.keys(OldVersion.versions).forEach(Version => NewVersion.versions[Version] = OldVersion.versions[Version]);
-    actions_core.exportVariable("dragonfly", OldVersion.latest);
-    fs.writeFileSync(path.resolve(__dirname, "../../dragonfly/server.json"), JSON.stringify(NewVersion, null, 2));
-    return OldVersion.latest;
-  }
+  });
+
 }
 
 module.exports.main = main;
