@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Auto Find Minecraft Server Versions",
   "main": "src/cjs/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false,
   "exports": {
     "require": "./src/cjs/index.js",
     "import": "./src/esm/cjs/index.js"

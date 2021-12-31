@@ -32,15 +32,19 @@ jobs:
   publish:
     name: Publish Package
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.event_name != 'pull_request'
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_ORG_TOKEN }}
     needs:
       - test
     steps:
       - uses: actions/checkout@master
-      - name: Setup Node JS
-        uses: actions/setup-node@v1
+
+      - name: Setup Node.JS and NPM
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 16.x
+          registry-url: https://registry.npmjs.org/
 
       - name: Install Node Packages
         run: npm install -d --no-save
@@ -60,8 +64,6 @@ jobs:
           console.log("New Version to Package:", JsonPackage.version);
 
       - name: Publish Package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ORG_TOKEN }}
         run: |
           if [[ "${{ github.event_name }}" == "release" ]]; then
             npm publish
