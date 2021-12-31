@@ -7,9 +7,7 @@ async function MainRequest() {
   const VersionObject = {
     Date: new Date(),
     Version: HTML_ARRAY.filter(a => /[0-9\.]\.jar/.test(a)).map(a => a.split(/[a-zA-Z\._]/gi).map(a => a.trim()).filter(a=>a).join("."))[0],
-    data: {
-      url: HttpRequests.filter(ver => /http.*\.jar/.test(ver))[0]
-    }
+    data: HttpRequests.filter(ver => /http.*\.jar/.test(ver))[0]
   };
 
   // return new version

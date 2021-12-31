@@ -6,7 +6,7 @@ const path = require("path");
 const GithubRawUrl = "https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/main";
 const Mod = {};
 
-Mod.Find = function(ServerVersion = "latest", ServerPlatform = "bedrock") {
+Mod.findSync = function(ServerVersion = "latest", ServerPlatform = "bedrock") {
   let VersionsList = require("../Versions.json");
   VersionsList = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../Versions.json"), "utf8"));
   if (typeof ServerVersion !== "string") throw new Error("ServerVersion must be a string");
@@ -49,7 +49,7 @@ Mod.Find = function(ServerVersion = "latest", ServerPlatform = "bedrock") {
   return DataReturn;
 }
 
-Mod.FindAsync = async function(ServerVersion = "latest", ServerPlatform = "bedrock") {
+Mod.findAsync = async function(ServerVersion = "latest", ServerPlatform = "bedrock") {
   const VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
   fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(VersionsList, null, 2));
   if (typeof ServerVersion !== "string") throw new Error("ServerVersion must be a string");
@@ -66,8 +66,8 @@ Mod.FindAsync = async function(ServerVersion = "latest", ServerPlatform = "bedro
     ".raw": VersionFiltred,
     url: "",
     GetBuffer: async () => {
-      const Buffer = await Axios.get(DataReturn.url, { responseType: "arraybuffer" });
-      return Buffer.data;
+      const Buffe = await Axios.get(DataReturn.url, { responseType: "arraybuffer" });
+      return Buffer.from(Buffe.data);
     },
     version: "",
     Date: new Date(),
@@ -90,6 +90,10 @@ Mod.FindAsync = async function(ServerVersion = "latest", ServerPlatform = "bedro
     throw new Error(`Platform ${PlatformFiltred} not found`);
   }
   return DataReturn;
+}
+
+Mod.findCallback = function(ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = {url: String(), GetBuffer: () => Buffer.from("a"), version: String(), Date: Date()}) => console.log(err, Data)) {
+  Mod.findAsync(ServerVersion, ServerPlatform).then(Data => Callback(null, Data)).catch(err => Callback(err, {}));
 }
 
 // Export Modules

@@ -8,9 +8,7 @@ async function MainFetch() {
       const Data = {
         Date: new Date(release.published_at),
         Version: release.tag_name,
-        data: {
-          url: PharFile[0].browser_download_url
-        }
+        data: PharFile[0].browser_download_url
       }
       return Data;
     } else return false;

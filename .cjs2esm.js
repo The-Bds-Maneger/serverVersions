@@ -1,5 +1,5 @@
 module.exports = {
-  input: "src/cjs",
+  input: ["src/cjs"],
   output: "src/esm",
   forceDirectory: null,
   modules: [],
@@ -8,6 +8,6 @@ module.exports = {
     ignore: [],
   },
   addModuleEntry: false,
-  addPackageJson: true,
+  addPackageJson: false,
   filesWithShebang: [],
 };

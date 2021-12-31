@@ -19,9 +19,7 @@ async function FetchVersions() {
     const Data = {
       Date: new Date(Release.Date),
       Version: String(Release.version),
-      data: {
-        url: String(Release.url)
-      }
+      data: String(Release.url)
     }
     Data.Version = Data.Version.replace(/[,]/gi, ".");
     return Data;
