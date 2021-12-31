@@ -5,6 +5,10 @@ const path = require("path");
 
 // Create Function Object Modules
 let Branch = "main"
+if (process.env.CI) {
+  Branch = process.env.CI_COMMIT_REF_NAME.replace(/.*\/.*\//, "");
+  console.log(`Branch: ${Branch}`);
+}
 if (process.env.BranchCI) Branch = process.env.BranchCI;
 const GithubRawUrl = `https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/${Branch}`;
 const Mod = {};
