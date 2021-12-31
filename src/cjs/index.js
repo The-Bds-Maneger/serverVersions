@@ -46,8 +46,8 @@ function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", 
       throw new Error(`Architecture ${ArchFiltred} not found`);
     }
   } else {
-    const PlatformFiltred = Object.keys(VersionFiltred.data).filter(Platform => !Platform);
-    throw new Error(`Platform ${PlatformFiltred} not found`);
+    const PlatformFiltred = Object.keys(VersionFiltred.data).filter(Platform => Platform);
+    throw new Error(`Platform ${PlatformFiltred.join(", ")} not found`);
   }
   return DataReturn;
 }

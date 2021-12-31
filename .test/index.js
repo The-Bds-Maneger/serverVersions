@@ -12,7 +12,6 @@ describe("Find Version", () => {
   });
   it("Local Find Bedrock Asyncronous Callback", function(done) {
     VersionManeger.findCallback("latest", "bedrock", (err, Data) => {
-      console.log(err, Data);
       if (err) return done(err);
       return done();
     });
@@ -28,7 +27,6 @@ describe("Find Version", () => {
   });
   it("Local Find Java Asyncronous Callback", function(done) {
     VersionManeger.findCallback("latest", "java", (err, Data) => {
-      console.log(err, Data);
       if (err) return done(err);
       return done();
     });
@@ -44,7 +42,6 @@ describe("Find Version", () => {
   });
   it("Local Find Pocketmine Asyncronous Callback", function(done) {
     VersionManeger.findCallback("latest", "pocketmine", (err, Data) => {
-      console.log(err, Data);
       if (err) return done(err);
       return done();
     });
@@ -60,7 +57,6 @@ describe("Find Version", () => {
   });
   it("Local Find Dragonfly Asyncronous Callback", function(done) {
     VersionManeger.findCallback("latest", "dragonfly", (err, Data) => {
-      console.log(err, Data);
       if (err) return done(err);
       return done();
     });
@@ -76,7 +72,6 @@ describe("Find Version", () => {
   });
   it("Local Find Spigot Asyncronous Callback", function(done) {
     VersionManeger.findCallback("latest", "spigot", (err, Data) => {
-      console.log(err, Data);
       if (err) return done(err);
       return done();
     });
