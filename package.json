@@ -1,10 +1,17 @@
 {
-  "name": "@the-bds-maneger/server-list",
+  "name": "@the-bds-maneger/server_versions",
   "version": "1.0.0",
   "description": "Auto Find Minecraft Server Versions",
-  "main": "index.js",
+  "main": "src/cjs/index.js",
+  "exports": {
+    "require": "./src/cjs/index.js",
+    "import": "./src/esm/cjs/index.js"
+  },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --exit .test/*.js",
+    "find_version": "node ./src/Fetch/index.js",
+    "build:esm": "cjs2esm",
+    "build": "npm run build:esm"
   },
   "repository": {
     "type": "git",
@@ -16,15 +23,20 @@
     "automatic"
   ],
   "author": "The Bds Maneger Project Authors",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/The-Bds-Maneger/ServerVersions/issues"
   },
   "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
+    "axios": "^0.24.0",
     "cli-color": "^2.0.1",
     "jsdom": "^18.0.0",
     "node-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "cjs2esm": "^2.0.2",
+    "mocha": "^9.1.3"
   }
 }

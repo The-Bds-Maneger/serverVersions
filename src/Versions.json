@@ -1,0 +1,2291 @@
+{
+  "latest": {
+    "bedrock": "1.18.2.03",
+    "dragonfly": "1.17.40",
+    "java": "1.18.1",
+    "pocketmine": "4.0.3",
+    "spigot": "1.18.1"
+  },
+  "platform": [
+    {
+      "name": "bedrock",
+      "version": "1.18.2.03",
+      "Date": "Thu, 09 Dec 2021 18:09:09 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.2.03.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.2.03.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.18.1.02",
+      "Date": "Fri, 03 Dec 2021 02:24:04 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.1.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.1.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.18.0.02",
+      "Date": "Tue, 30 Nov 2021 18:09:01 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.0.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.41.01",
+      "Date": "Wed, 27 Oct 2021 20:49:26 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.41.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.41.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.40.06",
+      "Date": "Fri, 19 Nov 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.40.06.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.40.06.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.34.02",
+      "Date": "Sat, 06 Nov 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.34.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.34.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.33.01",
+      "Date": "Thu, 04 Nov 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.33.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.33.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.32.02",
+      "Date": "Sat, 30 Oct 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.32.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.32.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.31.01",
+      "Date": "Sat, 23 Oct 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.31.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.31.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.30.04",
+      "Date": "Thu, 21 Oct 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.30.04.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.30.04.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.11.01",
+      "Date": "Thu, 09 Sep 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.11.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.11.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.10.04",
+      "Date": "Fri, 13 Aug 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.10.04.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.10.04.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.2.01",
+      "Date": "Thu, 22 Jul 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.2.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.2.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.1.01",
+      "Date": "Wed, 14 Jul 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.1.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.1.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.17.0.03",
+      "Date": "Thu, 08 Jul 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.17.0.03.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.17.0.03.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.221.01",
+      "Date": "Sat, 22 May 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.221.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.221.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.220.02",
+      "Date": "Fri, 07 May 2021 03:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.220.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.220.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.210.06",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.210.06.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.210.06.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.210.05",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.210.05.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.210.05.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.201.03",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.201.03.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.201.03.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.201.02",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.201.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.201.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.200.02",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.200.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.200.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.100.04",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.100.04.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.100.04.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.40.02",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.40.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.40.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.20.03",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.20.03.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.20.03.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.1.02",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.1.02.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.1.02.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.16.0.2",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.16.0.2.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.16.0.2.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.60.5",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.60.5.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.60.5.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.32.1",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.32.1.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.32.1.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.30.2",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.30.2.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.30.2.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.21.0",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.21.0.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.21.0.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.20.1",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.20.1.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.20.1.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.1.4",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.1.4.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.1.4.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.14.0.9",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.0.9.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.0.9.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.13.3.0",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.3.0.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.3.0.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.13.2.0",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.2.0.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.2.0.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.13.1.5",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.1.5.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.1.5.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.13.0.34",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.13.0.34.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.13.0.34.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.12.1.1",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.12.1.1.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.12.1.1.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.12.0.28",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.12.0.28.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.12.0.28.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.11.4.2",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.4.2.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.4.2.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.11.2.1",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.2.1.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.2.1.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.11.1.2",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.1.2.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.1.2.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.11.0.23",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.11.0.23.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.11.0.23.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.10.0.7",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.10.0.7.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.10.0.7.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.9.0.15",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.9.0.15.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.9.0.15.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.8.1.2",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.1.2.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.8.1.2.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.8.0.24",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.8.0.24.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.8.0.24.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.7.0.13",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.7.0.13.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.7.0.13.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "bedrock",
+      "version": "1.6.1.0",
+      "Date": "Thu, 01 Jan 1970 00:00:00 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.6.1.0.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.6.1.0.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
+    {
+      "name": "dragonfly",
+      "version": "1.17.40",
+      "Date": "Mon, 25 Oct 2021 00:20:28 GMT",
+      "data": {
+        "linux": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_linux_arm64",
+          "armv7": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_linux_arm",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_linux_amd64",
+          "i386": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_linux_386"
+        },
+        "win32": {
+          "aarch64": null,
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_win32_amd64.exe",
+          "i386": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_win32_386.exe"
+        },
+        "darwin": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_darwin_arm64",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_darwin_amd64"
+        },
+        "android": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_android_arm64",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.40/Dragonfly_android_amd64"
+        }
+      }
+    },
+    {
+      "name": "dragonfly",
+      "version": "1.17.30",
+      "Date": "Sun, 26 Sep 2021 02:32:38 GMT",
+      "data": {
+        "linux": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_linux_arm64",
+          "armv7": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_linux_arm",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_linux_amd64",
+          "i386": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_linux_386"
+        },
+        "win32": {
+          "aarch64": null,
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_win32_amd64.exe",
+          "i386": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_win32_386.exe"
+        },
+        "darwin": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_darwin_arm64",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_darwin_amd64"
+        },
+        "android": {
+          "aarch64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_android_arm64",
+          "x64": "https://github.com/The-Bds-Maneger/Dragonfly_Build/releases/download/1.17.30/Dragonfly_android_amd64"
+        }
+      }
+    },
+    {
+      "name": "java",
+      "version": "1.18.1",
+      "Date": "Fri, 10 Dec 2021 12:12:21 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/125e5adf40c659fd3bce3e66e67a16bb49ecc1b9/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.18",
+      "Date": "Tue, 30 Nov 2021 18:09:02 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3cf24a8694aca6267883b17d934efacc5e44440d/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.17.1",
+      "Date": "Fri, 06 Aug 2021 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.17",
+      "Date": "Thu, 08 Jul 2021 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/0a269b5f2c5b93b1712d0f5dc43b6182b9ab254e/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16.5",
+      "Date": "Sun, 14 Feb 2021 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16.4",
+      "Date": "Sun, 29 Nov 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/35139deedbd5182953cf1caa23835da59ca3d7cd/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16.3",
+      "Date": "Sat, 10 Oct 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/f02f4473dbf152c23d7d484952121db0b36698cb/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16.2",
+      "Date": "Fri, 11 Sep 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/c5f6fb23c3876461d46ec380421e42b289789530/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16.1",
+      "Date": "Fri, 24 Jul 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a412fd69db1f81db3f511c1463fd304675244077/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.16",
+      "Date": "Thu, 23 Jul 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a0d03225615ba897619220e256a266cb33a44b6b/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.15.2",
+      "Date": "Mon, 17 Feb 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.15.1",
+      "Date": "Thu, 16 Jan 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/4d1826eebac84847c71a77f9349cc22afd0cf0a1/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.15",
+      "Date": "Thu, 09 Jan 2020 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/e9f105b3c5c7e85c7b445249a93362a22f62442d/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.14.4",
+      "Date": "Mon, 19 Aug 2019 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3dc3d84a581f14691199cf6831b71ed1296a9fdf/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.14.3",
+      "Date": "Wed, 24 Jul 2019 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.14.2",
+      "Date": "Thu, 27 Jun 2019 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/808be3869e2ca6b62378f9f4b33c946621620019/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.14.1",
+      "Date": "Thu, 13 Jun 2019 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/ed76d597a44c5266be2a7fcd77a8270f1f0bc118/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.14",
+      "Date": "Thu, 23 May 2019 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/f1a0073671057f01aa843443fef34330281333ce/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.13.2",
+      "Date": "Thu, 22 Nov 2018 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.13.1",
+      "Date": "Sat, 22 Sep 2018 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/fe123682e9cb30031eae351764f653500b7396c9/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.13",
+      "Date": "Sat, 18 Aug 2018 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/d0caafb8438ebd206f99930cfaecfa6c9a13dca0/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.12.2",
+      "Date": "Wed, 18 Oct 2017 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.12.1",
+      "Date": "Sun, 03 Sep 2017 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/561c7b2d54bae80cc06b05d950633a9ac95da816/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.12",
+      "Date": "Sun, 02 Jul 2017 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/8494e844e911ea0d63878f64da9dcc21f53a3463/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.11.2",
+      "Date": "Sat, 21 Jan 2017 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.11.1",
+      "Date": "Fri, 20 Jan 2017 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/1f97bd101e508d7b52b3d6a7879223b000b5eba0/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.11",
+      "Date": "Wed, 14 Dec 2016 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/48820c84cb1ed502cb5b2fe23b8153d5e4fa61c0/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.10.2",
+      "Date": "Sat, 23 Jul 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3d501b23df53c548254f5e3f66492d178a48db63/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.10.1",
+      "Date": "Fri, 22 Jul 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/cb4c6f9f51a845b09a8861cdbe0eea3ff6996dee/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.10",
+      "Date": "Fri, 08 Jul 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a96617ffdf5dabbb718ab11a9a68e50545fc5bee/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.9.4",
+      "Date": "Fri, 10 Jun 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/edbb7b1758af33d365bf835eb9d13de005b1e274/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.9.3",
+      "Date": "Fri, 10 Jun 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/8e897b6b6d784f745332644f4d104f7a6e737ccf/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.9.2",
+      "Date": "Sat, 30 Apr 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/2b95cc7b136017e064c46d04a5825fe4cfa1be30/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.9.1",
+      "Date": "Sat, 30 Apr 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/bf95d9118d9b4b827f524c878efd275125b56181/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.9",
+      "Date": "Tue, 29 Mar 2016 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/b4d449cf2918e0f3bd8aa18954b916a4d1880f0d/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.9",
+      "Date": "Sun, 03 Jan 2016 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/b58b2ceb36e01bcd8dbf49c8fb66c55a9f0676cd/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.8",
+      "Date": "Thu, 27 Aug 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/5fafba3f58c40dc51b5c3ca72a98f62dfdae1db7/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.7",
+      "Date": "Sun, 05 Jul 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/35c59e16d1f3b751cd20b76b9b8a19045de363a9/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.6",
+      "Date": "Thu, 25 Jun 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/2bd44b53198f143fb278f8bec3a505dad0beacd2/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.5",
+      "Date": "Mon, 22 Jun 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/ea6dd23658b167dbc0877015d1072cac21ab6eee/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.4",
+      "Date": "Sun, 17 May 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/dd4b5eba1c79500390e0b0f45162fa70d38f8a3d/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8.3",
+      "Date": "Fri, 20 Mar 2015 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/163ba351cb86f6390450bb2a67fafeb92b6c0f2f/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.8",
+      "Date": "Thu, 02 Oct 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a028f00e678ee5c6aef0e29656dca091b5df11c7/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.10",
+      "Date": "Sat, 14 Jun 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/952438ac4e01b4d115c5fc38f891710c4941df29/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.9",
+      "Date": "Wed, 14 May 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/4cec86a928ec171fdc0c6b40de2de102f21601b5/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.8",
+      "Date": "Fri, 09 May 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/c69ebfb84c2577661770371c4accdd5f87b8b21d/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.6",
+      "Date": "Fri, 09 May 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/41ea7757d4d7f74b95fc1ac20f919a8e521e910c/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.5",
+      "Date": "Wed, 26 Mar 2014 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/e1d557b2e31ea881404e41b05ec15c810415e060/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.4",
+      "Date": "Thu, 09 Jan 2014 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/61220311cef80aecc4cd8afecd5f18ca6b9461ff/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.7.2",
+      "Date": "Mon, 25 Nov 2013 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3716cac82982e7c2eb09f83028b555e9ea606002/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.6.4",
+      "Date": "Sat, 19 Oct 2013 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/050f93c1f3fe9e2052398f7bd6aca10c63d64a87/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.6.2",
+      "Date": "Mon, 05 Aug 2013 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/01b6ea555c6978e6713e2a2dfd7fe19b1449ca54/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.6.1",
+      "Date": "Sun, 28 Jul 2013 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/0252918a5f9d47e3c6eb1dfec02134d1374a89b4/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.5.2",
+      "Date": "Sat, 25 May 2013 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/f9ae3f651319151ce99a0bfad6b34fa16eb6775f/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.5.1",
+      "Date": "Sat, 20 Apr 2013 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/d07c71ee2767dabb79fb32dad8162e1b854d5324/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.7",
+      "Date": "Sun, 27 Jan 2013 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/2f0ec8efddd2f2c674c77be9ddb370b727dec676/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.6",
+      "Date": "Sat, 19 Jan 2013 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/a0aeb5709af5f2c3058c1cf0dc6b110a7a61278c/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.5",
+      "Date": "Sat, 19 Jan 2013 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/c12fd88a8233d2c517dbc8196ba2ae855f4d36ea/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.4",
+      "Date": "Sun, 13 Jan 2013 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/4215dcadb706508bf9d6d64209a0080b9cee9e71/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.3",
+      "Date": "Sun, 30 Dec 2012 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/9be68adf6e80721975df12f2445fa24617328d18/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.2",
+      "Date": "Mon, 24 Dec 2012 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/5be700523a729bb78ef99206fb480a63dcd09825/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.4.1",
+      "Date": "Sat, 22 Dec 2012 02:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/baa4e4a7adc3dc9fbfc5ea36f0777b68c9eb7f4a/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.3.2",
+      "Date": "Sat, 15 Sep 2012 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/3de2ae6c488135596e073a9589842800c9f53bfe/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.3.1",
+      "Date": "Fri, 31 Aug 2012 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/82563ce498bfc1fc8a2cb5bf236f7da86a390646/server.jar"
+    },
+    {
+      "name": "java",
+      "version": "1.2.5",
+      "Date": "Sun, 29 Apr 2012 03:00:00 GMT",
+      "data": "https://launcher.mojang.com/v1/objects/d8321edc9470e56b8ad5c67bbd16beba25843336/server.jar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.3",
+      "Date": "Thu, 16 Dec 2021 01:40:24 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.4",
+      "Date": "Thu, 16 Dec 2021 01:29:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.2",
+      "Date": "Mon, 13 Dec 2021 00:07:58 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.3",
+      "Date": "Fri, 10 Dec 2021 18:00:16 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.1",
+      "Date": "Thu, 09 Dec 2021 00:53:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.2",
+      "Date": "Thu, 09 Dec 2021 00:32:24 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0",
+      "Date": "Wed, 01 Dec 2021 22:41:02 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.1",
+      "Date": "Tue, 30 Nov 2021 22:32:16 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA15",
+      "Date": "Tue, 30 Nov 2021 19:31:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA15/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.0",
+      "Date": "Tue, 30 Nov 2021 18:59:18 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA14",
+      "Date": "Tue, 30 Nov 2021 01:30:36 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA14/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.6",
+      "Date": "Fri, 26 Nov 2021 23:41:27 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.5",
+      "Date": "Fri, 26 Nov 2021 23:30:59 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA13",
+      "Date": "Thu, 25 Nov 2021 00:46:43 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA13/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA12",
+      "Date": "Tue, 09 Nov 2021 16:56:38 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA12/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.4",
+      "Date": "Mon, 08 Nov 2021 22:34:40 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.3",
+      "Date": "Mon, 08 Nov 2021 20:40:10 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA11",
+      "Date": "Sat, 06 Nov 2021 01:19:57 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA11/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA10",
+      "Date": "Tue, 02 Nov 2021 19:23:17 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA10/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.2",
+      "Date": "Tue, 02 Nov 2021 17:27:09 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA8",
+      "Date": "Fri, 29 Oct 2021 21:40:46 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA8/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.1",
+      "Date": "Fri, 29 Oct 2021 21:37:20 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA7",
+      "Date": "Thu, 28 Oct 2021 16:30:39 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA7/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA6",
+      "Date": "Tue, 19 Oct 2021 19:25:09 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.25.0",
+      "Date": "Tue, 19 Oct 2021 17:37:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.25.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA5",
+      "Date": "Tue, 12 Oct 2021 23:15:48 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.24.0",
+      "Date": "Sat, 09 Oct 2021 19:25:31 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.24.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA4",
+      "Date": "Wed, 06 Oct 2021 23:01:42 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA3",
+      "Date": "Thu, 23 Sep 2021 21:23:13 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.23.1",
+      "Date": "Wed, 22 Sep 2021 00:03:54 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.23.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA2",
+      "Date": "Fri, 10 Sep 2021 16:20:37 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.22.5",
+      "Date": "Fri, 10 Sep 2021 16:13:08 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "4.0.0-BETA1",
+      "Date": "Tue, 07 Sep 2021 13:25:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.0-BETA1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.22.4",
+      "Date": "Sun, 05 Sep 2021 14:50:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.22.2",
+      "Date": "Wed, 18 Aug 2021 13:18:27 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.22.1",
+      "Date": "Fri, 23 Jul 2021 12:34:21 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.22.0",
+      "Date": "Tue, 13 Jul 2021 17:38:21 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.22.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.21.1",
+      "Date": "Mon, 05 Jul 2021 17:58:24 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.21.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.21.0",
+      "Date": "Sun, 13 Jun 2021 18:45:25 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.21.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.20.0",
+      "Date": "Tue, 08 Jun 2021 19:29:37 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.20.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.19.3",
+      "Date": "Tue, 08 Jun 2021 18:25:44 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.19.2",
+      "Date": "Wed, 19 May 2021 22:25:05 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.19.1",
+      "Date": "Sun, 25 Apr 2021 19:40:33 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.19.0",
+      "Date": "Wed, 07 Apr 2021 18:13:45 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.19.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.18.2",
+      "Date": "Wed, 07 Apr 2021 17:39:39 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.18.1",
+      "Date": "Sun, 28 Mar 2021 20:35:58 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.1/PocketMine-MP.9.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.18.0",
+      "Date": "Fri, 12 Mar 2021 22:14:53 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.18.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.7",
+      "Date": "Thu, 11 Mar 2021 00:32:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.7/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.6",
+      "Date": "Wed, 10 Mar 2021 20:54:26 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.5",
+      "Date": "Tue, 16 Feb 2021 22:23:56 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.4",
+      "Date": "Tue, 02 Feb 2021 14:09:48 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.3",
+      "Date": "Tue, 26 Jan 2021 22:02:07 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.2",
+      "Date": "Mon, 28 Dec 2020 23:07:47 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.1",
+      "Date": "Wed, 23 Dec 2020 22:24:29 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.17.0",
+      "Date": "Tue, 08 Dec 2020 21:10:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.17.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.16.1",
+      "Date": "Mon, 07 Dec 2020 17:21:17 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.16.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.16.0",
+      "Date": "Sat, 21 Nov 2020 11:28:38 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.16.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.15.4",
+      "Date": "Tue, 10 Nov 2020 17:15:42 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.15.3",
+      "Date": "Sun, 08 Nov 2020 19:40:07 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.15.2",
+      "Date": "Tue, 06 Oct 2020 13:00:59 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.15.1",
+      "Date": "Thu, 03 Sep 2020 14:48:05 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.15.0",
+      "Date": "Tue, 11 Aug 2020 20:36:36 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.15.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.14.3",
+      "Date": "Tue, 11 Aug 2020 20:14:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.14.2",
+      "Date": "Mon, 13 Jul 2020 09:56:09 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.14.1",
+      "Date": "Wed, 08 Jul 2020 09:41:40 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.14.0",
+      "Date": "Fri, 26 Jun 2020 13:28:31 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.14.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.13.1",
+      "Date": "Fri, 26 Jun 2020 11:38:35 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.13.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.13.0",
+      "Date": "Thu, 04 Jun 2020 19:07:26 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.13.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.6",
+      "Date": "Thu, 04 Jun 2020 18:59:11 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.5",
+      "Date": "Wed, 03 Jun 2020 11:08:22 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.4",
+      "Date": "Tue, 02 Jun 2020 20:42:14 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.3",
+      "Date": "Mon, 01 Jun 2020 12:25:26 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.2",
+      "Date": "Mon, 18 May 2020 09:24:09 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.1",
+      "Date": "Wed, 13 May 2020 12:14:22 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.12.0",
+      "Date": "Fri, 17 Apr 2020 17:57:11 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.12.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.7",
+      "Date": "Tue, 14 Apr 2020 02:07:40 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.7/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.6",
+      "Date": "Fri, 21 Feb 2020 23:34:31 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.5",
+      "Date": "Sun, 02 Feb 2020 18:37:11 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.4",
+      "Date": "Mon, 20 Jan 2020 18:11:06 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.3",
+      "Date": "Sat, 04 Jan 2020 17:09:35 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.2",
+      "Date": "Sun, 29 Dec 2019 13:18:10 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.1",
+      "Date": "Wed, 11 Dec 2019 20:23:25 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.11.0",
+      "Date": "Wed, 11 Dec 2019 18:45:51 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.11.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.10.1",
+      "Date": "Sat, 07 Dec 2019 16:49:27 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.10.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.10.0",
+      "Date": "Fri, 06 Dec 2019 21:01:14 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.10.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.8",
+      "Date": "Fri, 06 Dec 2019 20:37:12 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.8/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.7",
+      "Date": "Mon, 28 Oct 2019 16:12:26 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.7/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.6",
+      "Date": "Tue, 22 Oct 2019 13:41:42 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.5",
+      "Date": "Tue, 01 Oct 2019 14:06:23 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.4",
+      "Date": "Fri, 16 Aug 2019 17:01:09 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.3",
+      "Date": "Mon, 29 Jul 2019 16:30:26 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.2",
+      "Date": "Mon, 22 Jul 2019 16:31:49 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.2/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.1",
+      "Date": "Sun, 14 Jul 2019 18:14:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.1/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.9.0",
+      "Date": "Fri, 12 Jul 2019 18:09:31 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.9.0/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.8.7",
+      "Date": "Fri, 12 Jul 2019 17:27:52 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.7/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.8.6",
+      "Date": "Sun, 07 Jul 2019 17:00:00 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.6/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.8.5",
+      "Date": "Mon, 24 Jun 2019 14:03:34 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.8.4",
+      "Date": "Mon, 10 Jun 2019 17:08:54 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.4/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.8.3",
+      "Date": "Mon, 27 May 2019 18:09:01 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.8.3/PocketMine-MP.phar"
+    },
+    {
+      "name": "spigot",
+      "version": "1.18.1",
+      "Date": "Fri, 10 Dec 2021 00:00:00 GMT",
+      "data": "https://getbukkit.org/get/bf7ac3b5bc08ea97d22919680d240a80"
+    },
+    {
+      "name": "spigot",
+      "version": "1.18",
+      "Date": "Tue, 30 Nov 2021 00:00:00 GMT",
+      "data": "https://getbukkit.org/get/3d9266f4af6057da7696026b2c8ab59f"
+    },
+    {
+      "name": "spigot",
+      "version": "1.17.1",
+      "Date": "Tue, 06 Jul 2021 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/bf44510c50ddefccbaee1379c1f751de"
+    },
+    {
+      "name": "spigot",
+      "version": "1.17",
+      "Date": "Fri, 11 Jun 2021 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/67c4d7b1f88726687c09137464efed99"
+    },
+    {
+      "name": "spigot",
+      "version": "1.16.5",
+      "Date": "Sun, 17 Jan 2021 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/RD0y91OTotryPrElNQe4ovBLDNweoO5Z"
+    },
+    {
+      "name": "spigot",
+      "version": "1.16.4",
+      "Date": "Thu, 29 Oct 2020 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/MvbtKzCMFRVUPyKHvZ0cmiThXiiTSe92"
+    },
+    {
+      "name": "spigot",
+      "version": "1.16.3",
+      "Date": "Tue, 15 Sep 2020 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/gE0q5n55ASwgaQDavi0Bd3eA1u6gcJ4A"
+    },
+    {
+      "name": "spigot",
+      "version": "1.16.2",
+      "Date": "Wed, 12 Aug 2020 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/7LUCnzySfT9MMjs7oKi6SVW9ABSFQOTO"
+    },
+    {
+      "name": "spigot",
+      "version": "1.16.1",
+      "Date": "Wed, 24 Jun 2020 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/fDoqnvFqdhjFcURmY7Oqtzu0giKFAiyY"
+    },
+    {
+      "name": "spigot",
+      "version": "1.15.2",
+      "Date": "Tue, 21 Jan 2020 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/hJhavPDjhYFfqjyPAibsKAJecPpl7Z2V"
+    },
+    {
+      "name": "spigot",
+      "version": "1.15.1",
+      "Date": "Tue, 17 Dec 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/1eb34a7d4db660bb88d02b6c8845957c"
+    },
+    {
+      "name": "spigot",
+      "version": "1.15",
+      "Date": "Tue, 10 Dec 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/f7a491b66aa48e6c27951bea8eb0a96e"
+    },
+    {
+      "name": "spigot",
+      "version": "1.14.4",
+      "Date": "Fri, 19 Jul 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/68aef01121494a41fe71890b81d69d07"
+    },
+    {
+      "name": "spigot",
+      "version": "1.14.3",
+      "Date": "Mon, 24 Jun 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/OXb8OjkAKGTsilBzqRFLVHieYtApFLIa"
+    },
+    {
+      "name": "spigot",
+      "version": "1.14.2",
+      "Date": "Mon, 27 May 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/rOScz7MyLKUMBoi0E0JcE70Mw7xpTkjk"
+    },
+    {
+      "name": "spigot",
+      "version": "1.14.1",
+      "Date": "Wed, 15 May 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/7bOYW7B8tGXIbjU0lnomOa0fzL1q7PES"
+    },
+    {
+      "name": "spigot",
+      "version": "1.14",
+      "Date": "Sun, 28 Apr 2019 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/X4NhV4o180euQ3sd2noaYxUovXfspBIa"
+    },
+    {
+      "name": "spigot",
+      "version": "1.13.2",
+      "Date": "Tue, 23 Oct 2018 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/QMerkBxNGNl3EnQl8gACGfWuJnJtJuWB"
+    },
+    {
+      "name": "spigot",
+      "version": "1.13.1",
+      "Date": "Mon, 27 Aug 2018 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/Qfl9O9F65B2GaPvSPRDb89U0Sa7GNaUj"
+    },
+    {
+      "name": "spigot",
+      "version": "1.13",
+      "Date": "Sun, 22 Jul 2018 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/uedXO8YBkhXjZwDTUVfO85a7DzAn01aD"
+    },
+    {
+      "name": "spigot",
+      "version": "1.12.2",
+      "Date": "Mon, 18 Sep 2017 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/Fpt2yFn7HRTrot5uE1b8NFWtpQlYITgK"
+    },
+    {
+      "name": "spigot",
+      "version": "1.12.1",
+      "Date": "Fri, 04 Aug 2017 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/eIspoUd16rvAedlPFbWoixwdWvVzH1Uf"
+    },
+    {
+      "name": "spigot",
+      "version": "1.12",
+      "Date": "Wed, 07 Jun 2017 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/5de3b1b274cdfa6dc8d9ce338e340a22"
+    },
+    {
+      "name": "spigot",
+      "version": "1.11.2",
+      "Date": "Thu, 18 May 2017 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/FnLNb42htOpfvn3NaEmYKXGmptFx4CjU"
+    },
+    {
+      "name": "spigot",
+      "version": "1.11.1",
+      "Date": "Wed, 21 Dec 2016 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/PjKHpa0uqjBsBspBqRJ9KqGnrOk1RFad"
+    },
+    {
+      "name": "spigot",
+      "version": "1.11",
+      "Date": "Tue, 20 Dec 2016 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/kKRwYhR9rYKVNqdYDWRS4imesZtxrIkp"
+    },
+    {
+      "name": "spigot",
+      "version": "1.10.2",
+      "Date": "Wed, 16 Nov 2016 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/GE9W5jg4MkD62LHEDIC6BiijPbkxoWb3"
+    },
+    {
+      "name": "spigot",
+      "version": "1.10",
+      "Date": "Sun, 26 Jun 2016 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/fEz2lZqYIFfzdPbyKQyq41EePiAcYgHW"
+    },
+    {
+      "name": "spigot",
+      "version": "1.9.4",
+      "Date": "Thu, 09 Jun 2016 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/aVtd1rm66P6ut7XRlr5BzInJ409qEFCo"
+    },
+    {
+      "name": "spigot",
+      "version": "1.9.2",
+      "Date": "Wed, 30 Mar 2016 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/7VixMoIblTnCdTeJeXVXRW5pcQ1XRzJi"
+    },
+    {
+      "name": "spigot",
+      "version": "1.9",
+      "Date": "Mon, 29 Feb 2016 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/jVOffEqHFAlYjYFvN7eUa7CVQ9utK1Hf"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.8",
+      "Date": "Tue, 28 Jul 2015 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/hNiHm0tuqAg1Xg7w7zudk63uHr0xo48D"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.7",
+      "Date": "Fri, 05 Jun 2015 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/ZfA7Vh1Su9xUo43wJsQ9eT4EtOyCQlIM"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.6",
+      "Date": "Mon, 25 May 2015 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/CxDnpIsOg4ZnOv7UfIMf8iOyVYPjWlX1"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.5",
+      "Date": "Fri, 22 May 2015 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/Nzt8ugpvQN7vpQvpiZzf3NqxCh4OgyEC"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.4",
+      "Date": "Fri, 17 Apr 2015 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/xbGOoq96qVM11glAHHcTWPk5eh6m6CRv"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8.3",
+      "Date": "Fri, 20 Feb 2015 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/zId4E0jbd76ubLgiVP5aMfYoiJXFCYGf"
+    },
+    {
+      "name": "spigot",
+      "version": "1.8",
+      "Date": "Sat, 02 Aug 2014 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/WAH0jXqYA2s3Gzzg3toWHG1R3lHNCNZY"
+    },
+    {
+      "name": "spigot",
+      "version": "1.7.10",
+      "Date": "Thu, 26 Jun 2014 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/jWPoIQARZsxCjUaqXgj2UwcQWqQdUYDo"
+    },
+    {
+      "name": "spigot",
+      "version": "1.7.9",
+      "Date": "Mon, 14 Apr 2014 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/cV7cdkEtUZtsphLBfCVDlPhyJgjjU7Fl"
+    },
+    {
+      "name": "spigot",
+      "version": "1.7.8",
+      "Date": "Fri, 11 Apr 2014 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/YTYtYcRGzJAOdmQPhDZZn61dcfooa84n"
+    },
+    {
+      "name": "spigot",
+      "version": "1.7.5",
+      "Date": "Wed, 26 Feb 2014 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/q084rUh9FQIkKsEm806J7C6VFUuD5qvU"
+    },
+    {
+      "name": "spigot",
+      "version": "1.7.2",
+      "Date": "Fri, 25 Oct 2013 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/pNcKEbnVEmAccBdxJOf7dR3bF19Td3cq"
+    },
+    {
+      "name": "spigot",
+      "version": "1.6.4",
+      "Date": "Thu, 19 Sep 2013 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/REwrpCh6mMnUa0P41aGkD4qFPovoN8zm"
+    },
+    {
+      "name": "spigot",
+      "version": "1.6.2",
+      "Date": "Mon, 08 Jul 2013 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/QTe2gi4zCP8J7OBKNIf9V0hyIu0gFdUi"
+    },
+    {
+      "name": "spigot",
+      "version": "1.5.2",
+      "Date": "Thu, 02 May 2013 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/tkNg9YxulAy0eO5f50WzijtK03qJLs6r"
+    },
+    {
+      "name": "spigot",
+      "version": "1.5.1",
+      "Date": "Thu, 21 Mar 2013 03:00:00 GMT",
+      "data": "https://getbukkit.org/get/wTxqiQqJRxhL4qAiPR1zHSxtLx2RzY6Y"
+    },
+    {
+      "name": "spigot",
+      "version": "1.4.7",
+      "Date": "Wed, 09 Jan 2013 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/YZ4WcsFdKdqlMuJFhFRobcDmJNYoWL0l"
+    },
+    {
+      "name": "spigot",
+      "version": "1.4.6",
+      "Date": "Thu, 20 Dec 2012 02:00:00 GMT",
+      "data": "https://getbukkit.org/get/29mixbrJ32rlDGLn8L3dIe4jvkLPdgom"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+name: Root workflow
+on:
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - released
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install Node Packages
+        run: npm install -d --no-save
+
+      - name: Test
+        env:
+          CI_COMMIT_REF_NAME: ${{ github.head_ref || github.ref }}
+        run: npm run test
+
+  publish:
+    name: Publish Package
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    needs:
+      - test
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node JS
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install Node Packages
+        run: npm install -d --no-save
+
+      - name: Build ESM Module
+        run: npm run build:esm
+
+      - name: Edit main version
+        if: github.event_name != 'release'
+        shell: node {0}
+        run: |
+          const fs = require("fs");
+          const JsonPackage = JSON.parse(fs.readFileSync(process.cwd()+"/package.json", "utf8"));
+          const run_ID = "${{ github.run_id }}";
+          JsonPackage.version = `${run_ID.slice(0, 2)}.${run_ID.slice(3, 6)}.${run_ID.slice(7, 11)}`;
+          fs.writeFileSync(process.cwd()+"/package.json", JSON.stringify(JsonPackage, null, 2));
+          console.log("New Version to Package:", JsonPackage.version);
+
+      - name: Publish Package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ORG_TOKEN }}
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            npm publish
+          else
+            npm publish --tag next
+          fi
