@@ -105,10 +105,9 @@ module.exports.RAW_TEXT = async function RAW_TEXT(Host = "https://google.com", H
     headers: {
       ...HeadersBase,
       ...Header
-    },
-    responseType: "arraybuffer"
+    }
   });
-  return String(AxiosData.data.toString());
+  return String(AxiosData.data);
 }
 
 module.exports.HTML_URLS = async function URLS(Host = "https://google.com", Header = {}) {
@@ -118,6 +117,6 @@ module.exports.HTML_URLS = async function URLS(Host = "https://google.com", Head
       ...Header
     }
   })).data);
-  const Ls = data.split(/["']/gi).filter(d=>/^.*:\/\//.test(d.trim()));
+  const Ls = data.split(/["'<>]/gi).filter(d=>/^.*:\/\//.test(d.trim()));
   return Ls;
 }
