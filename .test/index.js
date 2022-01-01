@@ -77,3 +77,19 @@ describe("Find Version", () => {
     });
   });
 });
+describe("Get List", () => {
+  it("Local", function(done) {
+    VersionManeger.list();
+    return done();
+  });
+  it("Remote async", async function() {
+    await VersionManeger.listAsync();
+    return;
+  });
+  it("Remote callback", function(done) {
+    VersionManeger.listCallback((err, Data) => {
+      if (err) return done(err);
+      return done();
+    });
+  });
+});

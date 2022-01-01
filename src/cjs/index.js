@@ -6,7 +6,7 @@ const path = require("path");
 // Create Function Object Modules
 let Branch = "main"
 if (process.env.CI) {
-  Branch = process.env.CI_COMMIT_REF_NAME.replace(/.*\/.*\//, "");
+  Branch = process.env.CI_COMMIT_REF_NAME.replace(/^.*\/.*\//, "");
   console.log(`Branch: ${Branch}`);
 }
 if (process.env.rawBranch) Branch = process.env.rawBranch;
@@ -57,6 +57,32 @@ function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", 
 }
 
 /**
+ * Get local server versions
+ */
+Mod.list = () => {
+  let Versions = require("../Versions.json");
+  Versions = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../Versions.json"), "utf8"));
+  return Versions;
+}
+
+/**
+ * Get latest server versions with async, returning an object with the latest server versions, in addition to updating the file locally
+ */
+Mod.listAsync = async () => {
+  let VersionsList = Mod.list();
+  VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
+  fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(VersionsList, null, 2));
+  return VersionsList;
+}
+
+/**
+ * Get latest server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
+ */
+Mod.listCallback = (Callback = (err = null, data) => console.log(err, data)) => {
+  Mod.listAsync().then(data => Callback(null, data)).catch(err => Callback(err));
+}
+
+/**
  * Look for a server version with cached files saved from when the package was installed and when the findCallback and findAsync function is used
  * 
  * examples:
@@ -68,7 +94,7 @@ function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", 
  *  find("latest", "java");
  * 
  */
-Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctionFind(ServerVersion, ServerPlatform, JSON.parse(fs.readFileSync(path.resolve(__dirname, "../Versions.json"), "utf8")));
+Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctionFind(ServerVersion, ServerPlatform, Mod.list());
 
 /**
  * Look for server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
@@ -85,27 +111,16 @@ Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctio
  *  console.log(data);
  * });
  */
-function findCallback(ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = {url: String(), GetBuffer: () => Buffer.from("a"), version: String(), Date: Date()}) => console.log(err, Data)) {
-  new Promise(async resolve => {
-    let VersionsList;
+Mod.findCallback = function (ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = Mod.find()) => console.log(err, Data)) {
+  Mod.listCallback((err, data) => {
+    if (err) return Callback(err);
     try {
-      VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
-    } catch (err) {
-      const Erro = new Error("Error getting the list of versions");
-      Erro.Error_raw = err;
-      Callback(Erro);
-      return;
+      Callback(null, MainFunctionFind(ServerVersion, ServerPlatform, data));
+    } catch (errFind) {
+      Callback(errFind);
     }
-    try {
-      fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(VersionsList, null, 2));
-      Callback(null, MainFunctionFind(ServerVersion, ServerPlatform, VersionsList));
-    } catch (err) {
-      Callback(err);
-    }
-    resolve();
   });
 }
-Mod.findCallback = findCallback;
 
 /**
  * Look for server versions with async, returning an object with the latest server versions, in addition to updating the file locally
@@ -118,7 +133,7 @@ Mod.findCallback = findCallback;
  * 
  *  const Version = await findAsync("latest", "java");
  */
-Mod.findAsync = util.promisify(findCallback);
+Mod.findAsync = util.promisify(Mod.findCallback);
 
 // Export Modules
 module.exports = Mod;
