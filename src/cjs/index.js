@@ -14,46 +14,45 @@ const GithubRawUrl = `https://raw.githubusercontent.com/The-Bds-Maneger/ServerVe
 const Mod = {};
 
 function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList = require("../Versions.json")) {
+  if (typeof ServerPlatform !== "string") throw new Error("ServerPlatform must be a string");
+  
+  if (typeof ServerVersion !== "string") throw new Error("ServerVersion must be a string");
+  ServerVersion = ServerVersion.toLowerCase(); ServerPlatform = ServerPlatform.toLowerCase();
+  if (ServerVersion === "latest") {
+    ServerVersion = VersionsList.latest[ServerPlatform];
+  }
+  //
+  // ------------------------------------------------------------------------------------------------------------
+  // Script
+  //
+  const PlatformFilted = VersionsList.platform.filter(SV => SV.name === ServerPlatform);
+  if (PlatformFilted.length === 0) throw new Error(`Platform ${ServerPlatform} not found`);
+  const VersionFiltred = PlatformFilted.filter(SV => SV.version === ServerVersion)[0];
+  if (VersionFiltred === undefined) throw new Error("Version not found");
   const DataReturn = {
     url: "",
     version: "",
-    Date: new Date()
+    Date: new Date(),
+    raw_request: VersionFiltred
   }
-  if (typeof ServerPlatform !== "string") throw new Error("ServerPlatform must be a string");
-
-  if (typeof ServerVersion === "string") {
-    ServerVersion = ServerVersion.toLowerCase(); ServerPlatform = ServerPlatform.toLowerCase();
-    if (ServerVersion === "latest") {
-      ServerVersion = VersionsList.latest[ServerPlatform];
-    }
-    //
-    // ------------------------------------------------------------------------------------------------------------
-    // Script
-    //
-    const PlatformFilted = VersionsList.platform.filter(SV => SV.name === ServerPlatform);
-    if (PlatformFilted.length === 0) throw new Error(`Platform ${ServerPlatform} not found`);
-    const VersionFiltred = PlatformFilted.filter(SV => SV.version === ServerVersion)[0];
-    if (VersionFiltred === undefined) throw new Error("Version not found");
-    DataReturn.raw_request = VersionFiltred;
-    if (typeof VersionFiltred.data === "string") {
-      DataReturn.url = VersionFiltred.data;
+  if (typeof VersionFiltred.data === "string") {
+    DataReturn.url = VersionFiltred.data;
+    DataReturn.version = VersionFiltred.version;
+    DataReturn.Date = new Date(VersionFiltred.Date);
+  } else if (typeof VersionFiltred.data[process.platform] === "object") {
+    if (typeof VersionFiltred.data[process.platform][process.arch] === "string") {
+      DataReturn.url = VersionFiltred.data[process.platform][process.arch];
       DataReturn.version = VersionFiltred.version;
       DataReturn.Date = new Date(VersionFiltred.Date);
-    } else if (typeof VersionFiltred.data[process.platform] === "object") {
-      if (typeof VersionFiltred.data[process.platform][process.arch] === "string") {
-        DataReturn.url = VersionFiltred.data[process.platform][process.arch];
-        DataReturn.version = VersionFiltred.version;
-        DataReturn.Date = new Date(VersionFiltred.Date);
-      } else {
-        const ArchFiltred = Object.keys(VersionFiltred.data[process.platform]).filter(Arch => !Arch);
-        throw new Error(`Architecture ${ArchFiltred} not found`);
-      }
     } else {
-      const Err = new Error("Error getting the version");
-      Err.Error_raw = VersionFiltred;
-      throw Err;
+      const ArchFiltred = Object.keys(VersionFiltred.data[process.platform]).filter(Arch => !Arch);
+      throw new Error(`Architecture ${ArchFiltred} not found`);
     }
-  } else throw new Error("ServerVersion must be a string");
+  } else {
+    const Err = new Error("Error getting the version");
+    Err.Error_raw = VersionFiltred;
+    throw Err;
+  }
   return DataReturn;
 }
 
