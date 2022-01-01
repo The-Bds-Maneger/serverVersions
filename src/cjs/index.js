@@ -6,7 +6,7 @@ const path = require("path");
 // Create Function Object Modules
 let Branch = "main"
 if (process.env.CI) {
-  Branch = process.env.CI_COMMIT_REF_NAME.replace(/^.*\/.*\//, "");
+  Branch = (process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || process.env.GITHUB_REF).replace(/^.*\/.*\//, "");
   console.log(`Branch: ${Branch}`);
 }
 if (process.env.rawBranch) Branch = process.env.rawBranch;
