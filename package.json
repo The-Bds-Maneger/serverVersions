@@ -36,7 +36,7 @@
     "@actions/core": "^1.6.0",
     "axios": "^0.24.0",
     "cli-color": "^2.0.1",
-    "jsdom": "^18.0.0",
+    "jsdom": "^19.0.0",
     "node-fetch": "^3.0.0"
   },
   "devDependencies": {
