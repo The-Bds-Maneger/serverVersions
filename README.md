@@ -1,4 +1,4 @@
-# Server Versions Auth Fetch New Versions
+# Auto Fetch New Server Versions
 
 This is a repository in which to look for new versions automatically.
 
