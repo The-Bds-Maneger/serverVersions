@@ -5,7 +5,7 @@ const path = require("path");
 
 // Create Function Object Modules
 let Branch = "main"
-if (process.env.CI) {
+if (process.env.CI && process.env.GITHUB_REPOSITORY === "The-Bds-Maneger/ServerVersions") {
   Branch = (process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || process.env.GITHUB_REF).replace(/^.*\/.*\//, "");
   console.log(`Branch: ${Branch}`);
 }
