@@ -3,10 +3,22 @@
     "bedrock": "1.18.2.03",
     "dragonfly": "1.17.40",
     "java": "1.18.1",
-    "pocketmine": "4.0.4",
+    "pocketmine": "4.0.5",
     "spigot": "1.18.1"
   },
   "platform": [
+    {
+      "name": "pocketmine",
+      "version": "4.0.5",
+      "Date": "Tue, 04 Jan 2022 21:00:30 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/4.0.5/PocketMine-MP.phar"
+    },
+    {
+      "name": "pocketmine",
+      "version": "3.26.5",
+      "Date": "Tue, 04 Jan 2022 20:57:59 GMT",
+      "data": "https://github.com/pmmp/PocketMine-MP/releases/download/3.26.5/PocketMine-MP.phar"
+    },
     {
       "name": "pocketmine",
       "version": "4.0.4",
