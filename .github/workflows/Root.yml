@@ -25,6 +25,8 @@ jobs:
         run: npm install -d --no-save
 
       - name: Test
+        env:
+          BDS_VERSION_CI_TEST: "true"
         run: npm run test
 
   publish:

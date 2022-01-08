@@ -5,11 +5,10 @@ const path = require("path");
 
 // Create Function Object Modules
 let Branch = "main"
-if (process.env.CI && process.env.GITHUB_REPOSITORY === "The-Bds-Maneger/ServerVersions") {
+if (process.env.BDS_VERSION_CI_TEST === "true") {
   Branch = (process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME || process.env.GITHUB_REF).replace(/^.*\/.*\//, "");
-  console.log(`Branch: ${Branch}`);
+  console.log(`Bds Version test Branch: ${Branch}`);
 }
-if (process.env.rawBranch) Branch = process.env.rawBranch;
 const GithubRawUrl = `https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/${Branch}`;
 const Mod = {};
 
