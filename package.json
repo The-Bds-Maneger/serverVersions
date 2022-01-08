@@ -1,6 +1,6 @@
 {
   "name": "@the-bds-maneger/server_versions",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Auto Find Minecraft Server Versions",
   "main": "src/cjs/index.js",
   "publishConfig": {
