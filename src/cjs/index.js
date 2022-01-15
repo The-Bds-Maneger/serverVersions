@@ -58,21 +58,23 @@ function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", 
 /**
  * Get local server versions
  */
-Mod.list = () => {
+function ListVersions() {
   let Versions = require("../Versions.json");
   Versions = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../Versions.json"), "utf8"));
   return Versions;
 }
+Mod.list = ListVersions;
 
 /**
  * Get latest server versions with async, returning an object with the latest server versions, in addition to updating the file locally
  */
-Mod.listAsync = async () => {
+async function listAsync() {
   let VersionsList = Mod.list();
   VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
   fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(VersionsList, null, 2));
   return VersionsList;
 }
+Mod.listAsync = listAsync;
 
 /**
  * Get latest server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
@@ -93,7 +95,7 @@ Mod.listCallback = (Callback = (err = null, data) => console.log(err, data)) => 
  *  find("latest", "java");
  * 
  */
-Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctionFind(ServerVersion, ServerPlatform, Mod.list());
+Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctionFind(ServerVersion, ServerPlatform, ListVersions());
 
 /**
  * Look for server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
@@ -133,6 +135,24 @@ Mod.findCallback = function (ServerVersion = "latest", ServerPlatform = "bedrock
  *  const Version = await findAsync("latest", "java");
  */
 Mod.findAsync = util.promisify(Mod.findCallback);
+
+/**
+ * Old Style Mode
+ * 
+ */
+async function OldStyleMode() {
+  const PlatformsObject = {};
+  const VersionsData = await listAsync();
+  for (const { version, name: VersionPlatform, Date: VersionDate, data } of VersionsData.platform) {
+    if (!PlatformsObject[VersionPlatform]) PlatformsObject[VersionPlatform] = {latest: VersionsData.latest[VersionPlatform], versions: {}};
+    const MountVersionObject = {data: VersionDate}
+    if (typeof data === "object") Object.keys(data).forEach(Plat => MountVersionObject[Plat] = data[Plat]);
+    else MountVersionObject.url = data;
+    PlatformsObject[VersionPlatform].versions[version] = MountVersionObject;
+  }
+  return PlatformsObject;
+}
+Mod.OldStyleMode = OldStyleMode;
 
 // Export Modules
 module.exports = Mod;

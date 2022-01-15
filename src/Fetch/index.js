@@ -70,17 +70,17 @@ async function RunMain() {
   };
   console.log(cli_color.greenBright("Saving Versions.json"));
   fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(FixedVersions, null, 2));
-  action_core.exportVariable("COMMIT_CHANGES", CommitChanges ? "true" : "false");
   if (CommitChanges) {
-    const ArgsCommit = ["-m", "Server Versions"];
+    const ArgsCommit = ["commit", "-m", "Server Versions Updated"];
     if (OldVersions.latest.bedrock !== FixedVersions.latest.bedrock) ArgsCommit.push("-m", `Bedrock ${OldVersions.latest.bedrock} to ${FixedVersions.latest.bedrock}`);
     if (OldVersions.latest.dragonfly !== FixedVersions.latest.dragonfly) ArgsCommit.push("-m", `Dragonfly ${OldVersions.latest.dragonfly} to ${FixedVersions.latest.dragonfly}`);
     if (OldVersions.latest.java !== FixedVersions.latest.java) ArgsCommit.push("-m", `Java ${OldVersions.latest.java} to ${FixedVersions.latest.java}`);
     if (OldVersions.latest.pocketmine !== FixedVersions.latest.pocketmine) ArgsCommit.push("-m", `Pocketmine-MP ${OldVersions.latest.pocketmine} to ${FixedVersions.latest.pocketmine}`);
     if (OldVersions.latest.spigot !== FixedVersions.latest.spigot) ArgsCommit.push("-m", `Spigot: ${OldVersions.latest.spigot} to ${FixedVersions.latest.spigot}`);
     child_process.execFileSync("git", ["add", path.resolve(__dirname, "../Versions.json")], {cwd: path.resolve(__dirname, "../.."), stdio: "inherit"});
-    child_process.execFileSync("git", [ "commit", ...ArgsCommit ], {cwd: path.resolve(__dirname, "../.."), stdio: "inherit"});
+    child_process.execFileSync("git", ArgsCommit, {cwd: path.resolve(__dirname, "../.."), stdio: "inherit"});
   }
+  action_core.exportVariable("COMMIT_CHANGES", CommitChanges ? "true" : "false");
   return FixedVersions;
 }
 
