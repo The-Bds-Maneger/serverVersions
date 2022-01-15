@@ -1,4 +1,4 @@
-name: Update Servers Versions
+name: Find new versions
 on: 
   schedule:
     - cron: 0 */2 * * *
@@ -7,7 +7,6 @@ on:
       - main
 jobs:
   findVersion:
-    name: Find new versions of the servers
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master

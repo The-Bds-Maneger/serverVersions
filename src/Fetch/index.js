@@ -7,6 +7,7 @@ const cli_color = require("cli-color");
 
 async function RunMain() {
   const OldVersions = require("../Versions.json");
+  const ArgsCommit = ["commit", "-m", "Server Versions.json Updated"];
   const Versions = {
     latest: OldVersions.latest,
     platform: [],
@@ -21,6 +22,7 @@ async function RunMain() {
         for (let DataItem of Data) {
           if (!(OldVersions.platform.find(Version => Version.version === DataItem.Version))) {
             CommitChanges = true;
+            ArgsCommit.push("-m", `Add Version to platform ${ServerFetch.platform}, Version: ${DataItem.Version}`);
             console.log(cli_color.greenBright(`${ServerFetch.platform}: Add new version ${DataItem.Version}`));
             Versions.platform.push({
               name: ServerFetch.platform,
@@ -31,6 +33,7 @@ async function RunMain() {
       } else if (typeof Data.Version === "string") {
         if (!(OldVersions.platform.find(Version => Version.version === Data.Version))) {
           CommitChanges = true;
+          ArgsCommit.push("-m", `Add Version to platform ${ServerFetch.platform}, Version: ${Data.Version}`);
           console.log(cli_color.greenBright(`${ServerFetch.platform}: Add new version ${Data.Version}`));
           Versions.latest[ServerFetch.platform] = Data.Version;
           Data.version = Data.Version;
@@ -43,6 +46,7 @@ async function RunMain() {
       }  else if (typeof Data.version === "string") {
         if (!(OldVersions.platform.find(Version => Version.version === Data.version))) {
           CommitChanges = true;
+          ArgsCommit.push("-m", `Add Version to platform ${ServerFetch.platform}, Version: ${Data.version}`);
           console.log(cli_color.greenBright(`${ServerFetch.platform}: Add new version ${Data.version}`));
           Versions.latest[ServerFetch.platform] = Data.version;
           Versions.platform.push({
@@ -71,12 +75,6 @@ async function RunMain() {
   console.log(cli_color.greenBright("Saving Versions.json"));
   fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(FixedVersions, null, 2));
   if (CommitChanges) {
-    const ArgsCommit = ["commit", "-m", "Server Versions Updated"];
-    if (OldVersions.latest.bedrock !== FixedVersions.latest.bedrock) ArgsCommit.push("-m", `Bedrock ${OldVersions.latest.bedrock} to ${FixedVersions.latest.bedrock}`);
-    if (OldVersions.latest.dragonfly !== FixedVersions.latest.dragonfly) ArgsCommit.push("-m", `Dragonfly ${OldVersions.latest.dragonfly} to ${FixedVersions.latest.dragonfly}`);
-    if (OldVersions.latest.java !== FixedVersions.latest.java) ArgsCommit.push("-m", `Java ${OldVersions.latest.java} to ${FixedVersions.latest.java}`);
-    if (OldVersions.latest.pocketmine !== FixedVersions.latest.pocketmine) ArgsCommit.push("-m", `Pocketmine-MP ${OldVersions.latest.pocketmine} to ${FixedVersions.latest.pocketmine}`);
-    if (OldVersions.latest.spigot !== FixedVersions.latest.spigot) ArgsCommit.push("-m", `Spigot: ${OldVersions.latest.spigot} to ${FixedVersions.latest.spigot}`);
     child_process.execFileSync("git", ["add", path.resolve(__dirname, "../Versions.json")], {cwd: path.resolve(__dirname, "../.."), stdio: "inherit"});
     child_process.execFileSync("git", ArgsCommit, {cwd: path.resolve(__dirname, "../.."), stdio: "inherit"});
   }
