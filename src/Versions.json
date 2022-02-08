@@ -1,12 +1,31 @@
 {
   "latest": {
-    "bedrock": "1.18.2.03",
+    "bedrock": "1.18.11.01",
     "dragonfly": "1.17.40",
     "java": "1.18.1",
     "pocketmine": "4.1.0",
     "spigot": "1.18.1"
   },
   "platform": [
+    {
+      "name": "bedrock",
+      "version": "1.18.11.01",
+      "Date": "Tue, 08 Feb 2022 18:08:19 GMT",
+      "data": {
+        "linux": {
+          "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.18.11.01.zip",
+          "aarch64": null
+        },
+        "win32": {
+          "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.18.11.01.zip",
+          "aarch64": null
+        },
+        "darwin": {
+          "x64": null,
+          "aarch64": null
+        }
+      }
+    },
     {
       "name": "pocketmine",
       "version": "4.1.0",
