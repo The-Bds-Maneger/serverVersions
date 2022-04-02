@@ -11,7 +11,7 @@ if (process.env.BDS_VERSION_CI_TEST === "true") {
 }
 const GithubRawUrl = `https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/${Branch}`;
 
-export function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList = require("./Versions.json")) {
+export function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList) {
   if (typeof ServerPlatform !== "string") throw new Error("ServerPlatform must be a string");
   
   if (typeof ServerVersion !== "string") throw new Error("ServerVersion must be a string");
@@ -53,29 +53,19 @@ export function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bed
 }
 
 /**
- * Get local server versions
- */
-export function ListVersions() {
-  let Versions = require("./Versions.json");
-  Versions = JSON.parse(fs.readFileSync(path.resolve(__dirname, "./Versions.json"), "utf8"));
-  return Versions;
-}
-
-/**
  * Get latest server versions with async, returning an object with the latest server versions, in addition to updating the file locally
  */
-export async function listAsync() {
+export async function getVersions() {
   let VersionsList = ListVersions()();
   VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
-  fs.writeFileSync(path.resolve(__dirname, "./Versions.json"), JSON.stringify(VersionsList, null, 2));
   return VersionsList;
 }
 
 /**
- * Get latest server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
+ * Get latest server versions with callback, returning an object with the latest server versions.
  */
 export function listCallback(Callback = (err = null, data: any) => console.log(err, data)) {
-  listAsync().then(data => Callback(null, data)).catch(err => Callback(err, undefined));
+  getVersions().then(data => Callback(null, data)).catch(err => Callback(err, undefined));
 }
 
 /**
@@ -90,7 +80,9 @@ export function listCallback(Callback = (err = null, data: any) => console.log(e
  *  find("latest", "java");
  * 
  */
-export function find(ServerVersion = "latest", ServerPlatform = "bedrock") {return MainFunctionFind(ServerVersion, ServerPlatform, ListVersions());}
+export async function find(ServerVersion: string = "latest", ServerPlatform: string = "bedrock") {
+  return MainFunctionFind(ServerVersion, ServerPlatform, await getVersions());
+}
 
 /**
  * Look for server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
@@ -107,7 +99,7 @@ export function find(ServerVersion = "latest", ServerPlatform = "bedrock") {retu
  *  console.log(data);
  * });
  */
-export function findCallback(ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = find()) => console.log(err, Data)) {
+export async function findCallback(ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = await find()) => console.log(err, Data)) {
   listCallback((err, data) => {
     if (err) return Callback(err);
     try {

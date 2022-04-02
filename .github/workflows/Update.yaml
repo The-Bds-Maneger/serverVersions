@@ -1,5 +1,5 @@
 name: Find new versions
-on: 
+on:
   schedule:
     - cron: 0 */2 * * *
   push:
@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      
+
       - name: Setup git User
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      
+
       - name: Setup Node JS
         uses: actions/setup-node@v3.1.0
         with:
@@ -23,9 +23,6 @@ jobs:
 
       - name: Install Node Packages
         run: npm install -d --no-save
-
-      - name: Build
-        run: npm run build:esm
 
       - name: Check Versions
         run: npm run find_version
