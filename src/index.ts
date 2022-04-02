@@ -1,7 +1,7 @@
-const Axios = require("axios");
-const util = require("util");
-const fs = require("fs");
-const path = require("path");
+import * as Axios from "axios";
+import util from "util";
+import fs from "fs";
+import path from "path";
 
 // Create Function Object Modules
 let Branch = "main"
@@ -10,9 +10,8 @@ if (process.env.BDS_VERSION_CI_TEST === "true") {
   console.log(`Bds Version test Branch: ${Branch}`);
 }
 const GithubRawUrl = `https://raw.githubusercontent.com/The-Bds-Maneger/ServerVersions/${Branch}`;
-const Mod = {};
 
-function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList = require("../Versions.json")) {
+export function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", VersionsList = require("./Versions.json")) {
   if (typeof ServerPlatform !== "string") throw new Error("ServerPlatform must be a string");
   
   if (typeof ServerVersion !== "string") throw new Error("ServerVersion must be a string");
@@ -58,29 +57,27 @@ function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bedrock", 
 /**
  * Get local server versions
  */
-function ListVersions() {
-  let Versions = require("../Versions.json");
-  Versions = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../Versions.json"), "utf8"));
+export function ListVersions() {
+  let Versions = require("./Versions.json");
+  Versions = JSON.parse(fs.readFileSync(path.resolve(__dirname, "./Versions.json"), "utf8"));
   return Versions;
 }
-Mod.list = ListVersions;
 
 /**
  * Get latest server versions with async, returning an object with the latest server versions, in addition to updating the file locally
  */
-async function listAsync() {
-  let VersionsList = Mod.list();
+export async function listAsync() {
+  let VersionsList = list();
   VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
-  fs.writeFileSync(path.resolve(__dirname, "../Versions.json"), JSON.stringify(VersionsList, null, 2));
+  fs.writeFileSync(path.resolve(__dirname, "./Versions.json"), JSON.stringify(VersionsList, null, 2));
   return VersionsList;
 }
-Mod.listAsync = listAsync;
 
 /**
  * Get latest server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
  */
-Mod.listCallback = (Callback = (err = null, data) => console.log(err, data)) => {
-  Mod.listAsync().then(data => Callback(null, data)).catch(err => Callback(err));
+export function listCallback(Callback = (err = null, data) => console.log(err, data)) {
+  listAsync().then(data => Callback(null, data)).catch(err => Callback(err));
 }
 
 /**
@@ -95,7 +92,7 @@ Mod.listCallback = (Callback = (err = null, data) => console.log(err, data)) => 
  *  find("latest", "java");
  * 
  */
-Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctionFind(ServerVersion, ServerPlatform, ListVersions());
+export function find(ServerVersion = "latest", ServerPlatform = "bedrock") {return MainFunctionFind(ServerVersion, ServerPlatform, ListVersions());}
 
 /**
  * Look for server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
@@ -112,8 +109,8 @@ Mod.find = (ServerVersion = "latest", ServerPlatform = "bedrock") => MainFunctio
  *  console.log(data);
  * });
  */
-Mod.findCallback = function (ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = Mod.find()) => console.log(err, Data)) {
-  Mod.listCallback((err, data) => {
+export function findCallback(ServerVersion = "latest", ServerPlatform = "bedrock", Callback = (err = null, Data = find()) => console.log(err, Data)) {
+  listCallback((err, data) => {
     if (err) return Callback(err);
     try {
       Callback(null, MainFunctionFind(ServerVersion, ServerPlatform, data));
@@ -134,13 +131,13 @@ Mod.findCallback = function (ServerVersion = "latest", ServerPlatform = "bedrock
  * 
  *  const Version = await findAsync("latest", "java");
  */
-Mod.findAsync = util.promisify(Mod.findCallback);
+export const findAsync = util.promisify(findCallback);
 
 /**
  * Old Style Mode
  * 
  */
-async function OldStyleMode() {
+export async function OldStyleMode() {
   const PlatformsObject = {};
   const VersionsData = await listAsync();
   for (const { version, name: VersionPlatform, Date: VersionDate, data } of VersionsData.platform) {
@@ -152,7 +149,3 @@ async function OldStyleMode() {
   }
   return PlatformsObject;
 }
-Mod.OldStyleMode = OldStyleMode;
-
-// Export Modules
-module.exports = Mod;
