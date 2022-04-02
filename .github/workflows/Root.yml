@@ -49,8 +49,8 @@ jobs:
       - name: Install Node Packages
         run: npm install -d --no-save
 
-      - name: Build ESM Module
-        run: npm run build:esm
+      - name: Build Module
+        run: npm run build
 
       - name: Edit main version
         if: github.event_name != 'release'

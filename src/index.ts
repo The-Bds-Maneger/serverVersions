@@ -1,4 +1,4 @@
-import * as Axios from "axios";
+import Axios from "axios";
 import util from "util";
 import fs from "fs";
 import path from "path";
@@ -47,9 +47,7 @@ export function MainFunctionFind(ServerVersion = "latest", ServerPlatform = "bed
       throw new Error(`Architecture ${ArchFiltred} not found`);
     }
   } else {
-    const Err = new Error("Error getting the version");
-    Err.Error_raw = VersionFiltred;
-    throw Err;
+    throw new Error("Error getting the version");
   }
   return DataReturn;
 }
@@ -67,7 +65,7 @@ export function ListVersions() {
  * Get latest server versions with async, returning an object with the latest server versions, in addition to updating the file locally
  */
 export async function listAsync() {
-  let VersionsList = list();
+  let VersionsList = ListVersions()();
   VersionsList = (await Axios.get(`${GithubRawUrl}/src/Versions.json`)).data;
   fs.writeFileSync(path.resolve(__dirname, "./Versions.json"), JSON.stringify(VersionsList, null, 2));
   return VersionsList;
@@ -76,8 +74,8 @@ export async function listAsync() {
 /**
  * Get latest server versions with callback, returning an object with the latest server versions, in addition to updating the file locally
  */
-export function listCallback(Callback = (err = null, data) => console.log(err, data)) {
-  listAsync().then(data => Callback(null, data)).catch(err => Callback(err));
+export function listCallback(Callback = (err = null, data: any) => console.log(err, data)) {
+  listAsync().then(data => Callback(null, data)).catch(err => Callback(err, undefined));
 }
 
 /**
@@ -142,7 +140,7 @@ export async function OldStyleMode() {
   const VersionsData = await listAsync();
   for (const { version, name: VersionPlatform, Date: VersionDate, data } of VersionsData.platform) {
     if (!PlatformsObject[VersionPlatform]) PlatformsObject[VersionPlatform] = {latest: VersionsData.latest[VersionPlatform], versions: {}};
-    const MountVersionObject = {data: VersionDate}
+    const MountVersionObject: {[data: string]: any} = {data: VersionDate}
     if (typeof data === "object") Object.keys(data).forEach(Plat => MountVersionObject[Plat] = data[Plat]);
     else MountVersionObject.url = data;
     PlatformsObject[VersionPlatform].versions[version] = MountVersionObject;

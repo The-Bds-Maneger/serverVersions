@@ -8,12 +8,12 @@
   },
   "private": false,
   "exports": {
-    "require": "./src/cjs/index.js",
-    "import": "./src/esm/cjs/index.js"
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/cjs/index.js"
   },
   "scripts": {
     "test": "mocha --exit .test/*.js",
-    "find_version": "node ./dist/Fetch/index.js",
+    "find_version": "node ./dist/cjs/Fetch/index.js",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:esm": "tsc --module es2020 --outDir dist/esm",
     "build": "npm run build:cjs && npm run build:esm"
