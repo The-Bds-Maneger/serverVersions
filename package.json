@@ -3,10 +3,13 @@
   "version": "1.1.0",
   "description": "Auto Find Minecraft Server Versions",
   "main": "src/cjs/index.js",
+  "private": false,
+  "author": "The Bds Maneger Project Authors",
+  "license": "MIT",
+  "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
   "publishConfig": {
     "access": "public"
   },
-  "private": false,
   "exports": {
     "require": "./dist/cjs/index.js",
     "import": "./dist/esm/cjs/index.js"
@@ -27,12 +30,9 @@
     "Server",
     "automatic"
   ],
-  "author": "The Bds Maneger Project Authors",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/The-Bds-Maneger/ServerVersions/issues"
   },
-  "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
     "axios": "^0.26.0",
