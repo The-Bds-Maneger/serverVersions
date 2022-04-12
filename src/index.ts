@@ -17,7 +17,7 @@ export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
  * @param osPlatform - System platform of server, default is of host machine.
  * @returns Server Platform with url to download and date published.
  */
-export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{datePublish: Date; url: string;}> {
+export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{version: string; url: string; datePublish: Date; raw: any}> {
   const findObject: {version?: string; isLatest?: true|false;} = {};
   if (typeof Version === "boolean") {findObject.isLatest = true; delete findObject.version;}
   else {delete findObject.isLatest; if (typeof Version === "string") findObject.version = Version; else throw new Error("Version must be a string or boolean");}
@@ -27,8 +27,10 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
       if (!!dataBedrock[osPlatform]) {
         if (!!dataBedrock[osPlatform][Arch]) {
           return {
+            version: dataBedrock.version,
             url: dataBedrock[osPlatform][Arch],
-            datePublish: dataBedrock.datePublish
+            datePublish: dataBedrock.datePublish,
+            raw: dataBedrock
           };
         }
         throw new Error("Arch not found");
@@ -39,24 +41,30 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
     const dataJava = await pocketmine.findOne(findObject).lean();
     if (dataJava) {
       return {
+        version: dataJava.version,
         url: dataJava.pocketminePhar,
-        datePublish: dataJava.datePublish
+        datePublish: dataJava.datePublish,
+        raw: dataJava
       };
     }
   } else if (server === "java") {
     const dataJava = await java.findOne(findObject).lean();
     if (dataJava) {
       return {
+        version: dataJava.version,
         url: dataJava.javaJar,
-        datePublish: dataJava.datePublish
+        datePublish: dataJava.datePublish,
+        raw: dataJava
       };
     }
   } else if (server === "spigot") {
     const dataSpigot = await spigot.findOne(findObject).lean();
     if (dataSpigot) {
       return {
+        version: dataSpigot.version,
         url: dataSpigot.spigotJar,
-        datePublish: dataSpigot.datePublish
+        datePublish: dataSpigot.datePublish,
+        raw: dataSpigot
       };
     }
   }
@@ -78,4 +86,23 @@ export async function getBuffer(server: BdsCorePlatforms, Version: string|boolea
     datePublish: datePublish,
     dataBuffer: await axios.get(url, {responseType: "arraybuffer"}).then(res => Buffer.from(res.data))
   };
+}
+
+/**
+ * Get All Versions of a server.
+ * 
+ * @param server - Bds Core Platform.
+ * @returns Server Platform with data registered in database.
+ */
+export async function getAllVersions(server: BdsCorePlatforms) {
+  if (server === "bedrock") {
+    return bedrock.find({}).lean();
+  } else if (server === "pocketmine") {
+    return pocketmine.find({}).lean();
+  } else if (server === "java") {
+    return java.find({}).lean();
+  } else if (server === "spigot") {
+    return spigot.find({}).lean();
+  }
+  throw new Error("Invalid server");
 }
