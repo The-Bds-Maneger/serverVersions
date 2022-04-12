@@ -2,11 +2,12 @@
   "name": "@the-bds-maneger/server_versions",
   "version": "2.0.1",
   "description": "Auto Find Minecraft Server Versions",
-  "main": "src/cjs/index.js",
+  "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
   "private": false,
   "author": "The Bds Maneger Project Authors",
   "license": "MIT",
-  "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
+  "types": "./dist/cjs/index.d.ts",
+  "main": "src/cjs/index.js",
   "publishConfig": {
     "access": "public"
   },
@@ -15,7 +16,7 @@
     "import": "./dist/esm/cjs/index.js"
   },
   "scripts": {
-    "searchVersion": "node dist/cjs/fetchVersion/index.js",
+    "searchVersion": "ts-node src/fetchVersion/index.ts",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:esm": "tsc --module es2020 --outDir dist/esm",
     "build": "npm run build:cjs && npm run build:esm"

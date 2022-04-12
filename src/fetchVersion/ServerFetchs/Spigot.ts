@@ -1,31 +1,42 @@
-const HTTP_Request = require("../HTTP_Request");
-const { JSDOM } = require("jsdom");
+import jsdom from "jsdom";
+import * as httpRequest from "../HTTP_Request";
 
-async function FetchVersions() {
-  const Versions = [];
-  const Page = await HTTP_Request.RAW_TEXT("https://getbukkit.org/download/spigot");
-  const { document } = new JSDOM(Page).window;
-  const Doms = document.querySelectorAll("#download > div > div > div > div");
-  Doms.forEach(DOM => {
+export default async function spigot(): Promise<Array<{version: string; Date: Date; url: string;}>> {
+  const jsDom = new jsdom.JSDOM(await httpRequest.RAW_TEXT("https://getbukkit.org/download/spigot"));
+  const { document } = jsDom.window;
+  var Versions = [];
+  document.querySelectorAll("#download > div > div > div > div").forEach(DOM => {
     const New_Dom = {
-      version: DOM.querySelector("div:nth-child(1) > h2").innerHTML,
-      Date: DOM.querySelector("div:nth-child(3) > h3").innerHTML.trim(),
-      url: DOM.querySelector("div:nth-child(4) > div:nth-child(2) > a").href,
+      version: String(DOM.querySelector("div:nth-child(1) > h2").textContent),
+      Date: new Date(DOM.querySelector("div:nth-child(3) > h3").textContent),
+      url: []
     }
+    New_Dom.url.push(`https://download.getbukkit.org/spigot/spigot-${New_Dom.version}.jar`, `https://cdn.getbukkit.org/spigot/spigot-${New_Dom.version}.jar`);
     Versions.push(New_Dom)
   });
-
-  return Versions.map(Release => {
-    const Data = {
-      Date: new Date(Release.Date),
-      Version: String(Release.version),
-      data: String(Release.url)
+  const isExist = [];
+  for (const Version of Versions) {
+    if (await httpRequest.fetchBuffer(Version.url[0]).then(() => true).catch(() => false)) {
+      Version.url = Version.url[0];
+      isExist.push(Version);
+    } else if (await httpRequest.fetchBuffer(Version.url[1]).then(() => true).catch(() => false)) {
+      Version.url = Version.url[1];
+      isExist.push(Version);
     }
-    Data.Version = Data.Version.replace(/[,]/gi, ".");
-    return Data;
-  });
+    else console.log("Spigot: version (%s) not found, url 1: %s, url 2: %s", Version.version, Version.url[0], Version.url[1]);
+  }
+  return isExist;
 }
-
-if (require.main === module) FetchVersions().then(console.log).catch(console.error);
-else module.exports.main = FetchVersions;
-module.exports.platform = "spigot";
+// .then(async data => {
+//   for (const version of data) {
+//     if (await spigot.findOne({ version: version.version }).then(err => err === undefined ? false : true).catch(() => true)) console.log("Spigot: version (%s) already exist", version.version);
+//     else {
+//       await spigot.create({
+//         version: version.version,
+//         datePublish: version.Date,
+//         spigotJar: version.url,
+//         isLatest: version.version === data[0].version
+//       });
+//     }
+//   }
+// });

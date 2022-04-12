@@ -89,12 +89,15 @@ type githubRelease = {
   }>;
 };
 
+export async function fetchBuffer(Host: string, Header?: {[key: string]: string}): Promise<Buffer> {
+  const Headers = {...HeadersBase, ...(Header||{})};
+  const Response = await Axios.get(Host, {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
+  return Buffer.from(Response.data);
+}
+
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
-  const AxiosData = await Axios.get(Host, {
-    headers: {...HeadersBase, ...(Header||{})},
-    responseType: "text"
-  });
-  return String(AxiosData.data);
+  const AxiosData = await fetchBuffer(Host, Header);
+  return String(AxiosData.toString("utf8"));
 }
 
 export async function HTML_URLS(Host: string, Header?: {[key: string]: string}) {

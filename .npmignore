@@ -1,0 +1,6 @@
+!dist/
+!src/
+*.tgz
+.vscode/
+.devcontainer/
+.git*/

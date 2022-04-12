@@ -1,8 +1,8 @@
 {
-  "include": ["src/versionManeger", "src/model"],
+  "include": ["src/"],
   "exclude": ["node_modules/"],
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./dist/cjs",
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
@@ -14,10 +14,6 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "allowJs": true,
-    "target": "ES6",
-    "typeRoots": [
-      "node_modules/@types",
-      "./src/api/index.ts"
-    ]
+    "target": "ES6"
   }
 }

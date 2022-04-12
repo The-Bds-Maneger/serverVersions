@@ -1,19 +1,19 @@
-const HTTP_Request = require("../HTTP_Request");
+import * as httpRequest from "../HTTP_Request";
 
-async function MainRequest() {
-  const Htmll = (await HTTP_Request.HTML_URLS("https://www.minecraft.net/en-us/download/server/bedrock")).filter(d => /bin-/.test(d));
+export default async function bedrock() {
+  const Htmll = (await httpRequest.HTML_URLS("https://www.minecraft.net/en-us/download/server/bedrock")).filter(d => /bin-/.test(d));
   const Version = {
     linux: {
-      x64: null,
-      aarch64: null
+      x64: undefined,
+      aarch64: undefined
     },
     win32: {
-      x64: null,
-      aarch64: null
+      x64: undefined,
+      aarch64: undefined
     },
     darwin: {
-      x64: null,
-      aarch64: null
+      x64: undefined,
+      aarch64: undefined
     }
   };
 
@@ -38,7 +38,3 @@ async function MainRequest() {
   };
   return __data;
 }
-
-if (require.main === module) MainRequest().then(console.log).catch(console.error);
-else module.exports.main = MainRequest;
-module.exports.platform = "bedrock";

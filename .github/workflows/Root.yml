@@ -11,32 +11,12 @@ on:
       - main
 
 jobs:
-  test:
-    name: Test Package
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Setup Node JS
-        uses: actions/setup-node@v3.1.1
-        with:
-          node-version: 16.x
-
-      - name: Install Node Packages
-        run: npm install -d --no-save
-
-      - name: Test
-        env:
-          BDS_VERSION_CI_TEST: "true"
-        run: npm run test
-
   publish:
     name: Publish Package
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request'
     env:
       NODE_AUTH_TOKEN: ${{ secrets.NPM_ORG_TOKEN }}
-    needs:
-      - test
     steps:
       - uses: actions/checkout@master
 
