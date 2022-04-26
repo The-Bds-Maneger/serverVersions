@@ -42,7 +42,7 @@ const BedrockFetch = bedrock().then(async data => {
   console.log("Bedrock: Latest version is \"%s\"", await bedrockMongo.findOne({ isLatest: true }).lean().then(data => data.version).catch(() => ""));
 }).catch(err => {
   console.error("Bedrock fetch in fetch new version error:\n******Error******\n");
-  console.error(err);
+  console.error(err.response?.data?.toString() || err.message || err);
 });
 
 const javaFetch = java().then(async data => {
@@ -64,7 +64,7 @@ const javaFetch = java().then(async data => {
   console.log("Java: Latest version is \"%s\"", await javaMongo.findOne({ isLatest: true }).lean().then(data => data.version).catch(() => ""));
 }).catch(err => {
   console.error("Java fetch in fetch new version error:\n******Error******\n");
-  console.error(err);
+  console.error(err.response?.data?.toString() || err.message || err);
 });
 
 const pocketmineFetch = pocketmine().then(async data => {
