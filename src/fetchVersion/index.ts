@@ -117,9 +117,7 @@ const FetchSpigot = spigot().then(async data => {
   console.error(err);
 });
 
-(async function () {
-  await Promise.all([BedrockFetch, javaFetch, pocketmineFetch, FetchSpigot]);
-})().then(() => {
+Promise.all([BedrockFetch, javaFetch, pocketmineFetch, FetchSpigot]).then(() => {
   console.log("Done");
   process.exit(0);
 }).catch(err => {
