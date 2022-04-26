@@ -1,13 +1,17 @@
 import axios from "axios";
-import bedrock from "./model/bedrock";
-import pocketmine from "./model/pocketmine";
-import java from "./model/java";
-import spigot from "./model/spigot";
-
+import bedrock, {bedrockSchema as typeBedrock} from "./model/bedrock";
+import pocketmine, {pocketminemmpSchema as typePocketmine} from "./model/pocketmine";
+import java, {javaSchema as typeJava} from "./model/java";
+import spigot, {spigotSchema as typeSpigot} from "./model/spigot";
 export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s390"|"s390x"|"x32";
 export type osPlatform = "darwin"|"win32"|"linux"|"android";
 export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
+export type bedrockSchemas = typeBedrock;
+export type javaSchemas = typeJava;
+export type pocketminemmpSchemas = typePocketmine
+export type spigotSchemas = typeSpigot;
 
+export default findUrlVersion;
 /**
  * Search for a platform version of Bds Core, returning the file url and the publication date.
  * 
@@ -17,7 +21,7 @@ export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
  * @param osPlatform - System platform of server, default is of host machine.
  * @returns Server Platform with url to download and date published.
  */
-export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{version: string; url: string; datePublish: Date; raw: any}> {
+export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{version: string; url: string; datePublish: Date; raw: typeBedrock|typeJava|typePocketmine|typeSpigot}> {
   const findObject: {version?: string; isLatest?: true|false;} = {};
   if (typeof Version === "boolean") {findObject.isLatest = true; delete findObject.version;}
   else {delete findObject.isLatest; if (typeof Version === "string") findObject.version = Version; else throw new Error("Version must be a string or boolean");}

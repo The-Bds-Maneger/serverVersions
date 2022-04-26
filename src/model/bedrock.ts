@@ -33,8 +33,7 @@ export const Schema = new mongoose.Schema<bedrockSchema>({
   },
   isLatest: {
     type: Boolean,
-    required: true,
-    unique: true
+    required: true
   },
   win32: {
     x64: {

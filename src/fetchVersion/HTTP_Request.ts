@@ -101,9 +101,7 @@ export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): 
 }
 
 export async function HTML_URLS(Host: string, Header?: {[key: string]: string}) {
-  const data = await RAW_TEXT(Host, Header||{});
-  const Ls = data.split(/["'<>]/gi).filter(d=>/^.*:\/\//.test(d.trim()));
-  return Ls;
+  return (await RAW_TEXT(Host, Header||{})).split(/["'<>]/gi).filter(Line => /^.*:\/\//.test(Line.trim()));
 }
 
 export async function GithubRelease(Repository: string): Promise<Array<githubRelease>> {

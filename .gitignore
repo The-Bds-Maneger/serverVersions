@@ -2,3 +2,4 @@ node_modules/
 GitMessage.txt
 dist/
 *.tgz
+CHANGELOG.md
