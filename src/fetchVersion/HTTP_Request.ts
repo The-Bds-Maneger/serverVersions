@@ -7,6 +7,8 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
     "cache-control": "no-cache",
     "pragma": "no-cache",
     "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"100\", \"Google Chrome\";v=\"100\"",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36",
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": "\"Windows\"",
     "sec-fetch-dest": "document",
@@ -17,7 +19,7 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
     ...(Header||{})
   };
   if (/minecraft\.net/.test(Host)) {
-    const Mine = await Axios.get("https://minecraft.net/en-us");
+    const Mine = await Axios.get("https://minecraft.net/en-us", {responseEncoding: "binary", responseType: "arraybuffer"});
     if (!Mine.headers) Mine.headers = {};
     for (const key of Object.keys(Mine.headers)) {
       Headers[key] = Mine.headers[key]||"";

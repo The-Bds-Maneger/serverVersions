@@ -8,13 +8,13 @@ import pocketmine from "./ServerFetchs/Pocketmine";
 import java from "./ServerFetchs/Java";
 import spigot from "./ServerFetchs/Spigot";
 
+console.log("Fetching versions...");
 bedrock().then(data => {
   if (data.old.version !== data.new.version) console.log(`Bedrock: Update from ${data.old.version} to ${data.new.version}`);
   else console.log(`Bedrock: No update`);
 }).catch(err => {
   console.error("Bedrock fetch in fetch new version error:\n******Error******\n");
   console.error(err.response?.data?.toString() || err.message || err);
-  console.error(err);
   console.error("Bedrock fetch in fetch new version error:\n******Error******\n");
 })
 .then(() => java().then(data => {
@@ -23,7 +23,6 @@ bedrock().then(data => {
 }).catch(err => {
   console.error("Java fetch in fetch new version error:\n******Error******\n");
   console.error(err.response?.data?.toString() || err.message || err);
-  console.error(err);
   console.error("Java fetch in fetch new version error:\n******Error******\n");
 }))
 .then(() => pocketmine().then(data => {
@@ -32,7 +31,6 @@ bedrock().then(data => {
 }).catch(err => {
   console.error("Pocketmine fetch in fetch new version error:\n******Error******\n");
   console.error(err.response?.data?.toString() || err.message || err);
-  console.error(err);
   console.error("Pocketmine fetch in fetch new version error:\n******Error******\n");
 }))
 .then(() => spigot().then(data => {
@@ -41,7 +39,6 @@ bedrock().then(data => {
 }).catch(err => {
   console.error("Spigot fetch in fetch new version error:\n******Error******\n");
   console.error(err.response?.data?.toString() || err.message || err);
-  console.error(err);
   console.error("Spigot fetch in fetch new version error:\n******Error******\n");
 }))
 .then(() => {
