@@ -1,7 +1,8 @@
 import jsdom from "jsdom";
 import * as httpRequest from "../HTTP_Request";
+import { spigot } from "../../model/spigot";
 
-export default async function spigot(): Promise<Array<{version: string; Date: Date; url: string;}>> {
+async function Find(): Promise<Array<{version: string; Date: Date; url: string;}>> {
   const jsDom = new jsdom.JSDOM(await httpRequest.RAW_TEXT("https://getbukkit.org/download/spigot"));
   const { document } = jsDom.window;
   var Versions = [];
@@ -27,16 +28,27 @@ export default async function spigot(): Promise<Array<{version: string; Date: Da
   }
   return isExist;
 }
-// .then(async data => {
-//   for (const version of data) {
-//     if (await spigot.findOne({ version: version.version }).then(err => err === undefined ? false : true).catch(() => true)) console.log("Spigot: version (%s) already exist", version.version);
-//     else {
-//       await spigot.create({
-//         version: version.version,
-//         datePublish: version.Date,
-//         spigotJar: version.url,
-//         isLatest: version.version === data[0].version
-//       });
-//     }
-//   }
-// });
+
+export default async function UpdateDatabase() {
+  const data = await Find();
+  const latestVersion = await spigot.findOne({ isLatest: true }).lean();
+  latestVersion.isLatest = false;
+  await spigot.updateOne({ _id: latestVersion._id }, latestVersion);
+  for (const version of data) {
+    if (await spigot.findOne({ version: version.version }).lean().then(data => !!data ? false : true).catch(() => false)) {
+      await spigot.create({
+        version: version.version,
+        datePublish: version.Date,
+        isLatest: false,
+        spigotJar: version.url
+      });
+    }
+  }
+  const latestDatabase = await spigot.findOne({ version: data[0].version }).lean();
+  latestDatabase.isLatest = true;
+  await spigot.updateOne({ _id: latestDatabase._id }, latestDatabase);
+  return {
+    new: await spigot.findOne({ isLatest: true }).lean(),
+    old: latestVersion
+  }
+}
