@@ -9,7 +9,7 @@ jobs:
     runs-on: ARM64
     name: Deploy container
     environment:
-      name: 'API
+      name: "deploy_container"
       url: https://version.api.bdsmaneger.com/
     steps:
       - uses: actions/checkout@v3.0.2
