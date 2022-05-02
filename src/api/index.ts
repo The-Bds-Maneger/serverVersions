@@ -36,10 +36,10 @@ app.get("/", async ({res}) => {
   const spigotVersions = await spigot.find().lean();
   return res.json({
     latest: {
-      bedrock: bedrockVersions.find(({isLatest}) => isLatest),
-      java: javaVersions.find(({isLatest}) => isLatest),
-      pocketmine: pocketmineVersions.find(({isLatest}) => isLatest),
-      spigot: spigotVersions.find(({isLatest}) => isLatest)
+      bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
+      java: javaVersions.find(({isLatest}) => isLatest).version,
+      pocketmine: pocketmineVersions.find(({isLatest}) => isLatest).version,
+      spigot: spigotVersions.find(({isLatest}) => isLatest).version
     },
     versions: {
       bedrock: bedrockVersions,
