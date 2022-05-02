@@ -2,8 +2,24 @@ import * as httpRequest from "../HTTP_Request";
 import { bedrockSchema, bedrock } from "../../model/bedrock";
 import adm_zip from "adm-zip";
 
+async function Add(Version: string, versionDate: Date, urlData: {linux: {x64: string, arm64?: string}; win32: {x64: string, arm64?: string}; darwin: {x64?: string, arm64?: string}}) {
+  if (await bedrock.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log("Bedrock: version (%s) already exists", Version);
+  else {
+    const Old = await bedrock.findOneAndUpdate({isLatest: true}, {$set: {isLatest: false}});
+    console.log("Bedrock: Update version %s, to %s", Old.version, Version);
+    await bedrock.create({
+      version: Version,
+      datePublish: versionDate,
+      isLatest: true,
+      win32: urlData.win32,
+      linux: urlData.linux,
+      darwin: urlData.darwin
+    });
+  }
+}
+
 async function Find() {
-  const HtmlUrls = (await httpRequest.HTML_URLS("https://www.minecraft.net/en-us/download/server/bedrock")).filter(Link => /bin-.*\.zip/.test(Link));
+  const HtmlUrls = (await httpRequest.HTML_URLS("https://minecraft.net/en-us/download/server/bedrock")).filter(Link => /bin-.*\.zip/.test(Link));
   const urlObject: {linux: bedrockSchema["linux"]; win32: bedrockSchema["win32"]; darwin: bedrockSchema["darwin"]; } = {
     linux: {x64: undefined, arm64: undefined},
     win32: {x64: undefined, arm64: undefined},
@@ -34,37 +50,14 @@ async function Find() {
       return resolve(new Date());
     })
   };
+  await Add(__data.version, __data.Date, __data.data);
   return __data;
 }
 
 export default async function UpdateDatabase() {
-  const data = await Find();
   const latestVersion = await bedrock.findOne({ isLatest: true }).lean();
-  if (await bedrock.findOne({ version: data.version }).lean().then(data => !data).catch(() => false)) {
-    if (data.version !== latestVersion.version) {
-      latestVersion.isLatest = false;
-      await bedrock.updateOne({ _id: latestVersion._id }, latestVersion);
-    }
-    await bedrock.create({
-      version: data.version,
-      datePublish: data.Date,
-      isLatest: data.version !== latestVersion.version,
-      win32: {
-        x64: data.data.win32.x64,
-        arm64: data.data.win32.arm64
-      },
-      linux: {
-        x64: data.data.linux.x64,
-        arm64: data.data.linux.arm64
-      },
-      darwin: {
-        x64: data.data.darwin.x64,
-        arm64: data.data.darwin.arm64
-      }
-    });
-  }
   return {
-    new: await bedrock.findOne({ isLatest: true }).lean(),
+    new: await Find(),
     old: latestVersion
   };
 }
