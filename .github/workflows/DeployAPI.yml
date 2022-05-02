@@ -1,4 +1,4 @@
-name: Publish
+name: Deploy
 on:
   push:
     branches:
@@ -8,6 +8,9 @@ jobs:
   run:
     runs-on: ARM64
     name: Deploy container
+    environment:
+      name: 'API
+      url: https://version.api.bdsmaneger.com/
     steps:
       - uses: actions/checkout@v3.0.2
 
@@ -20,13 +23,14 @@ jobs:
       - name: Up container
         run: docker-compose up -d
         env:
-          KEY: ${{ secrets.CA_KEY }}
-          CERT: ${{ secrets.CA_CERT }}
+          KEY: "${{ secrets.CA_KEY }}"
+          CERT: "${{ secrets.CA_CERT }}"
 
       - name: Test
         run: |
-          sleep 15
-          curl -v http://localhost:80/
+          sleep 30
+          docker-compose logs
+          curl -v https://localhost:80/
 
       - name: Docker Clean
         run: docker system prune -f
