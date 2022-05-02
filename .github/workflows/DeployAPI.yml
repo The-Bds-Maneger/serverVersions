@@ -26,11 +26,11 @@ jobs:
           KEY: "${{ secrets.CA_KEY }}"
           CERT: "${{ secrets.CA_CERT }}"
 
-      - name: Test
+      - name: Test Request
         run: |
           sleep 30
           docker-compose logs
-          curl -v https://localhost:80/
+          curl -v https://localhost/
 
       - name: Docker Clean
         run: docker system prune -f

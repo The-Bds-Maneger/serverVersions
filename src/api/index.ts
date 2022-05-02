@@ -1,4 +1,5 @@
 import https from "https";
+import http from "http";
 import express from "express";
 import cors from "cors";
 import bedrock from "../model/bedrock";
@@ -8,12 +9,13 @@ import spigot from "../model/spigot";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
 
 const app = express();
-
-// Listen on port 3000 with https
-https.createServer({
-  key: process.env.KEY,
-  cert: process.env.CERT
-}, app).listen(3000, () => console.log("Listening on port 3000"));
+// Listen http
+http.createServer(app).listen(8080, () => console.log("(HTTP) Listening on port 8080"));
+// Listen https
+if (process.env.KEY && process.env.CERT) {
+  console.log("(HTTPS) CA: %s, KEY: %s", process.env.KEY && process.env.CERT);
+  https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(8443, () => console.log("(HTTPS) Listening on port 8443"));
+} else console.log("(HTTPS) No certificate found, not listening on port 8443");
 
 app.use(cors());
 app.use(({res, next}) => {
