@@ -9,5 +9,5 @@ services:
       KEY: ${KEY}
       CERT: ${CERT}
     ports:
-      - "443:3000/tcp"
-      - "80:3000/tcp"
+      - "443:8443/tcp"
+      - "80:8080/tcp"
