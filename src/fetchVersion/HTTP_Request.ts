@@ -4,7 +4,7 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
   let Headers = {...(Header||{})};
   if (/minecraft\.net/.test(Host)) {
     Headers = {
-      // "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+      "accept": "*/*",
       // "accept-language": "pt-BR,pt;q=0.9,en-CA;q=0.8,en;q=0.7,en-US;q=0.6",
       // "cache-control": "no-cache",
       // "pragma": "no-cache",
@@ -20,11 +20,11 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
       // "upgrade-insecure-requests": "1",
       "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
     };
-    const Mine = await Axios.get("https://minecraft.net/en-us", {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
+    const Mine = await Axios.get("https://minecraft.net/en-us", {headers: Headers, http2: true, responseEncoding: "binary", responseType: "arraybuffer"});
     for (const key of Object.keys(Mine.headers)) {
       Headers[key] = Mine.headers[key]||"";
     }
-    return Buffer.from((await Axios.get(Host, {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"})).data);
+    return Buffer.from((await Axios.get(Host, {headers: Headers, http2: true, responseEncoding: "binary", responseType: "arraybuffer"})).data);
   }
   const Response = await Axios.get(Host, {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
   return Buffer.from(Response.data);
