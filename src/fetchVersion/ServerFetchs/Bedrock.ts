@@ -1,12 +1,13 @@
+import cli_color from "cli-color";
 import * as httpRequest from "../HTTP_Request";
 import { bedrockSchema, bedrock } from "../../model/bedrock";
 import adm_zip from "adm-zip";
 
 async function Add(Version: string, versionDate: Date, urlData: {linux: {x64: string, arm64?: string}; win32: {x64: string, arm64?: string}; darwin: {x64?: string, arm64?: string}}) {
-  if (await bedrock.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log("Bedrock: version (%s) already exists", Version);
+  if (await bedrock.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log(cli_color.redBright("Bedrock: version (%s) already exists"), Version);
   else {
     const Old = await bedrock.findOneAndUpdate({isLatest: true}, {$set: {isLatest: false}});
-    console.log("Bedrock: Update version %s, to %s", Old.version, Version);
+    console.log(cli_color.redBright("Bedrock: Update version %s, to %s"), Old.version, Version);
     await bedrock.create({
       version: Version,
       datePublish: versionDate,

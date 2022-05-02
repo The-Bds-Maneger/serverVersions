@@ -1,10 +1,11 @@
+import cli_color from "cli-color";
 import * as httpRequest from "../HTTP_Request";
 import { pocketminemmp } from "../../model/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {
-  if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log("Pocketmine: version (%s) already exists", Version);
+  if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log(cli_color.blueBright("Pocketmine: version (%s) already exists"), Version);
   else {
-    console.log("Pocketmine PMMP: Version %s, url %s", Version, url);
+    console.log(cli_color.blueBright("Pocketmine PMMP: Version %s, url %s"), Version, url);
     await pocketminemmp.create({
       version: Version,
       datePublish: versionDate,

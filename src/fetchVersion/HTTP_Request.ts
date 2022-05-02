@@ -1,4 +1,4 @@
-import Axios from "axios";
+import { fetch as Fetch } from "undici";
 
 export async function fetchBuffer(Host: string, Header?: {[key: string]: string}): Promise<Buffer> {
   let Headers = {...(Header||{})};
@@ -20,14 +20,26 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
       // "upgrade-insecure-requests": "1",
       "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
     };
-    const Mine = await Axios.get("https://minecraft.net/en-us", {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
+    const Mine = await Fetch("https://minecraft.net/en-us", {
+      method: "GET",
+      headers: Headers,
+    });
     for (const key of Object.keys(Mine.headers)) {
       Headers[key] = Mine.headers[key]||"";
     }
-    return Buffer.from((await Axios.get(Host, {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"})).data);
+    return await Fetch(Host, {
+      method: "GET",
+      headers: Headers,
+    }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
+       throw new Error(String(err));
+    });
   }
-  const Response = await Axios.get(Host, {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
-  return Buffer.from(Response.data);
+  return await Fetch(Host, {
+    method: "GET",
+    headers: Headers,
+  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
+     throw new Error(String(err));
+  });
 }
 
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
