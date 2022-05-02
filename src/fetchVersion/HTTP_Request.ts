@@ -31,20 +31,25 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
       method: "GET",
       headers: Headers,
     }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
-       throw new Error(String(err));
+      throw new Error(String(err));
     });
   }
   return await Fetch(Host, {
     method: "GET",
     headers: Headers,
   }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
-     throw new Error(String(err));
+    throw new Error(String(err));
   });
 }
 
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
-  const AxiosData = await fetchBuffer(Host, Header);
-  return String(AxiosData.toString("utf8"));
+  const Data = await fetchBuffer(Host, Header);
+  return String(Data.toString("utf8"));
+}
+
+export async function getJson(Host: string, Header?: {[key: string]: string}): Promise<any> {
+  const Data = await fetchBuffer(Host, Header);
+  return JSON.parse(Data.toString("utf8"));
 }
 
 export async function HTML_URLS(Host: string, Header?: {[key: string]: string}) {

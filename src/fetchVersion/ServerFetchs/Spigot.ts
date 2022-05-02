@@ -1,13 +1,13 @@
-import cli_color from "cli-color";
+import log from "../logging";
 import jsdom from "jsdom";
 import * as httpRequest from "../HTTP_Request";
 import { spigot } from "../../model/spigot";
 
 
 async function Add(Version: string, versionDate: Date, url: string) {
-  if (await spigot.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log(cli_color.greenBright("Spigot: version (%s) already exists"), Version);
+  if (await spigot.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) log("alter", "Spigot: version (%s) already exists", Version);
   else {
-    console.log(cli_color.greenBright("Spigot: Version %s, url %s"), Version, url);
+    log("alter", "Spigot: Version %s, url %s", Version, url);
     await spigot.create({
       version: Version,
       datePublish: versionDate,

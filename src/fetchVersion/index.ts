@@ -14,16 +14,20 @@ const fetchErros = {
   java: undefined,
   spigot: undefined
 }
-console.log("Fetching versions...");
-const Bedrock = bedrock().catch(err => fetchErros.bedrock = err);
-
-const Java = java().catch(err => fetchErros.java = err);
-
-const Pocketmine = pocketmine().catch(err => fetchErros.pocketmine = err);
-
-const Spigot = spigot().catch(err => fetchErros.spigot = err);
-
-Bedrock.then(() => Java).then(() => Pocketmine).then(() => Spigot).then(() => {
+console.log("Fetching oficial versions versions...");
+Promise.all([
+  bedrock().catch(err => fetchErros.bedrock = err),
+  java().catch(err => fetchErros.java = err)
+]).then(() => {
+  console.log("Fetching oficial versions versions... done");
+  console.log("Fetching alternative versions versions...");
+  return Promise.all([
+    pocketmine().catch(err => fetchErros.pocketmine = err),
+    spigot().catch(err => fetchErros.spigot = err)
+  ]).then(() => {
+    console.log("Fetching alternative versions versions... done");
+  });
+}).then(() => {
   if (!fetchErros.bedrock||!fetchErros.java||!fetchErros.pocketmine||!fetchErros.spigot) {
     if (fetchErros.bedrock) console.error("Bedrock Error:", fetchErros.bedrock);
     if (fetchErros.java) console.error("Java Error:", fetchErros.java);

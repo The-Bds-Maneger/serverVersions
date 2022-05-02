@@ -1,31 +1,28 @@
+import log from "../logging";
 import * as httpRequest from "../HTTP_Request";
 import { java } from "../../model/java";
+import { javaRelease } from "./types/Java";
 
 async function Add(Version: string, versionDate: Date, url: string) {
-  if (await java.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) console.log("Java: version (%s) already exists", Version);
+  if (await java.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) log("java", "Java: version (%s) already exists", Version);
   else {
-    console.log("Java: Version %s, url %s", Version, url);
-    await java.findOneAndUpdate({isLatest: true}, {$set: {isLatest: false}});
+    log("java", "Java: Version %s, url %s", Version, url);
     await java.create({
       version: Version,
       datePublish: versionDate,
-      isLatest: true,
+      isLatest: false,
       javaJar: url
     });
   }
 }
 
 async function Find() {
-  const HTML_ARRAY = (await httpRequest.RAW_TEXT("https://minecraft.net/en-us/download/server")).split(/["'<>]|\n|\t/gi).map(a => a.trim()).filter(a => a).filter(a => /\.jar/.test(a));
-  const HttpRequests = await httpRequest.HTML_URLS("https://minecraft.net/en-us/download/server");
-  
-  const VersionObject = {
-    Date: new Date(),
-    Version: HTML_ARRAY.filter(a => /[0-9\.]\.jar/.test(a)).map(a => a.split(/[a-zA-Z\._]/gi).map(a => a.trim()).filter(a=>a).join("."))[0],
-    data: HttpRequests.filter(ver => /http.*\.jar/.test(ver))[0]
-  };
-  await Add(VersionObject.Version, VersionObject.Date, VersionObject.data);
-  return VersionObject;
+  const Versions = await httpRequest.getJson("https://launchermeta.mojang.com/mc/game/version_manifest_v2.json") as {latest: {release: string, snapshot: string, }, versions: Array<{id: string, type: "snapshot"|"release", url: string, time: string, releaseTime: string, sha1: string, complianceLevel: number}>}
+  for (const ver of Versions.versions.filter(a => a.type === "release")) {
+    const Release = await httpRequest.getJson(ver.url) as javaRelease;
+    if (!!Release?.downloads?.server?.url) await Add(ver.id, new Date(ver.releaseTime), Release?.downloads?.server?.url);
+  }
+  return await java.findOneAndUpdate({version: Versions.latest.release}, {$set: {isLatest: true}}).lean();
 }
 
 export default async function UpdateDatabase() {
