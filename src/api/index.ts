@@ -1,3 +1,4 @@
+import https from "https";
 import express from "express";
 import cors from "cors";
 import bedrock from "../model/bedrock";
@@ -7,7 +8,13 @@ import spigot from "../model/spigot";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
 
 const app = express();
-app.listen(3000, () => console.log("API started on port 3000"));
+
+// Listen on port 3000 with https
+https.createServer({
+  key: process.env.KEY,
+  cert: process.env.CERT
+}, app).listen(3000, () => console.log("Listening on port 3000"));
+
 app.use(cors());
 app.use(({res, next}) => {
   res.json = (body) => {

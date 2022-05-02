@@ -3,3 +3,4 @@ GitMessage.txt
 dist/
 *.tgz
 CHANGELOG.md
+*.env

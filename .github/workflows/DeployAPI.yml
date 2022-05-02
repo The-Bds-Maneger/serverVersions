@@ -10,15 +10,23 @@ jobs:
     name: Deploy container
     steps:
       - uses: actions/checkout@v3.0.2
-        with:
-          submodules: true
+
       - name: Build Docker image
         run: docker-compose build
+
+      - name: Down container
+        run: docker-compose down
+
       - name: Up container
-        run: |
-          docker-compose down
-          docker-compose up -d
+        run: docker-compose up -d
+        env:
+          KEY: ${{ secrets.CA_KEY }}
+          CERT: ${{ secrets.CA_CERT }}
+
       - name: Test
-        run: curl -v http://localhost:80/
+        run: |
+          sleep 15
+          curl -v http://localhost:80/
+
       - name: Docker Clean
         run: docker system prune -f
