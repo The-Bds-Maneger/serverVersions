@@ -9,13 +9,10 @@ import spigot from "../model/spigot";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
 
 const app = express();
-// Listen https
-if (process.env.KEY && process.env.CERT) {
-  https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(8443, () => console.log("(HTTPS) Listening on port 8443"));
-} else {
-  console.log("(HTTPS) No certificate found, not listening on port 8443, listen on port 80 instead");
-  http.createServer(app).listen(8080, () => console.log("(HTTP) Listening on port 8080"));
-}
+// Listen
+http.createServer(app).listen(8080, () => console.log("(HTTP) Listening on port 8080"));
+if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(8443, () => console.log("(HTTPS) Listening on port 8443"));
+console.log("(HTTPS) No certificate found, not listening on port 8443, listen on port 80 instead");
 
 app.use(cors());
 app.use(({res, next}) => {
