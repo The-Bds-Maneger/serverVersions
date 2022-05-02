@@ -18,8 +18,9 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
       // "sec-fetch-site": "none",
       // "sec-fetch-user": "?1",
       // "upgrade-insecure-requests": "1",
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
     };
-    const Mine = await Axios.get("https://minecraft.net/en-us", {responseEncoding: "binary", responseType: "arraybuffer"});
+    const Mine = await Axios.get("https://minecraft.net/en-us", {headers: Headers, responseEncoding: "binary", responseType: "arraybuffer"});
     for (const key of Object.keys(Mine.headers)) {
       Headers[key] = Mine.headers[key]||"";
     }
