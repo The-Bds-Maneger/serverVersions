@@ -1,4 +1,4 @@
-import axios from "axios";
+import { fetchBuffer } from "./fetchVersion/HTTP_Request";
 import bedrock, {bedrockSchema as typeBedrock} from "./model/bedrock";
 import pocketmine, {pocketminemmpSchema as typePocketmine} from "./model/pocketmine";
 import java, {javaSchema as typeJava} from "./model/java";
@@ -88,7 +88,7 @@ export async function getBuffer(server: BdsCorePlatforms, Version: string|boolea
   const {datePublish, url} = await findUrlVersion(server, Version, Arch, osPlatform);
   return {
     datePublish: datePublish,
-    dataBuffer: await axios.get(url, {responseType: "arraybuffer"}).then(res => Buffer.from(res.data))
+    dataBuffer: await fetchBuffer(url)
   };
 }
 

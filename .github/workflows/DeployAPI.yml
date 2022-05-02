@@ -1,0 +1,22 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    name: Deploy container
+    steps:
+      - uses: actions/checkout@v3.0.2
+        with:
+          submodules: true
+      - name: Build Docker image
+        run: docker-compose build
+      - name: Up container
+        run: |
+          docker-compose down
+          docker-compose up -d
+      - name: Docker Clean
+        run: docker system prune -f
