@@ -6,19 +6,19 @@
   "private": false,
   "author": "sirherobrine23",
   "license": "MIT",
-  "types": "./dist/cjs/index.d.ts",
+  "types": "./dist/dts/index.d.ts",
   "main": "src/cjs/index.js",
   "publishConfig": {
     "access": "public"
   },
   "exports": {
     "require": "./dist/cjs/index.js",
-    "import": "./dist/esm/cjs/index.js"
+    "import": "./dist/esm/cjs/index.mjs"
   },
   "scripts": {
     "searchVersion": "ts-node src/fetchVersion/index.ts",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "build:esm": "tsc --module es2020 --outDir dist/esm",
+    "build:esm": "tsc --module es2020 --outDir dist/esm && node -e 'const fs = require(\"fs\");const path = require(\"path\");const read = (pathRe) => {for (const fileFolde of fs.readdirSync(pathRe)) {const filePath = path.join(pathRe, fileFolde);if (fs.statSync(filePath).isDirectory()) read(filePath);else {console.log(filePath, \"-->\", filePath.replace(/\\.js$/, \".mjs\"));fs.renameSync(filePath, filePath.replace(/\\.js$/, \".mjs\"));}}};read(\"dist/esm\");'",
     "search": "ts-node src/fetchVersion/index.ts",
     "build": "npm run build:cjs && npm run build:esm",
     "changelog": "auto-changelog"
