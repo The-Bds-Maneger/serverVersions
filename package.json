@@ -4,7 +4,7 @@
   "description": "Auto Find Minecraft Server Versions",
   "homepage": "https://github.com/The-Bds-Maneger/ServerVersions#readme",
   "private": false,
-  "author": "The Bds Maneger Project Authors",
+  "author": "the-bds-maneger",
   "license": "MIT",
   "types": "./dist/cjs/index.d.ts",
   "main": "src/cjs/index.js",
