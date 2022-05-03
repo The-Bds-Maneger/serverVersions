@@ -14,7 +14,9 @@ export default findUrlVersion;
  * @param Os - Operating system of server.
  * @returns Server Platform with url to download and date published.
  */
-export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch?: string, Os?: string): Promise<{version: string; url: string; datePublish: Date; raw?: Root["versions"]["bedrock"][0]|Root["versions"]["java"][0]|Root["versions"]["pocketmine"][0]|Root["versions"]["spigot"][0]}> {
+export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: string = process.arch, Os: string = process.platform): Promise<{version: string; url: string; datePublish: Date; raw?: Root["versions"]["bedrock"][0]|Root["versions"]["java"][0]|Root["versions"]["pocketmine"][0]|Root["versions"]["spigot"][0]}> {
+  if (!Arch) Arch = process.arch;
+  if (!Os) Os = process.platform;
   if (server === "bedrock") {
     let bedrockData: Root["versions"]["bedrock"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
@@ -25,7 +27,7 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
     if (!bedrockData) throw new Error("No version found");
     return {
       version: bedrockData.version,
-      url: bedrockData[Os?Os:process.platform][Arch?Arch:process.arch],
+      url: bedrockData[Os][Arch],
       datePublish: new Date(bedrockData.datePublish),
       raw: bedrockData
     };

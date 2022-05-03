@@ -1,12 +1,13 @@
-import { fetch as Fetch } from "undici";
+import Axios from "axios";
 import child_process from "child_process";
 
 export async function fetchBuffer(Host: string, Header?: {[key: string]: string}): Promise<Buffer> {
   let Headers = {...(Header||{})};
-  return await Fetch(Host, {
-    method: "GET",
+  return await Axios.get(Host, {
     headers: Headers,
-  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(err => {throw new Error(String(err));});
+    responseEncoding: "binary",
+    responseType: "arraybuffer"
+  }).then(async res => Buffer.from(res.data));
 }
 
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
