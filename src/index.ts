@@ -1,15 +1,8 @@
 import { fetchBuffer } from "./fetchVersion/HTTP_Request";
-import bedrock, {bedrockSchema as typeBedrock} from "./model/bedrock";
-import pocketmine, {pocketminemmpSchema as typePocketmine} from "./model/pocketmine";
-import java, {javaSchema as typeJava} from "./model/java";
-import spigot, {spigotSchema as typeSpigot} from "./model/spigot";
+import { Root } from "./types_request";
 export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s390"|"s390x"|"x32";
 export type osPlatform = "darwin"|"win32"|"linux"|"android";
 export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
-export type bedrockSchemas = typeBedrock;
-export type javaSchemas = typeJava;
-export type pocketminemmpSchemas = typePocketmine
-export type spigotSchemas = typeSpigot;
 
 export default findUrlVersion;
 /**
@@ -17,62 +10,67 @@ export default findUrlVersion;
  * 
  * @param server - Bds Core Platform.
  * @param Version - Version of server, any type of boolean to get latest version or `latest` to get latest version.
- * @param Arch - Architecture of server, default is of host machine.
- * @param osPlatform - System platform of server, default is of host machine.
  * @returns Server Platform with url to download and date published.
  */
-export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{version: string; url: string; datePublish: Date; raw: typeBedrock|typeJava|typePocketmine|typeSpigot}> {
-  const findObject: {version?: string; isLatest?: true|false;} = {};
-  if (typeof Version === "boolean") {findObject.isLatest = true; delete findObject.version;}
-  else {delete findObject.isLatest; if (typeof Version === "string") findObject.version = Version; else throw new Error("Version must be a string or boolean");}
+export async function findUrlVersion(server: BdsCorePlatforms, Version: string|boolean): Promise<{version: string; url: string; datePublish: Date; raw?: Root["versions"]["bedrock"][0]|Root["versions"]["java"][0]|Root["versions"]["pocketmine"][0]|Root["versions"]["spigot"][0]}> {
   if (server === "bedrock") {
-    const dataBedrock = await bedrock.findOne(findObject).lean();
-    if (dataBedrock) {
-      if (!!dataBedrock[osPlatform]) {
-        if (!!dataBedrock[osPlatform][Arch]) {
-          return {
-            version: dataBedrock.version,
-            url: dataBedrock[osPlatform][Arch],
-            datePublish: dataBedrock.datePublish,
-            raw: dataBedrock
-          };
-        }
-        throw new Error("Arch not found");
-      }
-      throw new Error("osPlatform not found");
+    let bedrockData: Root["versions"]["bedrock"][0] = undefined;
+    if (Version === "latest"||typeof Version === "boolean") {
+      bedrockData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/bedrock/latest").then(res => res.toString("utf8")));
+    } else {
+      bedrockData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/bedrock/search?version=${Version}`).then(res => res.toString("utf8")));
     }
-  } else if (server === "pocketmine") {
-    const dataJava = await pocketmine.findOne(findObject).lean();
-    if (dataJava) {
-      return {
-        version: dataJava.version,
-        url: dataJava.pocketminePhar,
-        datePublish: dataJava.datePublish,
-        raw: dataJava
-      };
-    }
+    if (!bedrockData) throw new Error("No version found");
+    return {
+      version: bedrockData.version,
+      url: bedrockData[process.platform][process.arch],
+      datePublish: new Date(bedrockData.datePublish),
+      raw: bedrockData
+    };
   } else if (server === "java") {
-    const dataJava = await java.findOne(findObject).lean();
-    if (dataJava) {
-      return {
-        version: dataJava.version,
-        url: dataJava.javaJar,
-        datePublish: dataJava.datePublish,
-        raw: dataJava
-      };
+    let javaData: Root["versions"]["java"][0] = undefined;
+    if (Version === "latest"||typeof Version === "boolean") {
+      javaData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/java/latest").then(res => res.toString("utf8")));
+    } else {
+      javaData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/java/search?version=${Version}`).then(res => res.toString("utf8")));
     }
+    if (!javaData) throw new Error("No version found");
+    return {
+      version: javaData.version,
+      url: javaData.javaJar,
+      datePublish: new Date(javaData.datePublish),
+      raw: javaData
+    };
+  } else if (server === "pocketmine") {
+    let pocketmineData: Root["versions"]["pocketmine"][0] = undefined;
+    if (Version === "latest"||typeof Version === "boolean") {
+      pocketmineData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/pocketmine/latest").then(res => res.toString("utf8")));
+    } else {
+      pocketmineData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/pocketmine/search?version=${Version}`).then(res => res.toString("utf8")));
+    }
+    if (!pocketmineData) throw new Error("No version found");
+    return {
+      version: pocketmineData.version,
+      url: pocketmineData.pocketminePhar,
+      datePublish: new Date(pocketmineData.datePublish),
+      raw: pocketmineData
+    };
   } else if (server === "spigot") {
-    const dataSpigot = await spigot.findOne(findObject).lean();
-    if (dataSpigot) {
-      return {
-        version: dataSpigot.version,
-        url: dataSpigot.spigotJar,
-        datePublish: dataSpigot.datePublish,
-        raw: dataSpigot
-      };
+    let spigotData: Root["versions"]["spigot"][0] = undefined;
+    if (Version === "latest"||typeof Version === "boolean") {
+      spigotData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/spigot/latest").then(res => res.toString("utf8")));
+    } else {
+      spigotData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/spigot/search?version=${Version}`).then(res => res.toString("utf8")));
     }
+    if (!spigotData) throw new Error("No version found");
+    return {
+      version: spigotData.version,
+      url: spigotData.spigotJar,
+      datePublish: new Date(spigotData.datePublish),
+      raw: spigotData
+    };
   }
-  throw new Error("Version not found or invalid server");
+  throw new Error("Server not found");
 }
 
 /**
@@ -80,12 +78,10 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
  * 
  * @param server - Bds Core Platform.
  * @param Version - Version of server, any type of boolean to get latest version or `latest` to get latest version.
- * @param Arch - Architecture of server, default is of host machine.
- * @param osPlatform - System platform of server, default is of host machine.
  * @returns Object with the publication date and the file's Buffer.
  */
-export async function getBuffer(server: BdsCorePlatforms, Version: string|boolean, Arch: arch = process.arch as arch, osPlatform: osPlatform = process.platform as osPlatform): Promise<{datePublish: Date; dataBuffer: Buffer;}> {
-  const {datePublish, url} = await findUrlVersion(server, Version, Arch, osPlatform);
+export async function getBuffer(server: BdsCorePlatforms, Version: string|boolean): Promise<{datePublish: Date; dataBuffer: Buffer;}> {
+  const {datePublish, url} = await findUrlVersion(server, Version);
   return {
     datePublish: datePublish,
     dataBuffer: await fetchBuffer(url)
@@ -99,14 +95,15 @@ export async function getBuffer(server: BdsCorePlatforms, Version: string|boolea
  * @returns Server Platform with data registered in database.
  */
 export async function getAllVersions(server: BdsCorePlatforms) {
+  const RootData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/").then(res => res.toString("utf8"))) as Root;
   if (server === "bedrock") {
-    return bedrock.find({}).lean();
+    return RootData.versions.bedrock;
   } else if (server === "pocketmine") {
-    return pocketmine.find({}).lean();
+    return RootData.versions.pocketmine;
   } else if (server === "java") {
-    return java.find({}).lean();
+    return RootData.versions.java;
   } else if (server === "spigot") {
-    return spigot.find({}).lean();
+    return RootData.versions.spigot;
   }
   throw new Error("Invalid server");
 }
