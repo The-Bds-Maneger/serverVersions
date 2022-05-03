@@ -52,29 +52,35 @@ app.get("/", async ({res}) => {
 
 // Bedrock
 app.get("/bedrock", async ({res}) => res.json(await bedrock.find().lean()));
-app.get("/bedrock/latest", async ({res}) => res.json(await bedrock.find({isLatest: true}).lean()));
+app.get("/bedrock/latest", async ({res}) => res.json(await bedrock.findOne({isLatest: true}).lean()));
 app.get("/bedrock/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  return res.json(await bedrock.find({version: version}).lean());
+  const versionFinded = await bedrock.findOne({version: version}).lean();
+  if (!versionFinded) return res.status(404).json({error: "Version not found"});
+  return res.json(versionFinded);
 });
 
 // Java
 app.get("/java", async ({res}) => res.json(await java.find().lean()));
-app.get("/java/latest", async ({res}) => res.json(await java.find({isLatest: true}).lean()));
+app.get("/java/latest", async ({res}) => res.json(await java.findOne({isLatest: true}).lean()));
 app.get("/java/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  return res.json(await java.find({version: version}).lean());
+  const versionFinded = await java.findOne({version: version}).lean();
+  if (!versionFinded) return res.status(404).json({error: "Version not found"});
+  return res.json(versionFinded);
 });
 
 // Pocketmine
 app.get("/pocketmine", async ({res}) => res.json(await pocketminemmp.find().lean()));
-app.get("/pocketmine/latest", async ({res}) => res.json(await pocketminemmp.find({isLatest: true}).lean()));
+app.get("/pocketmine/latest", async ({res}) => res.json(await pocketminemmp.findOne({isLatest: true}).lean()));
 app.get("/pocketmine/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  return res.json(await pocketminemmp.find({version: version}).lean());
+  const versionFinded = await pocketminemmp.findOne({version: version}).lean();
+  if (!versionFinded) return res.status(404).json({error: "Version not found"});
+  return res.json(versionFinded);
 });
 app.get("/pocketmine/search/bin", async (req, res) => {
   const os = req.query.os as string;
@@ -98,11 +104,13 @@ app.get("/pocketmine/search/bin", async (req, res) => {
 
 // Spigot
 app.get("/spigot", async ({res}) => res.json(await spigot.find().lean()));
-app.get("/spigot/latest", async ({res}) => res.json(await spigot.find({isLatest: true}).lean()));
+app.get("/spigot/latest", async ({res}) => res.json(await spigot.findOne({isLatest: true}).lean()));
 app.get("/spigot/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  return res.json(await spigot.find({version: version}).lean());
+  const versionFinded = await spigot.findOne({version: version}).lean();
+  if (!versionFinded) return res.status(404).json({error: "Version not found"});
+  return res.json(versionFinded);
 });
 
 // Return 404 for all other routes
