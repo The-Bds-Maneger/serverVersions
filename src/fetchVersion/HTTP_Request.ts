@@ -27,19 +27,11 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
     for (const key of Object.keys(Mine.headers)) {
       Headers[key] = Mine.headers[key]||"";
     }
-    return await Fetch(Host, {
-      method: "GET",
-      headers: Headers,
-    }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
-      throw new Error(String(err));
-    });
   }
   return await Fetch(Host, {
     method: "GET",
     headers: Headers,
-  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {
-    throw new Error(String(err));
-  });
+  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {throw new Error(String(err));});
 }
 
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
