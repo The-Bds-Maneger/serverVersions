@@ -28,6 +28,7 @@ async function Find() {
   };
 
   HtmlUrls.forEach(urls => {
+    console.log("Bedrock: url: %s", urls);
     if (/win/.test(urls)) {
       if (/arm64|arm|aarch64/gi.test(urls)) urlObject.win32.arm64 = urls;
       else urlObject.win32.x64 = urls;
@@ -39,7 +40,9 @@ async function Find() {
       else urlObject.darwin.x64 = urls;
     }
   });
-  const MinecraftVersion = HtmlUrls[0].match(/([0-9]+\..*).zip/)[1].replace(/[a-zA-Z]/, "");
+  const urlTo = urlObject.win32.x64||urlObject.linux.x64;
+  if (!urlTo) throw new Error("cannot get urls");
+  const MinecraftVersion = urlTo.match(/([0-9]+\..*).zip/)[1].replace(/[a-zA-Z]/, "");
   const __data = {
     version: MinecraftVersion,
     data: urlObject,

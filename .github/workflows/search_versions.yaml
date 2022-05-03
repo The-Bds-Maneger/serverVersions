@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   findVersion:
-    runs-on: ubuntu-latest
+    runs-on: ARM64
     steps:
       - uses: actions/checkout@master
 
@@ -19,11 +19,8 @@ jobs:
       - name: Install Node Packages
         run: npm install -d --no-save
 
-      - name: Install ts-node
-        run: sudo npm install -g ts-node
-
       - name: Find and Update database
-        run: ts-node src/fetchVersion/index.ts
+        run: npm run searchVersion
         env:
           MONGO_USER: "${{ secrets.MONGO_USER }}"
           MONGO_PASSWORD: "${{ secrets.MONGO_PASSWORD }}"

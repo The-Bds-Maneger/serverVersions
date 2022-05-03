@@ -1,40 +1,19 @@
 import { fetch as Fetch } from "undici";
+import child_process from "child_process";
 
 export async function fetchBuffer(Host: string, Header?: {[key: string]: string}): Promise<Buffer> {
   let Headers = {...(Header||{})};
-  if (/minecraft\.net/.test(Host)) {
-    Headers = {
-      "accept": "*/*",
-      // "accept-language": "pt-BR,pt;q=0.9,en-CA;q=0.8,en;q=0.7,en-US;q=0.6",
-      // "cache-control": "no-cache",
-      // "pragma": "no-cache",
-      // "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"100\", \"Google Chrome\";v=\"100\"",
-      // "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36",
-      // "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36",
-      // "sec-ch-ua-mobile": "?0",
-      // "sec-ch-ua-platform": "\"Windows\"",
-      // "sec-fetch-dest": "document",
-      // "sec-fetch-mode": "navigate",
-      // "sec-fetch-site": "none",
-      // "sec-fetch-user": "?1",
-      // "upgrade-insecure-requests": "1",
-      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
-    };
-    const Mine = await Fetch("https://minecraft.net/en-us", {
-      method: "GET",
-      headers: Headers,
-    });
-    for (const key of Object.keys(Mine.headers)) {
-      Headers[key] = Mine.headers[key]||"";
-    }
-  }
   return await Fetch(Host, {
     method: "GET",
     headers: Headers,
-  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(async err => {throw new Error(String(err));});
+  }).then(async res => Buffer.from(await res.arrayBuffer())).catch(err => {throw new Error(String(err));});
 }
 
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
+  if (/minecraft\.net/.test(Host)) {
+    const curlData = child_process.execFileSync("curl", ["-s", "-L", "-H", "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36", Host], {stdio: "pipe"}).toString("utf8");
+    return curlData;
+  }
   const Data = await fetchBuffer(Host, Header);
   return String(Data.toString("utf8"));
 }
@@ -45,7 +24,7 @@ export async function getJson(Host: string, Header?: {[key: string]: string}): P
 }
 
 export async function HTML_URLS(Host: string, Header?: {[key: string]: string}) {
-  return (await RAW_TEXT(Host, Header||{})).split(/["'<>]/gi).filter(Line => /^.*:\/\//.test(Line.trim()));
+  return (await RAW_TEXT(Host, Header)).split(/["'<>]/gi).filter(Line => /^.*:\/\//.test(Line.trim()));
 }
 
 type githubRelease = {
