@@ -2,33 +2,49 @@ import https from "https";
 import http from "http";
 import express from "express";
 import cors from "cors";
+import yaml from "yaml";
 import bedrock from "../model/bedrock";
+import bedrockExpress from "./bedrock";
 import java from "../model/java";
+import javaExpress from "./java";
 import pocketminemmp from "../model/pocketmine";
+import pocketmineExpress from "./pocketmine";
 import spigot from "../model/spigot";
-import { GithubRelease } from "../fetchVersion/HTTP_Request";
-
+import spigotExpress from "./spigot";
 const app = express();
 // Listen
 http.createServer(app).listen(8080, () => console.log("(HTTP) Listening on port 8080"));
 if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(8443, () => console.log("(HTTPS) Listening on port 8443"));
 console.log("(HTTPS) No certificate found, not listening on port 8443, listen on port 80 instead");
 
+function NormaliseJson(objRec, keyToDel: Array<string>) {
+  return JSON.parse(JSON.stringify(objRec, (key, value) => {
+    if (keyToDel.includes(key)) return undefined;
+    else if (typeof value === "string") return value.replace(/\r\n/g, "\n");
+    return value;
+  }));
+}
+
 app.use(cors());
-app.use(({res, next}) => {
+app.use((req, res, next) => {
   res.json = (body) => {
+    body = NormaliseJson(body, ["__v", "_id", "isLatest"]);
+    if (req.query.type === "yaml"||req.query.type === "yml") {
+      res.setHeader("Content-Type", "text/yaml");
+      res.send(yaml.stringify(body));
+      return res;
+    }
     res.set("Content-Type", "application/json");
-    res.send(JSON.stringify(body, (key, value) => {
-      if (key === "__v") return undefined;
-      else if (key === "_id") return undefined;
-      else if (key === "isLatest") return undefined;
-      if (typeof value === "bigint") value = value.toString();
+    res.send(JSON.stringify(body, (_, value) => {
+      if (typeof value === "bigint") return value.toString();
       return value;
     }, 2));
     return res;
   }
   return next();
 });
+
+// Global version
 app.get("/", async ({res}) => {
   const bedrockVersions = await bedrock.find().lean();
   const javaVersions = await java.find().lean();
@@ -51,67 +67,12 @@ app.get("/", async ({res}) => {
 });
 
 // Bedrock
-app.get("/bedrock", async ({res}) => res.json(await bedrock.find().lean()));
-app.get("/bedrock/latest", async ({res}) => res.json(await bedrock.findOne({isLatest: true}).lean()));
-app.get("/bedrock/search", async (req, res) => {
-  let version = req.query.version as string;
-  if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = await bedrock.findOne({version: version}).lean();
-  if (!versionFinded) return res.status(404).json({error: "Version not found"});
-  return res.json(versionFinded);
-});
-
-// Java
-app.get("/java", async ({res}) => res.json(await java.find().lean()));
-app.get("/java/latest", async ({res}) => res.json(await java.findOne({isLatest: true}).lean()));
-app.get("/java/search", async (req, res) => {
-  let version = req.query.version as string;
-  if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = await java.findOne({version: version}).lean();
-  if (!versionFinded) return res.status(404).json({error: "Version not found"});
-  return res.json(versionFinded);
-});
-
-// Pocketmine
-app.get("/pocketmine", async ({res}) => res.json(await pocketminemmp.find().lean()));
-app.get("/pocketmine/latest", async ({res}) => res.json(await pocketminemmp.findOne({isLatest: true}).lean()));
-app.get("/pocketmine/search", async (req, res) => {
-  let version = req.query.version as string;
-  if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = await pocketminemmp.findOne({version: version}).lean();
-  if (!versionFinded) return res.status(404).json({error: "Version not found"});
-  return res.json(versionFinded);
-});
-app.get("/pocketmine/search/bin", async (req, res) => {
-  const os = req.query.os as string;
-  if (!os) return res.status(400).json({error: "No os specified"});
-  const arch = req.query.arch as string;
-  if (!arch) return res.status(400).json({error: "No System arch specified"});
-  const rele = await GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
-  for (const release of rele) {
-    for (const asset of release.assets) {
-      if (asset.name.includes(os) && asset.name.includes(arch)) {
-        if (req.query.redirect === "true") return res.redirect(asset.browser_download_url);
-        return res.json({
-          url: asset.browser_download_url,
-          name: asset.name
-        });
-      }
-    }
-  }
-  return res.status(404).json({error: "No bin found"});
-});
-
-// Spigot
-app.get("/spigot", async ({res}) => res.json(await spigot.find().lean()));
-app.get("/spigot/latest", async ({res}) => res.json(await spigot.findOne({isLatest: true}).lean()));
-app.get("/spigot/search", async (req, res) => {
-  let version = req.query.version as string;
-  if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = await spigot.findOne({version: version}).lean();
-  if (!versionFinded) return res.status(404).json({error: "Version not found"});
-  return res.json(versionFinded);
-});
-
-// Return 404 for all other routes
+app.use("/bedrock", bedrockExpress);
+//Java
+app.use("/java", javaExpress);
+//Pocketmine
+app.use("/pocketmine", pocketmineExpress);
+//Spigot
+app.use("/spigot", spigotExpress);
+//Return 404 for all other routes
 app.all("*", ({res}) => res.status(404).json({error: "Not found"}));

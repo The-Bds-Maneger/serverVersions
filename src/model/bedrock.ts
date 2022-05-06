@@ -6,6 +6,7 @@ export type bedrockSchema = {
   version: string;
   datePublish: Date;
   isLatest: true|false;
+  release_notes?: string;
   win32: {
     x64: string;
     arm64?: string;
@@ -34,6 +35,10 @@ export const Schema = new mongoose.Schema<bedrockSchema>({
   isLatest: {
     type: Boolean,
     required: true
+  },
+  release_notes: {
+    type: String,
+    required: false
   },
   win32: {
     x64: {

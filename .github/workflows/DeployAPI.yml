@@ -1,18 +1,25 @@
-name: Deploy
+name: Deploy API
 on:
   push:
     branches:
       - main
+    paths:
+      - "src/api/**/*"
+      - "src/model/**/*"
+      - "src/connect.ts"
+      - "package*.json"
+      - "Dockerfile"
 
 jobs:
-  run:
+  deploy:
     runs-on: ARM64
     name: Deploy container
     environment:
       name: "deploy_container"
       url: https://version_api.bdsmaneger.com/
     steps:
-      - uses: actions/checkout@v3.0.2
+      - name: Checkout code
+        uses: actions/checkout@v3.0.2
 
       - name: Build Docker image
         run: docker-compose build
@@ -25,12 +32,6 @@ jobs:
         env:
           KEY: "${{ secrets.CA_KEY }}"
           CERT: "${{ secrets.CA_CERT }}"
-
-      - name: Test Request
-        run: |
-          sleep 30
-          docker-compose logs
-          curl -vk "https://version_api.bdsmaneger.com/"
 
       - name: Docker Clean
         run: docker system prune -f
