@@ -28,7 +28,7 @@ function NormaliseJson(objRec, keyToDel: Array<string>) {
 app.use(cors());
 app.use((req, res, next) => {
   res.json = (body) => {
-    body = NormaliseJson(body, ["__v", "_id", "isLatest"]);
+    body = NormaliseJson(body, ["__v", "_id"]);
     if (req.query.type === "yaml"||req.query.type === "yml") {
       res.setHeader("Content-Type", "text/yaml");
       res.send(yaml.stringify(body));
