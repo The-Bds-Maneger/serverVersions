@@ -1,6 +1,10 @@
 {
-  "include": ["src/"],
-  "exclude": ["node_modules/"],
+  "include": [
+    "src/"
+  ],
+  "exclude": [
+    "node_modules/"
+  ],
   "compilerOptions": {
     "outDir": "./dist/cjs",
     "resolveJsonModule": true,

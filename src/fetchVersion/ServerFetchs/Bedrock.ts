@@ -28,7 +28,6 @@ async function Find() {
   };
 
   HtmlUrls.forEach(urls => {
-    console.log("Bedrock: url: %s", urls);
     if (/win/.test(urls)) {
       if (/arm64|arm|aarch64/gi.test(urls)) urlObject.win32.arm64 = urls;
       else urlObject.win32.x64 = urls;
