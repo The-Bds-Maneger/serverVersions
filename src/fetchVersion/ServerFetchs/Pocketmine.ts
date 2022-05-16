@@ -36,7 +36,7 @@ async function Find() {
 export default async function UpdateDatabase() {
   const latestVersion = await pocketminemmp.findOneAndUpdate({ isLatest: true }, {$set: {isLatest: false}}).lean();
   const Releases = (await Find()).map(a => a.Data);
-  const newLatest = await pocketminemmp.findOneAndUpdate({ version: Releases[0].Version }, { isLatest: true }).lean();
+  const newLatest = await pocketminemmp.findOneAndUpdate({ version: Releases[0].Version }, {$set: { isLatest: true }}).lean();
   return {
     new: newLatest,
     old: latestVersion

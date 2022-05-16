@@ -54,7 +54,7 @@ app.get("/", async ({res}) => {
     latest: {
       bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
       java: javaVersions.find(({isLatest}) => isLatest).version,
-      pocketmine: pocketmineVersions.find(({isLatest}) => isLatest).version,
+      pocketmine: pocketmineVersions.find(({isLatest}) => isLatest)?.version,
       spigot: spigotVersions.find(({isLatest}) => isLatest).version
     },
     versions: {
