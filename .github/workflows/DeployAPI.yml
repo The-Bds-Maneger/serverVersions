@@ -9,6 +9,7 @@ on:
       - "src/connect.ts"
       - "package*.json"
       - "Dockerfile"
+      - "docker-compose.y*ml"
 
 jobs:
   deploy:
