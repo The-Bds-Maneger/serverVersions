@@ -8,7 +8,6 @@ app.get("/latest", async ({res}) => res.json(await bedrock.findOne({isLatest: tr
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  if (version.trim() === "latest") return res.redirect("/bedrock/latest");
   const versionFinded = await bedrock.findOne({version: version}).lean();
   if (!versionFinded) return res.status(404).json({error: "Version not found"});
   return res.json(versionFinded);

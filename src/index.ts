@@ -20,9 +20,9 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
   if (server === "bedrock") {
     let bedrockData: Root["versions"]["bedrock"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
-      bedrockData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/bedrock/latest").then(res => res.toString("utf8")));
+      bedrockData = JSON.parse(await fetchBuffer("hhttps://mcpeversions.sirherobrine23.org//bedrock/latest").then(res => res.toString("utf8")));
     } else {
-      bedrockData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/bedrock/search?version=${Version}`).then(res => res.toString("utf8")));
+      bedrockData = JSON.parse(await fetchBuffer(`https://mcpeversions.sirherobrine23.org/bedrock/search?version=${Version}`).then(res => res.toString("utf8")));
     }
     if (!bedrockData) throw new Error("No version found");
     return {
@@ -34,9 +34,9 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
   } else if (server === "java") {
     let javaData: Root["versions"]["java"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
-      javaData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/java/latest").then(res => res.toString("utf8")));
+      javaData = JSON.parse(await fetchBuffer("https://mcpeversions.sirherobrine23.org/java/latest").then(res => res.toString("utf8")));
     } else {
-      javaData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/java/search?version=${Version}`).then(res => res.toString("utf8")));
+      javaData = JSON.parse(await fetchBuffer(`https://mcpeversions.sirherobrine23.org/java/search?version=${Version}`).then(res => res.toString("utf8")));
     }
     if (!javaData) throw new Error("No version found");
     return {
@@ -48,9 +48,9 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
   } else if (server === "pocketmine") {
     let pocketmineData: Root["versions"]["pocketmine"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
-      pocketmineData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/pocketmine/latest").then(res => res.toString("utf8")));
+      pocketmineData = JSON.parse(await fetchBuffer("https://mcpeversions.sirherobrine23.org/pocketmine/latest").then(res => res.toString("utf8")));
     } else {
-      pocketmineData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/pocketmine/search?version=${Version}`).then(res => res.toString("utf8")));
+      pocketmineData = JSON.parse(await fetchBuffer(`https://mcpeversions.sirherobrine23.org/pocketmine/search?version=${Version}`).then(res => res.toString("utf8")));
     }
     if (!pocketmineData) throw new Error("No version found");
     return {
@@ -62,9 +62,9 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
   } else if (server === "spigot") {
     let spigotData: Root["versions"]["spigot"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
-      spigotData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/spigot/latest").then(res => res.toString("utf8")));
+      spigotData = JSON.parse(await fetchBuffer("https://mcpeversions.sirherobrine23.org/spigot/latest").then(res => res.toString("utf8")));
     } else {
-      spigotData = JSON.parse(await fetchBuffer(`https://version_api.bdsmaneger.com/spigot/search?version=${Version}`).then(res => res.toString("utf8")));
+      spigotData = JSON.parse(await fetchBuffer(`https://mcpeversions.sirherobrine23.org/spigot/search?version=${Version}`).then(res => res.toString("utf8")));
     }
     if (!spigotData) throw new Error("No version found");
     return {

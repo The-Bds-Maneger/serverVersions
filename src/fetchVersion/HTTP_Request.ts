@@ -10,8 +10,9 @@ export async function fetchBuffer(Host: string, Header?: {[key: string]: string}
   }).then(async res => Buffer.from(res.data));
 }
 
+const minecraftUrlsRegex = /http(s)?:\/\/(.*)?minecraft\.net/;
 export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): Promise<string> {
-  if (/minecraft\.net/.test(Host)) {
+  if (minecraftUrlsRegex.test(Host)) {
     const curlData = child_process.execFileSync("curl", ["-s", "-L", "-H", "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36", Host], {stdio: "pipe"}).toString("utf8");
     return curlData;
   }
