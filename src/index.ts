@@ -101,7 +101,7 @@ export async function getBuffer(server: BdsCorePlatforms, Version: string|boolea
  * @returns Server Platform with data registered in database.
  */
 export async function getAllVersions(server: BdsCorePlatforms) {
-  const RootData = JSON.parse(await fetchBuffer("https://version_api.bdsmaneger.com/").then(res => res.toString("utf8"))) as Root;
+  const RootData = JSON.parse(await fetchBuffer("https://mcpeversions.sirherobrine23.org/").then(res => res.toString("utf8"))) as Root;
   if (server === "bedrock") {
     return RootData.versions.bedrock;
   } else if (server === "pocketmine") {

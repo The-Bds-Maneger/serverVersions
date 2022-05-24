@@ -13,6 +13,6 @@ This is a repository in which to look for new versions automatically.
 
 Use the following API to fetch the latest version:
 
-Example to latest bedrock: `curl -s https://version_api.bdsmaneger.com/bedrock/latest` or search version: `curl -s https://version_api.bdsmaneger.com/bedrock/search?version=1.18.1.02`
+Example to latest bedrock: `curl -s https://mcpeversions.sirherobrine23.org/bedrock/latest` or search version: `curl -s https://mcpeversions.sirherobrine23.org/bedrock/search?version=1.18.1.02`
 
 > Avaible to `/bedrock`, `/java`, `/pocketmine` and `/spigot`.
