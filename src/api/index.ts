@@ -3,19 +3,21 @@ import http from "http";
 import express from "express";
 import cors from "cors";
 import yaml from "yaml";
-import bedrock from "../model/bedrock";
+import bedrock, { bedrockSchema } from "../model/bedrock";
 import bedrockExpress from "./bedrock";
-import java from "../model/java";
+import java, { javaSchema } from "../model/java";
 import javaExpress from "./java";
-import pocketminemmp from "../model/pocketmine";
+import pocketminemmp, { pocketminemmpSchema } from "../model/pocketmine";
 import pocketmineExpress from "./pocketmine";
-import spigot from "../model/spigot";
+import spigot, { spigotSchema } from "../model/spigot";
 import spigotExpress from "./spigot";
+
 const app = express();
-// Listen
-http.createServer(app).listen(8080, () => console.log("(HTTP) Listening on port 8080"));
-if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(8443, () => console.log("(HTTPS) Listening on port 8443"));
-console.log("(HTTPS) No certificate found, not listening on port 8443, listen on port 80 instead");
+// Listen ports
+const portsListen = {http: process.env.PORT || 8080, https: process.env.PORTS || 8443};
+if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(portsListen.https, () => console.log("(HTTPS) Listening on port %o", portsListen.https));
+else console.log("(HTTPS) No certificate found, not listening on port %o, listen on port %o instead", portsListen.https, portsListen.http);
+http.createServer(app).listen(portsListen.http, () => console.log("(HTTP) Listening on port %o", portsListen.http));
 
 function NormaliseJson(objRec, keyToDel: Array<string>) {
   return JSON.parse(JSON.stringify(objRec, (key, value) => {
@@ -43,13 +45,49 @@ app.use((req, res, next) => {
   }
   return next();
 });
+app.disable("x-powered-by");
+app.disable("etag");
+
+// Print user request api
+/* const ipIs: {
+  [path: string]: {
+    [method: string]: {
+      [ip: string]: {
+        request: number
+      }
+    }
+  }
+} = {};
+app.use((req, res, next) => {
+  console.log("(%s %s): %s", req.protocol, req.ip, req.originalUrl);
+  if (/^\/stat/.test(req.originalUrl)) {
+    res.json(ipIs);
+    return;
+  }
+  if (!ipIs[req.originalUrl]) ipIs[req.originalUrl] = {};
+  if (!ipIs[req.originalUrl][req.method]) ipIs[req.originalUrl][req.method] = {};
+  if (!ipIs[req.originalUrl][req.method][req.ip]) ipIs[req.originalUrl][req.method][req.ip] = {request: 0};
+  ipIs[req.originalUrl][req.method][req.ip].request++;
+  return next();
+}); */
 
 // Global version
+let cacheBedrock: Array<bedrockSchema> = [];
+let cacheJava: Array<javaSchema> = [];
+let cachePocketmine: Array<pocketminemmpSchema> = [];
+let cacheSpigot: Array<spigotSchema> = [];
+bedrock.find().lean().then(data => cacheBedrock = data);
+java.find().lean().then(data => cacheJava = data);
+pocketminemmp.find().lean().then(data => cachePocketmine = data);
+spigot.find().lean().then(data => cacheSpigot = data);
+setInterval(() => {
+  bedrock.find().lean().then(data => cacheBedrock = data);
+  java.find().lean().then(data => cacheJava = data);
+  pocketminemmp.find().lean().then(data => cachePocketmine = data);
+  spigot.find().lean().then(data => cacheSpigot = data);
+}, 1000 * 60 * 3);
 app.get("/", async ({res}) => {
-  const bedrockVersions = await bedrock.find().lean();
-  const javaVersions = await java.find().lean();
-  const pocketmineVersions = await pocketminemmp.find().lean();
-  const spigotVersions = await spigot.find().lean();
+  const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = [ cacheBedrock, cacheJava, cachePocketmine, cacheSpigot ];
   return res.json({
     latest: {
       bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
