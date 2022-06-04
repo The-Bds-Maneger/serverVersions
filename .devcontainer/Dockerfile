@@ -11,27 +11,38 @@ RUN curl https://get.docker.com | sh && \
 
 # Create docker and minikube start script
 ARG DOCKERD_ARGS="--experimental"
-RUN (\
-echo '#''!/bin/bash';\
-echo "set -e";\
-echo 'if ! [[ -f "/var/run/docker.sock" ]];then';\
-echo "  (sudo dockerd ${DOCKERD_ARGS}) &";\
-echo "  sleep 5s";\
+RUN (echo '#''!/bin/bash';\
+echo 'EXISTDOCKER="1"';\
+echo "if command -v dockerd &> /dev/null; then";\
+echo '  if ! [[ -f "/var/run/docker.sock" ]];then';\
+echo "    (sudo dockerd ${DOCKERD_ARGS}) &";\
+echo "    sleep 5s";\
+echo "  fi";\
+echo "else";\
+echo '  EXISTDOCKER="0"';\
+echo '  echo "o Docker não está instalado!"';\
 echo "fi";\
+echo "";\
+echo "# Run script";\
 echo 'if ! [[ -z "$@" ]]; then';\
 echo '  sh -c "$@"';\
 echo "fi";\
 echo "";\
-echo '# Check docker is running';\
-echo "while true; do";\
-echo "  if ! ((ps -ef | grep -v grep | grep -q dockerd) || (docker info &> /dev/null)); then";\
-echo "    break";\
-echo "  fi";\
-echo "  sleep 4s";\
-echo "done";\
+echo "# Check docker is running";\
+echo 'if [[ "${EXISTDOCKER}" == "0" ]];then';\
+echo "  while true; do";\
+echo "    if ! (docker info &> /dev/null) || ps -ef | grep -v grep | grep -q dockerd; then";\
+echo '      echo "Dockerd stopped"';\
+echo "    fi";\
+echo "    sleep 4s";\
+echo "  done";\
+echo "else";\
+echo '  echo "Entrando em sono profundo"';\
+echo "fi";\
 echo "";\
-echo "echo Dockerd stopped";\
-echo "exit 2") | tee /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
+echo "# Sleep script";\
+echo "sleep infinity";\
+echo "exit") | tee /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
 
 # Set default entrypoint
 ENTRYPOINT [ "/usr/local/bin/start.sh" ]
