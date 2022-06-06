@@ -5,7 +5,7 @@ import { connection } from "../connect";
 export type javaSchema = {
   version: string;
   datePublish: Date;
-  isLatest: true|false;
+  isLatest: true | false;
   javaJar: string;
 };
 
@@ -13,21 +13,27 @@ export const Schema = new mongoose.Schema<javaSchema>({
   version: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   datePublish: {
     type: Date,
-    required: true
+    required: true,
   },
   isLatest: {
     type: Boolean,
-    required: true
+    required: true,
   },
   javaJar: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 export const java = connection.model<javaSchema>("java", Schema);
 export default java;
+
+let localCache: Array<javaSchema> = [];
+export function getLocalCache() {
+  return localCache;
+}
+
