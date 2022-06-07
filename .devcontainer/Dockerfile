@@ -2,12 +2,14 @@ FROM debian:latest
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt update && apt install -y git curl wget sudo procps zsh tar screen ca-certificates procps lsb-release xdg-utils g++ gconf-service
 
+# Install node.js
+RUN wget $(wget -qO- https://api.github.com/repos/Sirherobrine23/DebianNodejsFiles/releases |grep 'browser_download_url' | grep "$(dpkg --print-architecture)"| cut -d '"' -f 4 | sort | uniq | tail -n 1) -q -O /tmp/nodejs.deb && dpkg -i /tmp/nodejs.deb && rm -rfv /tmp/nodejs.deb && npm install -g npm@latest
+
 # Install Docker and Docker Compose
 VOLUME [ "/var/lib/docker" ]
-RUN curl https://get.docker.com | sh && \
-  compose_version="$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d \" -f 4)"; \
-  wget -q https://github.com/docker/compose/releases/download/${compose_version}/docker-compose-`uname -s`-`uname -m` -O /usr/local/bin/docker-compose && \
-  chmod +x -v /usr/local/bin/docker-compose
+RUN wget -qO- https://get.docker.com | sh && \
+  wget -q $(wget -qO- https://api.github.com/repos/docker/compose/releases | grep 'browser_download_url' | grep -v '.sha' | grep $(uname -s) | grep $(uname -m) | cut -d '"' -f 4 | sort | tail -n1)\
+  -O /usr/local/bin/docker-compose && chmod +x -v /usr/local/bin/docker-compose
 
 # Create docker and minikube start script
 ARG DOCKERD_ARGS="--experimental"
@@ -24,12 +26,12 @@ echo '  echo "o Docker não está instalado!"';\
 echo "fi";\
 echo "";\
 echo "# Run script";\
-echo 'if ! [[ -z "$@" ]]; then';\
-echo '  sh -c "$@"';\
+echo 'if ! [[ -z "\$@" ]]; then';\
+echo '  sh -c "\$@"';\
 echo "fi";\
 echo "";\
 echo "# Check docker is running";\
-echo 'if [[ "${EXISTDOCKER}" == "0" ]];then';\
+echo 'if [[ "\${EXISTDOCKER}" == "0" ]];then';\
 echo "  while true; do";\
 echo "    if ! (docker info &> /dev/null) || ps -ef | grep -v grep | grep -q dockerd; then";\
 echo '      echo "Dockerd stopped"';\
@@ -37,20 +39,16 @@ echo "      break";\
 echo "    fi";\
 echo "    sleep 4s";\
 echo "  done";\
-echo "else";\
-echo '  echo "Entrando em sono profundo"';\
 echo "fi";\
 echo "";\
+echo 'echo "Entrando em sono profundo"';\
 echo "# Sleep script";\
 echo "sleep infinity";\
 echo "exit") | tee /usr/local/bin/start.sh && chmod a+x /usr/local/bin/start.sh
 
-# Set default entrypoint
-ENTRYPOINT [ "/usr/local/bin/start.sh" ]
-
 # Add non root user
-ARG USERNAME=devcontainer
-ARG USER_UID=1000
+ARG USERNAME="devcontainer"
+ARG USER_UID="1000"
 ARG USER_GID=$USER_UID
 RUN groupadd --gid $USER_GID $USERNAME && \
   adduser --disabled-password --gecos "" --shell /usr/bin/zsh --uid $USER_UID --gid $USER_GID $USERNAME && \
@@ -59,6 +57,8 @@ RUN groupadd --gid $USER_GID $USERNAME && \
 
 USER $USERNAME
 WORKDIR /home/$USERNAME
+# Set default entrypoint
+ENTRYPOINT [ "/usr/local/bin/start.sh" ]
 
 # Install oh my zsh
 RUN yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
