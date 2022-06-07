@@ -3,6 +3,7 @@ import http from "http";
 import express from "express";
 import cors from "cors";
 import yaml from "yaml";
+import * as connection from "../connect";
 import * as bedrock from "../model/bedrock";
 import * as java from "../model/java";
 import * as pocketminemmp from "../model/pocketmine";
@@ -18,12 +19,6 @@ pocketminemmp.enableLocalCache();
 spigot.enableLocalCache();
 
 const app = express();
-// Listen ports
-const portsListen = {http: process.env.PORT || 8080, https: process.env.PORTS || 8443};
-if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(portsListen.https, () => console.log("(HTTPS) Listening on port %o", portsListen.https));
-else console.log("(HTTPS) No certificate found, not listening on port %o, listen on port %o instead", portsListen.https, portsListen.http);
-http.createServer(app).listen(portsListen.http, () => console.log("(HTTP) Listening on port %o", portsListen.http));
-
 function NormaliseJson(objRec, keyToDel: Array<string>) {
   return JSON.parse(JSON.stringify(objRec, (key, value) => {
     if (keyToDel.includes(key)) return undefined;
@@ -60,22 +55,29 @@ app.use((req, res, next) => {
 });
 
 // Global version
-app.get("/", async ({res}) => {
-  const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = [ bedrock.getLocalCache(), java.getLocalCache(), pocketminemmp.getLocalCache(), spigot.getLocalCache() ];
-  return res.json({
-    latest: {
-      bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
-      java: javaVersions.find(({isLatest}) => isLatest).version,
-      pocketmine: pocketmineVersions.find(({isLatest}) => isLatest)?.version,
-      spigot: spigotVersions.find(({isLatest}) => isLatest).version
-    },
-    versions: {
-      bedrock: bedrockVersions,
-      java: javaVersions,
-      pocketmine: pocketmineVersions,
-      spigot: spigotVersions
-    }
-  });
+app.get("/", async ({res, next}) => {
+  try {
+    const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = [ bedrock.getLocalCache(), java.getLocalCache(), pocketminemmp.getLocalCache(), spigot.getLocalCache() ];
+    return res.json({
+      latest: {
+        bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
+        java: javaVersions.find(({isLatest}) => isLatest).version,
+        pocketmine: pocketmineVersions.find(({isLatest}) => isLatest)?.version,
+        spigot: spigotVersions.find(({isLatest}) => isLatest).version
+      },
+      versions: {
+        bedrock: bedrockVersions,
+        java: javaVersions,
+        pocketmine: pocketmineVersions,
+        spigot: spigotVersions
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Internal server error",
+      error: String(err)
+    });
+  }
 });
 
 // Bedrock
@@ -88,3 +90,12 @@ app.use("/pocketmine", pocketmineExpress);
 app.use("/spigot", spigotExpress);
 //Return 404 for all other routes
 app.all("*", ({res}) => res.status(404).json({error: "Not found"}));
+
+// Listen server
+connection.connection.once("connected", () => {
+  // Listen ports
+  const portsListen = {http: process.env.PORT || 8080, https: process.env.PORTS || 8443};
+  if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(portsListen.https, () => console.log("(HTTPS) Listening on port %o", portsListen.https));
+  else console.log("(HTTPS) No certificate found, not listening on port %o, listen on port %o instead", portsListen.https, portsListen.http);
+  http.createServer(app).listen(portsListen.http, () => console.log("(HTTP) Listening on port %o", portsListen.http));
+});
