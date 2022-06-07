@@ -31,7 +31,7 @@ jobs:
 
       - name: Start API and test
         run: |
-          ts-node src/api/index.ts
+          ts-node src/api/index.ts &
           sleep 15s
           autocannon localhost:8080/bedrock/latest
           autocannon localhost:8080/
