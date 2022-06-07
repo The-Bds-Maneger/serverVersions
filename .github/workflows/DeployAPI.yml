@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - "src/api/**/*"
+      - ".github/**/*"
       - "src/model/**/*"
       - "src/connect.ts"
       - "package*.json"
