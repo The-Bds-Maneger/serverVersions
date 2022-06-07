@@ -33,6 +33,7 @@ echo 'if [[ "${EXISTDOCKER}" == "0" ]];then';\
 echo "  while true; do";\
 echo "    if ! (docker info &> /dev/null) || ps -ef | grep -v grep | grep -q dockerd; then";\
 echo '      echo "Dockerd stopped"';\
+echo "      break";\
 echo "    fi";\
 echo "    sleep 4s";\
 echo "  done";\
@@ -42,7 +43,7 @@ echo "fi";\
 echo "";\
 echo "# Sleep script";\
 echo "sleep infinity";\
-echo "exit") | tee /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
+echo "exit") | tee /usr/local/bin/start.sh && chmod a+x /usr/local/bin/start.sh
 
 # Set default entrypoint
 ENTRYPOINT [ "/usr/local/bin/start.sh" ]

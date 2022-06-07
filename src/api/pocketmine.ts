@@ -1,20 +1,15 @@
 import { Router } from "express";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
-import pocketminemmp, { pocketminemmpSchema } from "../model/pocketmine";
+import { getLocalCache } from "../model/pocketmine";
 const app = Router();
 export default app;
 
-let pocketminemmpCache: Array<pocketminemmpSchema> = [];
-console.log("Updating pocketminemmp cache");
-pocketminemmp.find().lean().then(data => pocketminemmpCache = data);
-setInterval(() => {console.log("Updating pocketminemmp cache");pocketminemmp.find().lean().then(data => pocketminemmpCache = data);}, 1000 * 60 * 3);
-
-app.get("/", async ({res}) => res.json(pocketminemmpCache));
-app.get("/latest", async ({res}) => res.json(pocketminemmpCache.find(res => res.isLatest)));
+app.get("/", async ({res}) => res.json(getLocalCache()));
+app.get("/latest", async ({res}) => res.json(getLocalCache().find(res => res.isLatest)));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = pocketminemmpCache.find(res => res.version === version);
+  const versionFinded = getLocalCache().find(res => res.version === version);
   if (!versionFinded) return res.status(404).json({error: "Version not found"});
   return res.json(versionFinded);
 });
