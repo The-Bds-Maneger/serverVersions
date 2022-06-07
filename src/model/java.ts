@@ -5,7 +5,7 @@ import { connection } from "../connect";
 export type javaSchema = {
   version: string;
   datePublish: Date;
-  isLatest: true|false;
+  isLatest: true | false;
   javaJar: string;
 };
 
@@ -13,21 +13,35 @@ export const Schema = new mongoose.Schema<javaSchema>({
   version: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   datePublish: {
     type: Date,
-    required: true
+    required: true,
   },
   isLatest: {
     type: Boolean,
-    required: true
+    required: true,
   },
   javaJar: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 export const java = connection.model<javaSchema>("java", Schema);
 export default java;
+
+// Local cache
+let localCache: Array<javaSchema> = [];
+export function getLocalCache() {
+  return localCache;
+}
+export function enableLocalCache() {
+  if (this.enabled) return;
+  enableLocalCache.prototype.enabled = true;
+  setInterval(() => java.find().lean().then((data) => (localCache = data)).catch(console.trace), 1000 * 60 * 10);
+  java.find().lean().then((data) => (localCache = data)).catch(console.trace)
+  return;
+}
+enableLocalCache.prototype.enabled = false;
