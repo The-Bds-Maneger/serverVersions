@@ -20,7 +20,7 @@ export async function findUrlVersion(server: BdsCorePlatforms, Version: string|b
   if (server === "bedrock") {
     let bedrockData: Root["versions"]["bedrock"][0] = undefined;
     if (Version === "latest"||typeof Version === "boolean") {
-      bedrockData = JSON.parse(await fetchBuffer("hhttps://mcpeversions.sirherobrine23.org//bedrock/latest").then(res => res.toString("utf8")));
+      bedrockData = JSON.parse(await fetchBuffer("https://mcpeversions.sirherobrine23.org//bedrock/latest").then(res => res.toString("utf8")));
     } else {
       bedrockData = JSON.parse(await fetchBuffer(`https://mcpeversions.sirherobrine23.org/bedrock/search?version=${Version}`).then(res => res.toString("utf8")));
     }
