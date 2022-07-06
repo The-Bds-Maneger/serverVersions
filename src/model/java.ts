@@ -31,17 +31,3 @@ export const Schema = new mongoose.Schema<javaSchema>({
 
 export const java = connection.model<javaSchema>("java", Schema);
 export default java;
-
-// Local cache
-let localCache: Array<javaSchema> = [];
-export function getLocalCache() {
-  return localCache;
-}
-export function enableLocalCache() {
-  if (this.enabled) return;
-  enableLocalCache.prototype.enabled = true;
-  setInterval(() => java.find().lean().then((data) => (localCache = data)).catch(console.trace), 1000 * 60 * 10);
-  java.find().lean().then((data) => (localCache = data)).catch(console.trace)
-  return;
-}
-enableLocalCache.prototype.enabled = false;

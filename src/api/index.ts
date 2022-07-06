@@ -13,11 +13,6 @@ import javaExpress from "./java";
 import pocketmineExpress from "./pocketmine";
 import spigotExpress from "./spigot";
 
-bedrock.enableLocalCache();
-java.enableLocalCache();
-pocketminemmp.enableLocalCache();
-spigot.enableLocalCache();
-
 const app = express();
 function NormaliseJson(objRec, keyToDel: Array<string>) {
   return JSON.parse(JSON.stringify(objRec, (key, value) => {
@@ -55,9 +50,9 @@ app.use((req, res, next) => {
 });
 
 // Global version
-app.get("/", async ({res, next}) => {
+app.get("/", async ({res}) => {
   try {
-    const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = [ bedrock.getLocalCache(), java.getLocalCache(), pocketminemmp.getLocalCache(), spigot.getLocalCache() ];
+    const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = await Promise.all([ bedrock.bedrock.find().lean(), java.java.find().lean(), pocketminemmp.pocketminemmp.find().lean(), spigot.spigot.find().lean() ]);
     return res.json({
       latest: {
         bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,

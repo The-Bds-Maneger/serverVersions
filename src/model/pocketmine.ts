@@ -31,17 +31,3 @@ export const Schema = new mongoose.Schema<pocketminemmpSchema>({
 
 export const pocketminemmp = connection.model<pocketminemmpSchema>("pocketminemmp", Schema);
 export default pocketminemmp;
-
-// Local cache
-let localCache: Array<pocketminemmpSchema> = [];
-export function getLocalCache() {
-  return localCache;
-}
-export function enableLocalCache() {
-  if (this.enabled) return;
-  enableLocalCache.prototype.enabled = true;
-  setInterval(() => pocketminemmp.find().lean().then((data) => (localCache = data)).catch(console.trace), 1000 * 60 * 10);
-  pocketminemmp.find().lean().then((data) => (localCache = data)).catch(console.trace)
-  return;
-}
-enableLocalCache.prototype.enabled = false;

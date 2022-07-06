@@ -71,17 +71,3 @@ export const Schema = new mongoose.Schema<bedrockSchema>({
 // Bedrock database
 export const bedrock = connection.model<bedrockSchema>("bedrock", Schema);
 export default bedrock;
-
-// Local cache
-let localCache: Array<bedrockSchema> = [];
-export function getLocalCache() {
-  return localCache;
-}
-export function enableLocalCache() {
-  if (this.enabled) return;
-  enableLocalCache.prototype.enabled = true;
-  setInterval(() => bedrock.find().lean().then((data) => (localCache = data)).catch(console.trace), 1000 * 60 * 10);
-  bedrock.find().lean().then((data) => (localCache = data)).catch(console.trace)
-  return;
-}
-enableLocalCache.prototype.enabled = false;
