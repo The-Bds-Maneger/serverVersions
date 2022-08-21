@@ -20,7 +20,7 @@ async function Add(Version: string, versionDate: Date, url: string) {
 async function Find() {
   const Versions = await new Promise<Array<{version: string, Date: Date, url: Array<string>|string}>>(async Resolve => {
     const DataReturn = [];
-    const { document } = (new jsdom.JSDOM(await httpRequest.RAW_TEXT("https://getbukkit.org/download/spigot"))).window;
+    const { document } = (new jsdom.JSDOM(await httpRequest.RAW_TEXT("https://getbukkit.org/download/spigot").catch(err => {console.log(err); return "<html></html>"}))).window;
     document.querySelectorAll("#download > div > div > div > div").forEach(DOM => {
       const New_Dom = {
         version: String(DOM.querySelector("div:nth-child(1) > h2").textContent),
