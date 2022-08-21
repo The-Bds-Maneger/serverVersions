@@ -55,10 +55,10 @@ app.get("/", async ({res}) => {
     const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = await Promise.all([ bedrock.bedrock.find().lean(), java.java.find().lean(), pocketminemmp.pocketminemmp.find().lean(), spigot.spigot.find().lean() ]);
     return res.json({
       latest: {
-        bedrock: bedrockVersions.find(({isLatest}) => isLatest).version,
-        java: javaVersions.find(({isLatest}) => isLatest).version,
-        pocketmine: pocketmineVersions.find(({isLatest}) => isLatest)?.version,
-        spigot: spigotVersions.find(({isLatest}) => isLatest).version
+        bedrock: bedrockVersions?.find(({isLatest}) => isLatest)?.version,
+        java: javaVersions?.find(({isLatest}) => isLatest)?.version,
+        pocketmine: pocketmineVersions?.find(({isLatest}) => isLatest)?.version,
+        spigot: spigotVersions?.find(({isLatest}) => isLatest)?.version
       },
       versions: {
         bedrock: bedrockVersions,
