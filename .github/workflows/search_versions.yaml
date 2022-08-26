@@ -8,19 +8,21 @@ on:
 jobs:
   findVersion:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [bedrock, java, spigot, pocketmine]
+    name: "server ${{ matrix.platform }}"
     steps:
       - uses: actions/checkout@v3
-
+        name: Checkout code
       - name: Setup Node JS
         uses: actions/setup-node@v3.3.0
         with:
-          node-version: 16.x
-
+          node-version: 18.x
       - name: Install Node Packages
         run: npm install -d --no-save
-
       - name: Find and Update database
-        run: npm run searchVersion
+        run: npm run search -- --${{ matrix.platform }}
         env:
           MONGO_USER: "${{ secrets.MONGO_USER }}"
           MONGO_PASSWORD: "${{ secrets.MONGO_PASSWORD }}"

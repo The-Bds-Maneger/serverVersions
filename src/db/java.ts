@@ -32,7 +32,7 @@ const java = connection.model<javaSchema>("java", new mongoose.Schema<javaSchema
 }));
 export default java;
 
-app.get("/", async ({res}) => res.json(await java.find().lean()));
+app.get("/", async ({res}) => res.json((await java.find().lean()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await java.findOne({isLatest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;

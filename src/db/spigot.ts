@@ -32,7 +32,7 @@ const spigot = connection.model<spigotSchema>("spigot", new mongoose.Schema<spig
 }));
 export default spigot;
 
-app.get("/", async ({res}) => res.json(await spigot.find()));
+app.get("/", async ({res}) => res.json((await spigot.find()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await spigot.findOne({isLatest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;

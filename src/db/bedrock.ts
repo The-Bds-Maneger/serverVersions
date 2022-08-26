@@ -67,7 +67,7 @@ const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<b
 }));
 export default bedrock;
 
-app.get("/", async ({res}) => res.json(await bedrock.find().lean()));
+app.get("/", async ({res}) => res.json((await bedrock.find().lean()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await bedrock.findOne({isLatest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;

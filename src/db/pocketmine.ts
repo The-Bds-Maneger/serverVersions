@@ -34,31 +34,32 @@ const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp", new mo
 }));
 export default pocketmine;
 
-app.get("/", async ({res}) => res.json(await pocketmine.find().lean()));
+app.get("/", async ({res}) => res.json((await pocketmine.find().lean()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({isLatest: true}).lean()));
+app.get("/bin", async (req, res) => {
+  let os = RegExp((req.query.os as string)||"(win32|windows|linux|macos|mac)");
+  let arch = RegExp((req.query.arch as string)||".*");
+  const redirect = req.query.redirect === "true";
+  const rele = await GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
+  const Files = [];
+  for (const release of rele) {
+    for (const asset of release.assets) {
+      if (os.test(asset.name) && arch.test(asset.name)) Files.push({
+        url: asset.browser_download_url,
+        name: asset.name
+      });
+    }
+  }
+  if (Files.length >= 1) {
+    if (redirect) return res.redirect(Files[0].url);
+    return res.json(Files);
+  }
+  return res.status(404).json({error: "No bin found"});
+});
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
   const versionFinded = await pocketmine.findOne({version}).lean();
   if (!versionFinded) return res.status(404).json({error: "Version not found"});
   return res.json(versionFinded);
-});
-app.get("/search/bin", async (req, res) => {
-  const os = req.query.os as string;
-  if (!os) return res.status(400).json({error: "No os specified"});
-  const arch = req.query.arch as string;
-  if (!arch) return res.status(400).json({error: "No System arch specified"});
-  const rele = await GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
-  for (const release of rele) {
-    for (const asset of release.assets) {
-      if (asset.name.includes(os) && asset.name.includes(arch)) {
-        if (req.query.redirect === "true") return res.redirect(asset.browser_download_url);
-        return res.json({
-          url: asset.browser_download_url,
-          name: asset.name
-        });
-      }
-    }
-  }
-  return res.status(404).json({error: "No bin found"});
 });
