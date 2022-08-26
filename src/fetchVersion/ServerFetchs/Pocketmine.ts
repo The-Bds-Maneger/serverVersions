@@ -1,6 +1,6 @@
 import log from "../logging";
 import * as httpRequest from "../HTTP_Request";
-import { pocketminemmp } from "../../model/pocketmine";
+import pocketminemmp from "../../db/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {
   if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) log("alter", "Pocketmine: version (%s) already exists", Version);

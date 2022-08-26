@@ -1,8 +1,38 @@
+import mongoose from "mongoose";
+import connection from "./connect";
 import { Router } from "express";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
-import pocketmine from "../model/pocketmine";
-const app = Router();
-export default app;
+export const app = Router();
+
+
+// Type to represent the pocketminemp model
+export type pocketminemmpSchema = {
+  version: string;
+  datePublish: Date;
+  isLatest: true|false;
+  pocketminePhar: string;
+};
+
+const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp", new mongoose.Schema<pocketminemmpSchema>({
+  version: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  datePublish: {
+    type: Date,
+    required: true
+  },
+  isLatest: {
+    type: Boolean,
+    required: true
+  },
+  pocketminePhar: {
+    type: String,
+    required: true
+  }
+}));
+export default pocketmine;
 
 app.get("/", async ({res}) => res.json(await pocketmine.find().lean()));
 app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({isLatest: true}).lean()));

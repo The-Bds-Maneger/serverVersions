@@ -1,16 +1,8 @@
 {
-  "include": [
-    "src/"
-  ],
-  "exclude": [
-    "node_modules/"
-  ],
   "compilerOptions": {
-    "outDir": "./dist/cjs",
-    "resolveJsonModule": true,
+    "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "./dist/dts",
     "strict": false,
     "noUnusedLocals": true,
     "noImplicitReturns": true,
@@ -19,6 +11,13 @@
     "moduleResolution": "node",
     "module": "commonjs",
     "allowJs": true,
-    "target": "ES6"
-  }
+    "target": "ES6",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "exclude": ["node_modules/"],
+  "include": [
+    "src/**/*"
+  ]
 }

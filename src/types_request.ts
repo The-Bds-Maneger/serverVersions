@@ -1,3 +1,36 @@
+export type base = {
+  version: string,
+  datePublish: string,
+}
+
+export type bedrock = base & {
+  win32: {
+    x64: string,
+    arm64?: string,
+  },
+  linux: {
+    x64: string,
+    arm64?: string,
+  },
+  darwin?: {
+    x64?: string,
+    arm64?: string,
+  }
+};
+
+export type java = base & {
+  javaJar: string
+};
+
+export type pocketmine = base & {
+  pocketminePhar: string
+};
+
+export type spigot = base & {
+  spigotJar: string
+};
+
+
 export type Root = {
   latest: {
     bedrock: string,
@@ -6,36 +39,9 @@ export type Root = {
     spigot: string
   },
   versions: {
-    bedrock: Array<{
-      version: string,
-      datePublish: string,
-      win32: {
-        x64: string,
-        arm64?: string,
-      },
-      linux: {
-        x64: string,
-        arm64?: string,
-      },
-      darwin?: {
-        x64?: string,
-        arm64?: string,
-      },
-    }>,
-    java: Array<{
-      version: string,
-      datePublish: string,
-      javaJar: string
-    }>,
-    pocketmine: Array<{
-      version: string,
-      datePublish: string,
-      pocketminePhar: string
-    }>,
-    spigot: Array<{
-      version: string,
-      datePublish: string,
-      spigotJar: string
-    }>
+    bedrock: bedrock[],
+    java: java[],
+    pocketmine: pocketmine[],
+    spigot: spigot[]
   }
 }

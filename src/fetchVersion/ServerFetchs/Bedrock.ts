@@ -1,6 +1,6 @@
 import log from "../logging";
 import * as httpRequest from "../HTTP_Request";
-import { bedrockSchema, bedrock } from "../../model/bedrock";
+import bedrock, { bedrockSchema } from "../../db/bedrock";
 import adm_zip from "adm-zip";
 
 async function Add(Version: string, versionDate: Date, urlData: {linux: {x64: string, arm64?: string}; win32: {x64: string, arm64?: string}; darwin: {x64?: string, arm64?: string}}) {

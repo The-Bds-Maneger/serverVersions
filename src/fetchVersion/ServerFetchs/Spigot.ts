@@ -1,7 +1,7 @@
 import log from "../logging";
 import jsdom from "jsdom";
 import * as httpRequest from "../HTTP_Request";
-import { spigot } from "../../model/spigot";
+import spigot from "../../db/spigot";
 
 
 async function Add(Version: string, versionDate: Date, url: string) {
@@ -32,7 +32,7 @@ async function Find() {
     });
     return Resolve(DataReturn);
   })
-  
+
   const fetchBool = async (url: string) => await httpRequest.fetchBuffer(url).then(() => true).catch(() => false)
   return await Promise.all(Versions.map(async Version => {
     if (await fetchBool(Version.url[0])) {

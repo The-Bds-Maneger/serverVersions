@@ -1,6 +1,6 @@
 import log from "../logging";
 import * as httpRequest from "../HTTP_Request";
-import { java } from "../../model/java";
+import java from "../../db/java";
 import { javaRelease } from "./types/Java";
 
 async function Add(Version: string, versionDate: Date, url: string) {

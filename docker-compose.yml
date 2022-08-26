@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      RUNNINGON: "Backup"
       KEY: ${KEY}
       CERT: ${CERT}
     ports:
