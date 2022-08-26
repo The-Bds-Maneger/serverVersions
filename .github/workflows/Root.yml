@@ -1,21 +1,9 @@
 name: Publish
 on:
-  workflow_dispatch:
-    inputs:  
-      version:
-        description: "Package version, dont includes 'v' or any other label"
-        required: true
-        type: "string"
-      package_tag:
-        description: "Package tag"
-        required: true
-        type: "string"
-        default: "latest"
-      publish_release:
-        description: "Create tag on publish package"
-        required: false
-        default: true
-        type: "boolean"
+  release:
+    types:
+      - prereleased
+      - released
 
 jobs:
   publish_package:
@@ -38,14 +26,15 @@ jobs:
           node-version: "16.x"
           registry-url: ${{ matrix.npm_registry == 'NPM' && 'https://registry.npmjs.org/'|| 'https://npm.pkg.github.com/' }}
 
-      - name: Update package.json
+      - name: Edit version
         shell: node {0}
         run: |
           const fs = require("fs");
           const path = require("path");
           const packagePath = path.join(process.cwd(), "package.json");
           const package = JSON.parse(fs.readFileSync(packagePath, "utf8"));
-          package.version = "${{ github.event.inputs.version }}"
+          package.version = "${{ github.ref }}";
+          package.version = package.version.replace(/[A-Za-z_\/]+/, "");
           fs.writeFileSync(packagePath, JSON.stringify(package, null, 2));
 
       - name: Install dependecies
@@ -56,59 +45,19 @@ jobs:
 
       - name: Publish
         continue-on-error: true
-        run: npm publish --tag "${{ github.event.inputs.package_tag }}"
+        run: npm publish --tag ${{ github.event.release.prerelease && 'next' || 'latest' }}
         env:
           NODE_AUTH_TOKEN: ${{ matrix.npm_registry == 'NPM' && secrets.NPM_ORG_TOKEN || secrets.GITHUB_TOKEN }}
 
-  createRelease:
-    if: ${{ github.event.inputs.publish_release }}
-    name: Create release
-    needs:
-      - publish_package
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      # Create pull request to update version in main branch
+      - uses: peter-evans/create-pull-request@v4
+        name: Create Pull Request
+        continue-on-error: true
         with:
-          persist-credentials: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3.3.0
-        with:
-          node-version: "16.x"
-
-      - name: Update package.json
-        shell: node {0}
-        run: |
-          const fs = require("fs");
-          const path = require("path");
-          const packagePath = path.join(process.cwd(), "package.json");
-          const package = JSON.parse(fs.readFileSync(packagePath, "utf8"));
-          package.version = "${{ github.event.inputs.version }}"
-          fs.writeFileSync(packagePath, JSON.stringify(package, null, 2));
-
-      - name: Install dependencies
-        run: npm install -no-save
-
-      - name: Create Changelog
-        run: npm run changelog
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: Update version v${{ github.event.inputs.version }}
-          title: Update package version v${{ github.event.inputs.version }}
-          body: Auto update package version, created with GitHub Actions
+          commit-message: Update version v${{ env.PACKAGE_VERSION }}
+          delete-branch: true
+          assignees: SirHerobrine23
+          reviewers: SirHerobrine23
           branch: update-version
-
-      - name: Create release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ github.event.inputs.version }}
-          name: v${{ github.event.inputs.version }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          generate_release_notes: true
-          draft: false
-          body_path: CHANGELOG.md
+          title: Update package version v${{ env.PACKAGE_VERSION }}
+          body: Auto update package version, created with GitHub Actions
