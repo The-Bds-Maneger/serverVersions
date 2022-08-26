@@ -3,14 +3,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "src/api/**/*"
-      - ".github/**/*"
-      - "src/model/**/*"
-      - "src/connect.ts"
-      - "package*.json"
-      - "Dockerfile"
-      - "docker-compose.y*ml"
 
 jobs:
   test:

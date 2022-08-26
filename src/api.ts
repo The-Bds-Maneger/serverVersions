@@ -43,12 +43,12 @@ app.use((req, _res, next) => {
 });
 
 // Global version
-app.get("/", ({res}) => Promise.all([bedrock.findOne({isLatest: true}).lean(), java.findOne({isLatest: true}).lean(), pocketminemmp.findOne({isLatest: true}).lean(), spigot.findOne({isLatest: true}).lean()]).then(([ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ]) => {
+app.get("/", (req, res) => Promise.all([bedrock.findOne({isLatest: true}).lean(), java.findOne({isLatest: true}).lean(), pocketminemmp.findOne({isLatest: true}).lean(), spigot.findOne({isLatest: true}).lean()]).then(([ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ]) => {
   const data = {};
-  if (bedrockVersions) data["bedrock"] = {version: bedrockVersions.version, search: `/bedrock/search?version=${bedrockVersions.version}`};
-  if (javaVersions) data["java"] = {version: javaVersions.version, search: `/java/search?version=${javaVersions.version}`};
-  if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `/pocketmine/search?version=${pocketmineVersions.version}`};
-  if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `/spigot/search?version=${spigotVersions.version}`};
+  if (bedrockVersions) data["bedrock"] = {version: bedrockVersions.version, search: `${req.headers.host}/bedrock/search?version=${bedrockVersions.version}`};
+  if (javaVersions) data["java"] = {version: javaVersions.version, search: `${req.headers.host}/java/search?version=${javaVersions.version}`};
+  if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `${req.headers.host}/pocketmine/search?version=${pocketmineVersions.version}`};
+  if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `${req.headers.host}/spigot/search?version=${spigotVersions.version}`};
   return res.json(data);
 }).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: String(err).replace("Error: ", "")})));
 
