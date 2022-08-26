@@ -43,38 +43,20 @@ app.use((req, _res, next) => {
 });
 
 // Global version
-app.get("/", async ({res}) => {
-  try {
-    const [ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ] = await Promise.all([bedrock.find().lean(), java.find().lean(), pocketminemmp.find().lean(), spigot.find().lean()]);
-    return res.json({
-      latest: {
-        bedrock: bedrockVersions?.find(({isLatest}) => isLatest)?.version,
-        java: javaVersions?.find(({isLatest}) => isLatest)?.version,
-        pocketmine: pocketmineVersions?.find(({isLatest}) => isLatest)?.version,
-        spigot: spigotVersions?.find(({isLatest}) => isLatest)?.version
-      },
-      versions: {
-        bedrock: bedrockVersions,
-        java: javaVersions,
-        pocketmine: pocketmineVersions,
-        spigot: spigotVersions
-      }
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Internal server error",
-      error: String(err)
-    });
-  }
-});
+app.get("/", ({res}) => Promise.all([bedrock.findOne({isLatest: true}).lean(), java.findOne({isLatest: true}).lean(), pocketminemmp.findOne({isLatest: true}).lean(), spigot.findOne({isLatest: true}).lean()]).then(([ bedrockVersions, javaVersions, pocketmineVersions, spigotVersions ]) => {
+  const data = {};
+  if (bedrockVersions) data["bedrock"] = {version: bedrockVersions.version, search: `/bedrock/search?version=${bedrockVersions.version}`};
+  if (javaVersions) data["java"] = {version: javaVersions.version, search: `/java/search?version=${javaVersions.version}`};
+  if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `/pocketmine/search?version=${pocketmineVersions.version}`};
+  if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `/spigot/search?version=${spigotVersions.version}`};
+  return res.json(data);
+}).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: String(err).replace("Error: ", "")})));
 
-// Bedrock
+// Routes
 app.use("/bedrock", bedrockExpress);
-//Java
 app.use("/java", javaExpress);
-//Pocketmine
 app.use("/pocketmine", pocketmineExpress);
-//Spigot
 app.use("/spigot", spigotExpress);
+
 //Return 404 for all other routes
 app.all("*", ({res}) => res.status(404).json({error: "Not found"}));
