@@ -38,11 +38,18 @@ export type home = {
 };
 
 export const versionAPIs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
-export let versionUrl = versionAPIs[0];
-setInterval(async () => httpRequests.RAW_TEXT(versionAPIs[0]).then(() => versionAPIs[0]).catch(() => httpRequests.RAW_TEXT(versionAPIs[1]).then(() => versionAPIs[1])).catch(() => httpRequests.RAW_TEXT(versionAPIs[2]).then(() => versionAPIs[2])).then(ip => versionUrl).catch(() => console.warn("Cannot get Avaible API")), 1000*60*60*5);
-
 export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string|boolean): Promise<bedrock|bedrock[]|java|java[]|pocketmine|pocketmine[]|spigot|spigot[]> {
-  return httpRequests.getJson(`${versionUrl}/${bdsPlaform}/${typeof version === "undefined"?"":typeof version === "boolean"?"latest":"search?version="+version}`)
+  for (let url of versionAPIs) {
+    url += "/"+bdsPlaform;
+    if (typeof version !== "undefined") {
+      if (typeof version === "boolean"||version === "latest") url += "/latest";
+      else url += `/search?version=${version}`;
+    }
+    const res = await httpRequests.fetchBuffer(url).catch(() => false);
+    if (res === false) continue;
+    return JSON.parse(res.toString("utf8"), (key, value) => key === "datePublish" ? new Date(value):value);
+  }
+  throw new Error("Failed to exec API request!");
 }
 
 export const findBedrock = (version: string|boolean) => findVersion("bedrock", version).then((res: bedrock) => res);
