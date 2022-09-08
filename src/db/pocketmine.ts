@@ -4,38 +4,27 @@ import { Router } from "express";
 import { GithubRelease } from "../fetchVersion/HTTP_Request";
 export const app = Router();
 
-
-// Type to represent the pocketminemp model
 export type pocketminemmpSchema = {
-  version: string;
-  datePublish: Date;
-  isLatest: true|false;
-  pocketminePhar: string;
+  version: string,
+  date: Date,
+  latest: boolean,
+  url: string
 };
 
-const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp", new mongoose.Schema<pocketminemmpSchema>({
+export const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp", new mongoose.Schema<pocketminemmpSchema>({
   version: {
     type: String,
     required: true,
     unique: true
   },
-  datePublish: {
-    type: Date,
-    required: true
-  },
-  isLatest: {
-    type: Boolean,
-    required: true
-  },
-  pocketminePhar: {
-    type: String,
-    required: true
-  }
+  date: Date,
+  latest: Boolean,
+  url: String
 }));
 export default pocketmine;
 
-app.get("/", async ({res}) => res.json((await pocketmine.find().lean()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
-app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({isLatest: true}).lean()));
+app.get("/", async ({res}) => res.json((await pocketmine.find().lean()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
+app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({latest: true}).lean()));
 app.get("/bin", async (req, res) => {
   let os = RegExp((req.query.os as string)||"(win32|windows|linux|macos|mac)");
   let arch = RegExp((req.query.arch as string)||".*");

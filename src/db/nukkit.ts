@@ -3,36 +3,39 @@ import connection from "./connect";
 import { Router } from "express";
 export const app = Router();
 
-// Type to represent the Java model
-export type javaSchema = {
+export type nukkitSchema = {
   version: string,
-  datePublish: Date,
-  isLatest: true | false,
-  jar: string,
-  variant: "nukkit"|"powernukkit"
+  date: Date,
+  url: string,
+  variant: {
+    to: "powernukkit"|"nukkit",
+    latest: boolean
+  }
 };
 
-export const nukkit = connection.model<javaSchema>("nukkit", new mongoose.Schema<javaSchema>({
+export const nukkit = connection.model<nukkitSchema>("nukkit", new mongoose.Schema<nukkitSchema>({
   version: {
     type: String,
-    required: true,
-    unique: true,
+    required: true
   },
-  datePublish: {
+  date: {
     type: Date,
     required: true,
   },
-  isLatest: {
-    type: Boolean,
-    required: true,
-  },
-  jar: {
+  url: {
     type: String,
     required: true,
   },
   variant: {
-    type: String,
-    required: false,
-    default: "nukkit"
+    latest: {
+      type: Boolean,
+      required: true
+    },
+    to: {
+      type: String,
+      required: false,
+      default: "nukkit",
+      enum: ["nukkit", "powernukkit"]
+    }
   }
 }));

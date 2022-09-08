@@ -5,10 +5,10 @@ export const app = Router();
 
 // Type to represent the spigot model
 export type spigotSchema = {
-  version: string;
-  datePublish: Date;
-  isLatest: true|false;
-  spigotJar: string;
+  version: string,
+  date: Date,
+  latest: boolean,
+  url: string
 };
 
 const spigot = connection.model<spigotSchema>("spigot", new mongoose.Schema<spigotSchema>({
@@ -17,23 +17,23 @@ const spigot = connection.model<spigotSchema>("spigot", new mongoose.Schema<spig
     required: true,
     unique: true
   },
-  datePublish: {
+  date: {
     type: Date,
     required: true
   },
-  isLatest: {
+  latest: {
     type: Boolean,
     required: true
   },
-  spigotJar: {
+  url: {
     type: String,
     required: true
   }
 }));
 export default spigot;
 
-app.get("/", async ({res}) => res.json((await spigot.find()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
-app.get("/latest", async ({res}) => res.json(await spigot.findOne({isLatest: true}).lean()));
+app.get("/", async ({res}) => res.json((await spigot.find()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
+app.get("/latest", async ({res}) => res.json(await spigot.findOne({latest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
