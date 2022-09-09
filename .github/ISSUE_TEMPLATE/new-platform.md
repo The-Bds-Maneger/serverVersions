@@ -1,7 +1,7 @@
 ---
-name: 'New platform: {name}'
+name: 'New platform'
 about: Add a new platform to Version find or Version registry.
-title: ''
+title: 'New platform: {name}'
 labels: enhancement
 assignees: ''
 
