@@ -11,6 +11,7 @@ import {java, app as javaExpress} from "./db/java";
 import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine";
 import {spigot, app as spigotExpress} from "./db/spigot";
 import { nukkit, app as nukkitExpress } from "./db/nukkit";
+import { powernukkit, app as powernukkitExpress } from "./db/powernukkit";
 import { glowstone, app as glowstoneExpress } from "./db/glowstone";
 import { paper, app as paperExpress } from "./db/paper";
 
@@ -57,8 +58,8 @@ const getAllLatest = () => Promise.all([
   spigot.findOne({latest: true}).lean(),
   glowstone.findOne({latest: true}).lean(),
   paper.findOne({latest: true}).lean(),
-  nukkit.findOne({variant: {latest: true, to: "nukkit"}}).lean(),
-  nukkit.findOne({variant: {latest: true, to: "powernukkit"}}).lean(),
+  nukkit.findOne({latest: true}).lean(),
+  powernukkit.findOne({latest: true}).lean(),
 ]);
 app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, glowstoneVersions, paperVersions, nukkitVersions, powerNukkitVersions]) => {
   const data = {};
@@ -80,6 +81,7 @@ app.use("/java", javaExpress);
 app.use("/pocketmine", pocketmineExpress);
 app.use("/spigot", spigotExpress);
 app.use("/nukkit", nukkitExpress);
+app.use("/powernukkit", powernukkitExpress);
 app.use("/glowstone", glowstoneExpress);
 app.use("/paper", paperExpress);
 
