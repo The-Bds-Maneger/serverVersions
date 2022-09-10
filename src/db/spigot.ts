@@ -11,26 +11,16 @@ export type spigotSchema = {
   url: string
 };
 
-const spigot = connection.model<spigotSchema>("spigot", new mongoose.Schema<spigotSchema>({
+export const spigot = connection.model<spigotSchema>("spigot", new mongoose.Schema<spigotSchema>({
   version: {
     type: String,
     required: true,
     unique: true
   },
-  date: {
-    type: Date,
-    required: true
-  },
-  latest: {
-    type: Boolean,
-    required: true
-  },
-  url: {
-    type: String,
-    required: true
-  }
+  date: Date,
+  latest: Boolean,
+  url: String
 }));
-export default spigot;
 
 app.get("/", async ({res}) => res.json((await spigot.find()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await spigot.findOne({latest: true}).lean()));

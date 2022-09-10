@@ -1,7 +1,7 @@
-import log from "../logging";
+import log from "../lib/logging";
 import jsdom from "jsdom";
-import * as httpRequest from "../HTTP_Request";
-import spigot from "../../db/spigot";
+import * as httpRequest from "../lib/HTTP_Request";
+import {spigot} from "../db/spigot";
 
 
 async function Add(Version: string, versionDate: Date, url: string) {
@@ -10,9 +10,9 @@ async function Add(Version: string, versionDate: Date, url: string) {
     log("alter", "Spigot: Version %s, url %s", Version, url);
     await spigot.create({
       version: Version,
-      datePublish: versionDate,
-      isLatest: false,
-      spigotJar: url
+      date: versionDate,
+      latest: false,
+      url: url
     });
   }
 }
@@ -51,9 +51,9 @@ async function Find() {
 }
 
 export default async function UpdateDatabase() {
-  const latestVersion = await spigot.findOneAndUpdate({ isLatest: true }, {$set: {isLatest: false}}).lean();
+  const latestVersion = await spigot.findOneAndUpdate({ latest: true }, {$set: {latest: false}}).lean();
   const Release = await Find();
-  const newRelease = await spigot.findOneAndUpdate({version: Release[0].version}, {$set: {isLatest: true}}).lean();
+  const newRelease = await spigot.findOneAndUpdate({version: Release[0].version}, {$set: {latest: true}}).lean();
   return {
     new: newRelease,
     old: latestVersion

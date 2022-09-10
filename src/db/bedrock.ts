@@ -11,7 +11,7 @@ export type bedrockSchema = {
   linux: string
 };
 
-export "vanilla"|"spigot"|"paper"|"fabric"const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
+export const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
   version: {
     type: String,
     required: true,
@@ -22,9 +22,8 @@ export "vanilla"|"spigot"|"paper"|"fabric"const bedrock = connection.model<bedro
   win32: String,
   linux: String
 }));
-export default bedrock;
 
-app.get("/", async ({res}) => res.json((await bedrock.find().lean()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
+app.get("/", async ({res}) => res.json((await bedrock.find().lean()).sort((a, b) => a?.date?.getTime() - b?.date?.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await bedrock.findOne({latest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;

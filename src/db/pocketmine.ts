@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import connection from "./connect";
 import { Router } from "express";
-import { GithubRelease } from "../fetchVersion/HTTP_Request";
+import { GithubRelease } from "../lib/HTTP_Request";
 export const app = Router();
 
 export type pocketminemmpSchema = {
@@ -21,7 +21,6 @@ export const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp",
   latest: Boolean,
   url: String
 }));
-export default pocketmine;
 
 app.get("/", async ({res}) => res.json((await pocketmine.find().lean()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
 app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({latest: true}).lean()));
