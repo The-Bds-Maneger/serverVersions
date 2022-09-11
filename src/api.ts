@@ -21,10 +21,12 @@ app.use(cors());
 app.use((req, res, next) => {
   res.json = (body) => {
     const deleteKeys = ["__v", "_id"];
-    body = JSON.parse(JSON.stringify(body, (key, value)=>deleteKeys.includes(key)?undefined:value));
     if (body instanceof Array) {
-      if (body[0]?.date instanceof Date) body = body.sort((a, b) => b.date.getTime() - a.date.getTime());
+      if (body[0] instanceof Object) {
+        if (body[0]?.date instanceof Date) body = body.sort((b, a) => a.date?.getTime() - b.date?.getTime());
+      }
     }
+    body = JSON.parse(JSON.stringify(body, (key, value)=>deleteKeys.includes(key)?undefined:value));
     if (req.query.type === "yaml"||req.query.type === "yml") return res.setHeader("Content-Type", "text/yaml").send(yaml.stringify(body));
     return res.set("Content-Type", "application/json").send(JSON.stringify(body, (_, value) => typeof value === "bigint" ? value.toString():value, 2));
   }
