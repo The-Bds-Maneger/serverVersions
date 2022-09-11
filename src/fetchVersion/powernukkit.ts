@@ -64,5 +64,3 @@ export default async function find() {
   console.log(res2);
   return;
 }
-
-find().then(() => {console.log("Sucess"); process.exit(0)}).catch(console.log);
