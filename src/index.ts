@@ -3,7 +3,6 @@ export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s39
 export type osPlatform = "darwin"|"win32"|"linux"|"android";
 export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
 import type { bedrockSchema } from "./db/bedrock";
-import type { glowstoneSchema } from "./db/glowstone";
 import type { javaSchema } from "./db/java";
 import type { nukkitSchema } from "./db/nukkit";
 import type { paperSchema } from "./db/paper";
@@ -13,7 +12,6 @@ import type { spigotSchema } from "./db/spigot";
 export const versionURLs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
 export {
   bedrockSchema as bedrock,
-  glowstoneSchema as glowstone,
   javaSchema as java,
   nukkitSchema as nukkit,
   paperSchema as paper,
@@ -21,7 +19,7 @@ export {
   spigotSchema as spigot
 }
 
-export type all = bedrockSchema|glowstoneSchema|javaSchema|nukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
+export type all = bedrockSchema|javaSchema|nukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
 
 export async function findVersion(bdsPlaform: BdsCorePlatforms): Promise<all[]>;
 export async function findVersion(bdsPlaform: BdsCorePlatforms, version: string|boolean): Promise<all>;

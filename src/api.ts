@@ -12,7 +12,6 @@ import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocket
 import {spigot, app as spigotExpress} from "./db/spigot";
 import { nukkit, app as nukkitExpress } from "./db/nukkit";
 import { powernukkit, app as powernukkitExpress } from "./db/powernukkit";
-import { glowstone, app as glowstoneExpress } from "./db/glowstone";
 import { paper, app as paperExpress } from "./db/paper";
 
 const app = express();
@@ -56,19 +55,17 @@ const getAllLatest = () => Promise.all([
   java.findOne({latest: true}).lean(),
   pocketminemmp.findOne({latest: true}).lean(),
   spigot.findOne({latest: true}).lean(),
-  glowstone.findOne({latest: true}).lean(),
   paper.findOne({latest: true}).lean(),
   nukkit.findOne({latest: true}).lean(),
   powernukkit.findOne({latest: true}).lean(),
 ]);
-app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, glowstoneVersions, paperVersions, nukkitVersions, powerNukkitVersions]) => {
+app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, paperVersions, nukkitVersions, powerNukkitVersions]) => {
   const data = {};
   const host = `${req.protocol}://${req.headers.host||"mcpeversions.sirherobrine23.org"}`;
   if (bedrockVersions) data["bedrock"] = {version: bedrockVersions.version, search: `${host}/bedrock/search?version=${bedrockVersions.version}`};
   if (javaVersions) data["java"] = {version: javaVersions.version, search: `${host}/java/search?version=${javaVersions.version}`};
   if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `${host}/pocketmine/search?version=${pocketmineVersions.version}`};
   if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `${host}/spigot/search?version=${spigotVersions.version}`};
-  if (glowstoneVersions) data["glowstone"] = {version: glowstoneVersions.version, search: `${host}/spigot/search?version=${glowstoneVersions.version}`};
   if (paperVersions) data["paper"] = {version: paperVersions.version, search: `${host}/spigot/search?version=${paperVersions.version}`};
   if (nukkitVersions) data["nukkit"] = {version: nukkitVersions.version, search: `${host}/spigot/search?version=${nukkitVersions.version}`};
   if (powerNukkitVersions) data["powernukkit"] = {version: powerNukkitVersions.version, search: `${host}/spigot/search?version=${powerNukkitVersions.version}`};
@@ -82,7 +79,6 @@ app.use("/pocketmine", pocketmineExpress);
 app.use("/spigot", spigotExpress);
 app.use("/nukkit", nukkitExpress);
 app.use("/powernukkit", powernukkitExpress);
-app.use("/glowstone", glowstoneExpress);
 app.use("/paper", paperExpress);
 
 //Return 404 for all other routes
