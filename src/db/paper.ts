@@ -5,17 +5,15 @@ export const app = Router();
 
 export type paperSchema = {
   version: string,
+  build: number,
   date: Date,
   latest: boolean,
   url: string
 };
 
 export const paper = connection.model<paperSchema>("paper", new mongoose.Schema<paperSchema>({
-  version: {
-    type: String,
-    required: true,
-    unique: true
-  },
+  version: String,
+  build: Number,
   date: Date,
   latest: Boolean,
   url: String

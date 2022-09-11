@@ -22,7 +22,7 @@ export const pocketmine = connection.model<pocketminemmpSchema>("pocketminemmp",
   url: String
 }));
 
-app.get("/", async ({res}) => res.json((await pocketmine.find().lean()).sort((a, b) => a.date.getTime() - b.date.getTime()).reverse()));
+app.get("/", ({res}) => pocketmine.find().lean().then(data => res.json(data)));
 app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({latest: true}).lean()));
 app.get("/bin", async (req, res) => {
   let os = RegExp((req.query.os as string)||"(win32|windows|linux|macos|mac)");

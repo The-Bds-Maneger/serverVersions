@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     const deleteKeys = ["__v", "_id"];
     body = JSON.parse(JSON.stringify(body, (key, value)=>deleteKeys.includes(key)?undefined:value));
     if (body instanceof Array) {
-      if (body[0]?.date instanceof Date) body = body.sort((a, b) => a.date.getTime() - b.date.getTime()).reverse();
+      if (body[0]?.date instanceof Date) body = body.sort((a, b) => b.date.getTime() - a.date.getTime());
     }
     if (req.query.type === "yaml"||req.query.type === "yml") return res.setHeader("Content-Type", "text/yaml").send(yaml.stringify(body));
     return res.set("Content-Type", "application/json").send(JSON.stringify(body, (_, value) => typeof value === "bigint" ? value.toString():value, 2));
@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 
 // Ping
 app.all("/ping", ({res}) => res.status(200).json({status: "Ok", from: process.env.RUNNINGON||"unknown"}));
-app.all("/favicon", ({res}) => res.redirect("https://raw.githubusercontent.com/The-Bds-Maneger/Bds-Maneger-html-assets/main/images/mcpe.ico"));
+app.all(/^\/favicon.*/, ({res}) => res.redirect("https://raw.githubusercontent.com/The-Bds-Maneger/Bds-Maneger-html-assets/main/images/mcpe.ico"));
 
 // Listen server
 dbConnect.once("connected", () => {
