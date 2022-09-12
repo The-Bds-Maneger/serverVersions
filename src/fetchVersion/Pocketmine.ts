@@ -1,15 +1,15 @@
-import log from "../logging";
-import * as httpRequest from "../HTTP_Request";
-import pocketminemmp from "../../db/pocketmine";
+import log from "../lib/logging";
+import * as httpRequest from "../lib/HTTP_Request";
+import { pocketmine as pocketminemmp} from "../db/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {
   if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) log("alter", "Pocketmine: version (%s) already exists", Version);
   else {
     await pocketminemmp.create({
       version: Version,
-      datePublish: versionDate,
-      isLatest: false,
-      pocketminePhar: url
+      date: versionDate,
+      latest: false,
+      url: url
     });
     log("alter", "Pocketmine PMMP: Version %s, url %s", Version, url);
   }
@@ -31,9 +31,9 @@ async function Find() {
 }
 
 export default async function UpdateDatabase() {
-  const latestVersion = await pocketminemmp.findOneAndUpdate({ isLatest: true }, {$set: {isLatest: false}}).lean();
+  const latestVersion = await pocketminemmp.findOneAndUpdate({ latest: true }, {$set: {latest: false}}).lean();
   const Releases = await Find();
-  const newLatest = await pocketminemmp.findOneAndUpdate({ version: Releases[0].Version }, {$set: { isLatest: true }}).lean();
+  const newLatest = await pocketminemmp.findOneAndUpdate({ version: Releases[0].Version }, {$set: { latest: true }}).lean();
   return {
     new: newLatest,
     old: latestVersion

@@ -1,6 +1,6 @@
-import log from "../logging";
-import * as httpRequest from "../HTTP_Request";
-import java from "../../db/java";
+import log from "../lib/logging";
+import * as httpRequest from "../lib/HTTP_Request";
+import {java} from "../db/java";
 import { javaRelease } from "./types/Java";
 
 async function Add(Version: string, versionDate: Date, url: string) {
@@ -9,9 +9,9 @@ async function Add(Version: string, versionDate: Date, url: string) {
     log("java", "Java: Version %s, url %s", Version, url);
     await java.create({
       version: Version,
-      datePublish: versionDate,
-      isLatest: false,
-      javaJar: url
+      date: versionDate,
+      latest: false,
+      url: url
     });
   }
 }
@@ -22,11 +22,11 @@ async function Find() {
     const Release = await httpRequest.getJson(ver.url) as javaRelease;
     if (!!Release?.downloads?.server?.url) await Add(ver.id, new Date(ver.releaseTime), Release?.downloads?.server?.url);
   }
-  return await java.findOneAndUpdate({version: Versions.latest.release}, {$set: {isLatest: true}}).lean();
+  return await java.findOneAndUpdate({version: Versions.latest.release}, {$set: {latest: true}}).lean();
 }
 
 export default async function UpdateDatabase() {
-  const latestVersion = await java.findOneAndUpdate({isLatest: true}, {$set: {isLatest: false}}).lean();
+  const latestVersion = await java.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
   return {
     new: await Find(),
     old: latestVersion

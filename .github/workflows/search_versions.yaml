@@ -5,22 +5,32 @@ on:
   push:
     branches:
       - main
+
 jobs:
   findVersion:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [bedrock, java, spigot, pocketmine]
+        platform:
+          - bedrock
+          - java
+          - spigot
+          - pocketmine
+          - paper
+          - powernukkit
     name: "server ${{ matrix.platform }}"
     steps:
       - uses: actions/checkout@v3
         name: Checkout code
+
       - name: Setup Node JS
         uses: actions/setup-node@v3.4.1
         with:
           node-version: 18.x
+
       - name: Install Node Packages
         run: npm install -d --no-save
+
       - name: Find and Update database
         run: npm run search -- --${{ matrix.platform }}
         env:

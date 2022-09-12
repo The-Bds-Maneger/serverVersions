@@ -4,3 +4,4 @@ dist/
 *.tgz
 CHANGELOG.md
 *.env
+versions.json

@@ -1,45 +1,29 @@
-import * as httpRequests from "./fetchVersion/HTTP_Request";
+import * as httpRequests from "./lib/HTTP_Request";
+import type { bedrockSchema } from "./db/bedrock";
+import type { javaSchema } from "./db/java";
+import type { paperSchema } from "./db/paper";
+import type { powernukkitSchema } from "./db/powernukkit";
+import type { pocketminemmpSchema } from "./db/pocketmine";
+import type { spigotSchema } from "./db/spigot";
 export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s390"|"s390x"|"x32";
 export type osPlatform = "darwin"|"win32"|"linux"|"android";
-export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
+export type BdsCorePlatforms = "bedrock"|"java"|"paper"|"powernukkit"|"pocketmine"|"spigot";
 
-export type base = {
-  version: string,
-  datePublish: string,
-};
-export type bedrock = base & {
-  win32: {
-    x64: string,
-    arm64?: string,
-  },
-  linux: {
-    x64: string,
-    arm64?: string,
-  },
-  darwin?: {
-    x64?: string,
-    arm64?: string,
-  }
-};
-export type java = base & {
-  javaJar: string
-};
-export type pocketmine = base & {
-  pocketminePhar: string
-};
-export type spigot = base & {
-  spigotJar: string
-};
-export type home = {
-  [platform: string]: {
-    version: string,
-    search: string
-  }
-};
+export const versionURLs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
+export {
+  bedrockSchema as bedrock,
+  javaSchema as java,
+  paperSchema as paper,
+  pocketminemmpSchema as pocketmine,
+  spigotSchema as spigot,
+  powernukkitSchema as powernukkit
+}
+export type all = bedrockSchema|javaSchema|powernukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
 
-export const versionAPIs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
-export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string|boolean): Promise<bedrock|bedrock[]|java|java[]|pocketmine|pocketmine[]|spigot|spigot[]> {
-  for (let url of versionAPIs) {
+export async function findVersion(bdsPlaform: BdsCorePlatforms): Promise<all[]>;
+export async function findVersion(bdsPlaform: BdsCorePlatforms, version: string|boolean): Promise<all>;
+export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string|boolean): Promise<all|all[]> {
+  for (let url of versionURLs) {
     url += "/"+bdsPlaform;
     if (typeof version !== "undefined") {
       if (typeof version === "boolean"||version === "latest") url += "/latest";
@@ -52,15 +36,16 @@ export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string
   throw new Error("Failed to exec API request!");
 }
 
-export const findBedrock = (version: string|boolean) => findVersion("bedrock", version).then((res: bedrock) => res);
-export const getBedrockZip = (version: string|boolean, arch?: string, platform?: string) => findBedrock(version).then(res => (res[platform||process.platform]||{})[arch||process.arch]).then((res: string|void) => {
-  if (!res) throw new Error("No file located");
-  return httpRequests.fetchBuffer(res);
+export const findBedrock = (version: string|boolean) => findVersion("bedrock", version).then((res: bedrockSchema) => res);
+export const getBedrockZip = (version: string|boolean, options: {platform?: string}) => findBedrock(version).then(res => {
+  const plaftorm = options?.platform||process.platform;
+  if (res.url[plaftorm] === undefined) throw new Error("Platform not avaible");
+  return httpRequests.fetchBuffer(res.url[plaftorm]);
 });
-export const findPocketmine = (version: string|boolean) => findVersion("pocketmine", version).then((res: pocketmine) => res);
-export const getPocketminePhar = (version: string|boolean) => findPocketmine(version).then(res => httpRequests.fetchBuffer(res.pocketminePhar));
+export const findPocketmine = (version: string|boolean) => findVersion("pocketmine", version).then((res: pocketminemmpSchema) => res);
+export const getPocketminePhar = (version: string|boolean) => findPocketmine(version).then(res => httpRequests.fetchBuffer(res.url));
 
-export const findJava = (version: string|boolean) => findVersion("java", version).then((res: java) => res);
-export const findSpigot = (version: string|boolean) => findVersion("spigot", version).then((res: spigot) => res);
-export const getJavaJar = (version: string|boolean) => findJava(version).then(res => httpRequests.fetchBuffer(res.javaJar));
-export const getSpigotJar = (version: string|boolean) => findSpigot(version).then(res => httpRequests.fetchBuffer(res.spigotJar));
+export const findJava = (version: string|boolean) => findVersion("java", version).then((res: javaSchema) => res);
+export const findSpigot = (version: string|boolean) => findVersion("spigot", version).then((res: spigotSchema) => res);
+export const getJavaJar = (version: string|boolean) => findJava(version).then(res => httpRequests.fetchBuffer(res.url));
+export const getSpigotJar = (version: string|boolean) => findSpigot(version).then(res => httpRequests.fetchBuffer(res.url));

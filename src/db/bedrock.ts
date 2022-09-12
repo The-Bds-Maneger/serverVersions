@@ -3,72 +3,32 @@ import connection from "./connect";
 import { Router } from "express";
 export const app = Router();
 
-// Type to represent the Bedrock model
 export type bedrockSchema = {
-  version: string;
-  datePublish: Date;
-  isLatest: true|false;
-  win32: {
-    x64: string;
-    arm64?: string;
-  };
-  linux: {
-    x64: string;
-    arm64?: string;
-  };
-  darwin: {
-    x64?: string;
-    arm64?: string;
-  };
+  version: string,
+  date: Date,
+  latest: boolean,
+  url: {
+    win32: string,
+    linux: string
+  }
 };
 
-// Mongoose Schema
-// Bedrock database
-const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
+export const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
   version: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-  datePublish: {
-    type: Date,
-    required: true,
-  },
-  isLatest: {
-    type: Boolean,
-    required: true,
-  },
-  win32: {
-    x64: {
-      type: String,
-      required: true,
-    },
-    arm64: {
-      type: String,
-    },
-  },
-  linux: {
-    x64: {
-      type: String,
-      required: true,
-    },
-    arm64: {
-      type: String,
-    },
-  },
-  darwin: {
-    x64: {
-      type: String,
-    },
-    arm64: {
-      type: String,
-    },
-  },
+  date: Date,
+  latest: Boolean,
+  url: {
+    win32: String,
+    linux: String
+  }
 }));
-export default bedrock;
 
-app.get("/", async ({res}) => res.json((await bedrock.find().lean()).sort((a, b) => a.datePublish.getTime() - b.datePublish.getTime()).reverse()));
-app.get("/latest", async ({res}) => res.json(await bedrock.findOne({isLatest: true}).lean()));
+app.get("/", ({res}) => bedrock.find().lean().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json(await bedrock.findOne({latest: true}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
