@@ -17,4 +17,4 @@ const exportVersions = () => Promise.all([
 ]).then(([bedrock, java, pocketmine, spigot, paper, powernukkit]) => JSON.stringify({bedrock, java, pocketmine, spigot, paper, powernukkit}, (key, value)=>key==="__v"?undefined:key==="_id"?undefined:value, 2));
 
 const outputFile = path.resolve(process.env.OUTPUT||process.cwd(), "versions.json");
-exportVersions().then(res => writeFile(outputFile, res)).then(() => {console.log("File save in '%s' path.", outputFile); process.exit(0)});
+exportVersions().then(res => writeFile(outputFile, /\.md$/.test(outputFile)?`#Result\n\n\`\`\`json\n${res}\n\`\`\`\n`:res)).then(() => {console.log("File save in '%s' path.", outputFile); process.exit(0)});

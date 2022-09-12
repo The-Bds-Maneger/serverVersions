@@ -41,5 +41,5 @@ jobs:
 
       - name: Upload result
         run: |
-          ts-node src/exports.ts
-          cat versions.json > $GITHUB_STEP_SUMMARY
+          OUTPUT="/tmp/versions.md" ts-node src/exports.ts
+          cat "/tmp/versions.md" > $GITHUB_STEP_SUMMARY
