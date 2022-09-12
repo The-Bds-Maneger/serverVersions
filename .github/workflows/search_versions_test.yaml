@@ -16,11 +16,12 @@ jobs:
           - paper
           - powernukkit
     name: "server ${{ matrix.platform }}"
-    env:
-      BDSVERSIONDB: "mongodb://localhost/bdsversion"
     steps:
       - name: Up mongo server
-        run: docker run --rm -d --net=host mongo
+        run: |
+          docker run --rm --name mongodb -d -p 27017:27017 mongo
+          # BDSVERSIONDB="mongodb://localhost/bdsversion"
+          echo "BDSVERSIONDB=mongodb://$(docker inspect  -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mongodb)/bdsversion" >> $GITHUB_ENV
 
       - uses: actions/checkout@v3
         name: Checkout code
