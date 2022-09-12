@@ -42,4 +42,4 @@ jobs:
       - name: Upload result
         run: |
           ts-node src/exports.ts
-          cat versions.json | base64 > $GITHUB_STEP_SUMMARY
+          cat versions.json > $GITHUB_STEP_SUMMARY
