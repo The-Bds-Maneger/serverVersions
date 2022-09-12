@@ -1,5 +1,5 @@
 FROM debian:latest
-RUN apt update && apt install -y wget curl
+RUN apt update && apt install -y wget curl chromium-browser
 RUN wget -qO- https://raw.githubusercontent.com/Sirherobrine23/DebianNodejsFiles/main/debianInstall.sh | bash
 
 WORKDIR /app
