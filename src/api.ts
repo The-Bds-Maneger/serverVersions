@@ -66,8 +66,8 @@ app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, 
   if (javaVersions) data["java"] = {version: javaVersions.version, search: `${host}/java/search?version=${javaVersions.version}`};
   if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `${host}/pocketmine/search?version=${pocketmineVersions.version}`};
   if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `${host}/spigot/search?version=${spigotVersions.version}`};
-  if (paperVersions) data["paper"] = {version: paperVersions.version, search: `${host}/spigot/search?version=${paperVersions.version}`};
-  if (powerNukkitVersions) data["powernukkit"] = {version: powerNukkitVersions.version, search: `${host}/spigot/search?version=${powerNukkitVersions.version}`};
+  if (paperVersions) data["paper"] = {version: paperVersions.version, search: `${host}/paper/search?version=${paperVersions.version}`};
+  if (powerNukkitVersions) data["powernukkit"] = {version: powerNukkitVersions.version, search: `${host}/powernukkit/search?version=${powerNukkitVersions.version}`};
   return res.json(data);
 }).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: String(err).replace("Error: ", "")})));
 
