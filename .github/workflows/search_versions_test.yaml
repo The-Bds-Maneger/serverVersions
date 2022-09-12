@@ -1,10 +1,7 @@
-name: Find new versions
+name: Test Find versions
 on:
-  schedule:
-    - cron: "0 */6 * * *"
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [main]
 
 jobs:
   findVersion:
@@ -19,7 +16,12 @@ jobs:
           - paper
           - powernukkit
     name: "server ${{ matrix.platform }}"
+    env:
+      BDSVERSIONDB: "mongodb://localhost/bdsversion"
     steps:
+      - name: Up mongo server
+        run: docker run --rm -d --net=host mongo
+
       - uses: actions/checkout@v3
         name: Checkout code
 
@@ -28,11 +30,15 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Install Node Packages
-        run: npm install -d --no-save
+      - name: Install dependencies
+        run: |
+          npm ci
+          sudo npm install -g ts-node typescript
 
       - name: Find and Update database
         run: npm run search -- --${{ matrix.platform }}
-        env:
-          MONGO_USER: "${{ secrets.MONGO_USER }}"
-          MONGO_PASSWORD: "${{ secrets.MONGO_PASSWORD }}"
+
+      - name: Upload result
+        run: |
+          ts-node src/exports.ts
+          cat versions.json | base64 > $GITHUB_STEP_SUMMARY

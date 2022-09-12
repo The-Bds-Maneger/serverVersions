@@ -7,8 +7,10 @@ export type bedrockSchema = {
   version: string,
   date: Date,
   latest: boolean,
-  win32: string,
-  linux: string
+  url: {
+    win32: string,
+    linux: string
+  }
 };
 
 export const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
@@ -19,8 +21,10 @@ export const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.S
   },
   date: Date,
   latest: Boolean,
-  win32: String,
-  linux: String
+  url: {
+    win32: String,
+    linux: String
+  }
 }));
 
 app.get("/", ({res}) => bedrock.find().lean().then(data => res.json(data)));

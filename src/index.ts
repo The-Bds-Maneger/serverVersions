@@ -1,25 +1,24 @@
 import * as httpRequests from "./lib/HTTP_Request";
-export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s390"|"s390x"|"x32";
-export type osPlatform = "darwin"|"win32"|"linux"|"android";
-export type BdsCorePlatforms = "bedrock"|"java"|"pocketmine"|"spigot";
 import type { bedrockSchema } from "./db/bedrock";
 import type { javaSchema } from "./db/java";
-import type { nukkitSchema } from "./db/nukkit";
 import type { paperSchema } from "./db/paper";
+import type { powernukkitSchema } from "./db/powernukkit";
 import type { pocketminemmpSchema } from "./db/pocketmine";
 import type { spigotSchema } from "./db/spigot";
+export type arch = "x64"|"arm64"|"arm"|"ia32"|"mips"|"mipsel"|"ppc"|"ppc64"|"s390"|"s390x"|"x32";
+export type osPlatform = "darwin"|"win32"|"linux"|"android";
+export type BdsCorePlatforms = "bedrock"|"java"|"paper"|"powernukkit"|"pocketmine"|"spigot";
 
 export const versionURLs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
 export {
   bedrockSchema as bedrock,
   javaSchema as java,
-  nukkitSchema as nukkit,
   paperSchema as paper,
   pocketminemmpSchema as pocketmine,
-  spigotSchema as spigot
+  spigotSchema as spigot,
+  powernukkitSchema as powernukkit
 }
-
-export type all = bedrockSchema|javaSchema|nukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
+export type all = bedrockSchema|javaSchema|powernukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
 
 export async function findVersion(bdsPlaform: BdsCorePlatforms): Promise<all[]>;
 export async function findVersion(bdsPlaform: BdsCorePlatforms, version: string|boolean): Promise<all>;
@@ -38,9 +37,10 @@ export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string
 }
 
 export const findBedrock = (version: string|boolean) => findVersion("bedrock", version).then((res: bedrockSchema) => res);
-export const getBedrockZip = (version: string|boolean, arch?: string, platform?: string) => findBedrock(version).then(res => (res[platform||process.platform]||{})[arch||process.arch]).then((res: string|void) => {
-  if (!res) throw new Error("No file located");
-  return httpRequests.fetchBuffer(res);
+export const getBedrockZip = (version: string|boolean, options: {platform?: string}) => findBedrock(version).then(res => {
+  const plaftorm = options?.platform||process.platform;
+  if (res.url[plaftorm] === undefined) throw new Error("Platform not avaible");
+  return httpRequests.fetchBuffer(res.url[plaftorm]);
 });
 export const findPocketmine = (version: string|boolean) => findVersion("pocketmine", version).then((res: pocketminemmpSchema) => res);
 export const getPocketminePhar = (version: string|boolean) => findPocketmine(version).then(res => httpRequests.fetchBuffer(res.url));

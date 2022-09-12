@@ -60,7 +60,6 @@ export default async function find() {
   if (res.filter(a => a).length > 0) throw res.filter(a => a);
   const latestVersion = versionList.sort((a, b) => a.date.getTime() - b.date.getTime()).filter(data => (data.version.includes("SNAPSHOT")?"snapshot":data.version.includes("ALPHA")?"alpha":"stable") === "stable").reverse()[0];
   const oldLatest = await powernukkit.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
-  const res2 = await powernukkit.findOneAndUpdate({version: latestVersion.version, variant: {variantType: "stable"}}, {$set: {latest: true}}).lean().catch(err => powernukkit.findOneAndUpdate({version: oldLatest.version}, {$set: {latest: true}}).lean().then(() => Promise.reject(err)));
-  console.log(res2);
+  await powernukkit.findOneAndUpdate({version: latestVersion.version, variant: {variantType: "stable"}}, {$set: {latest: true}}).lean().catch(err => powernukkit.findOneAndUpdate({version: oldLatest.version}, {$set: {latest: true}}).lean().then(() => Promise.reject(err)));
   return;
 }

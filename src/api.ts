@@ -10,7 +10,6 @@ import {bedrock, app as bedrockExpress} from "./db/bedrock";
 import {java, app as javaExpress} from "./db/java";
 import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine";
 import {spigot, app as spigotExpress} from "./db/spigot";
-import { nukkit, app as nukkitExpress } from "./db/nukkit";
 import { powernukkit, app as powernukkitExpress } from "./db/powernukkit";
 import { paper, app as paperExpress } from "./db/paper";
 
@@ -58,10 +57,9 @@ const getAllLatest = () => Promise.all([
   pocketminemmp.findOne({latest: true}).lean(),
   spigot.findOne({latest: true}).lean(),
   paper.findOne({latest: true}).lean(),
-  nukkit.findOne({latest: true}).lean(),
   powernukkit.findOne({latest: true}).lean(),
 ]);
-app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, paperVersions, nukkitVersions, powerNukkitVersions]) => {
+app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, paperVersions, powerNukkitVersions]) => {
   const data = {};
   const host = `${req.protocol}://${req.headers.host||"mcpeversions.sirherobrine23.org"}`;
   if (bedrockVersions) data["bedrock"] = {version: bedrockVersions.version, search: `${host}/bedrock/search?version=${bedrockVersions.version}`};
@@ -69,7 +67,6 @@ app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, 
   if (pocketmineVersions) data["pocketmine"] = {version: pocketmineVersions.version, search: `${host}/pocketmine/search?version=${pocketmineVersions.version}`};
   if (spigotVersions) data["spigot"] = {version: spigotVersions.version, search: `${host}/spigot/search?version=${spigotVersions.version}`};
   if (paperVersions) data["paper"] = {version: paperVersions.version, search: `${host}/spigot/search?version=${paperVersions.version}`};
-  if (nukkitVersions) data["nukkit"] = {version: nukkitVersions.version, search: `${host}/spigot/search?version=${nukkitVersions.version}`};
   if (powerNukkitVersions) data["powernukkit"] = {version: powerNukkitVersions.version, search: `${host}/spigot/search?version=${powerNukkitVersions.version}`};
   return res.json(data);
 }).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: String(err).replace("Error: ", "")})));
@@ -79,7 +76,6 @@ app.use("/bedrock", bedrockExpress);
 app.use("/java", javaExpress);
 app.use("/pocketmine", pocketmineExpress);
 app.use("/spigot", spigotExpress);
-app.use("/nukkit", nukkitExpress);
 app.use("/powernukkit", powernukkitExpress);
 app.use("/paper", paperExpress);
 

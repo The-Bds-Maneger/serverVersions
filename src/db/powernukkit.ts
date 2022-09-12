@@ -3,7 +3,7 @@ import connection from "./connect";
 import { Router } from "express";
 export const app = Router();
 
-export type nukkitSchema = {
+export type powernukkitSchema = {
   version: string,
   mcpeVersion: string,
   date: Date,
@@ -12,7 +12,7 @@ export type nukkitSchema = {
   variantType: "stable"|"snapshot"|"testing"|"alpha"
 };
 
-export const powernukkit = connection.model<nukkitSchema>("powernukkit", new mongoose.Schema<nukkitSchema>({
+export const powernukkit = connection.model<powernukkitSchema>("powernukkit", new mongoose.Schema<powernukkitSchema>({
   version: {
     type: String,
     unique: false,

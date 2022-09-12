@@ -6,4 +6,3 @@ export const mongoURL = process.env.BDSVERSIONDB||`mongodb+srv://${authUsername}
 // Connect to MongoDB
 export const connection = mongoose.createConnection(mongoURL);
 export default connection;
-connection.on("connected", () => console.log("Sucess to connect in DB"))
