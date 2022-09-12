@@ -20,7 +20,7 @@ export async function RAW_TEXT(Host: string, Header?: {[key: string]: string}): 
   return String(Data.toString("utf8"));
 }
 
-export async function getJson(Host: string, Header?: {[key: string]: string}): Promise<any> {
+export async function getJson<ObjectReturn = any>(Host: string, Header?: {[key: string]: string}): Promise<ObjectReturn> {
   const Data = await fetchBuffer(Host, Header);
   return JSON.parse(Data.toString("utf8"));
 }
@@ -101,7 +101,12 @@ type githubRelease = {
     };
   }>;
 };
-export async function GithubRelease(Repository: string): Promise<Array<githubRelease>> {
-  if (!Repository) throw new Error("Repository is required");
-  return JSON.parse(await RAW_TEXT(`https://api.github.com/repos/${Repository}/releases?per_page=100`));
+
+export async function GithubRelease(username: string, repo?: string): Promise<githubRelease[]> {
+  let fullRepo = username;
+  if (!username) throw new Error("Repository is required, example: GithubRelease(\"Username/repo\") or GithubRelease(\"Username\", \"repo\")");
+  if (repo) {
+    if (!/\//.test(fullRepo)) fullRepo += "/"+repo;
+  }
+  return getJson<githubRelease[]>(`https://api.github.com/repos/${fullRepo}/releases?per_page=100`);
 }

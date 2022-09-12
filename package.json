@@ -12,6 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "minecraft_version": "./dist/bin.js"
+  },
   "scripts": {
     "dev": "nodemon -e ts,js -w src/**/* src/api.ts",
     "search": "ts-node src/fetchVersion/index.ts",
@@ -37,7 +40,8 @@
     "express": "^4.18.1",
     "jsdom": "^20.0.0",
     "mongoose": "^6.5.2",
-    "yaml": "^2.1.1"
+    "yaml": "^2.1.1",
+    "yargs": "^17.5.1"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.0",
@@ -50,7 +54,6 @@
     "cli-color": "^2.0.3",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
-    "typescript": "^4.7.4",
-    "yargs": "^17.5.1"
+    "typescript": "^4.7.4"
   }
 }
