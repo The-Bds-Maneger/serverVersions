@@ -9,7 +9,7 @@ export type powernukkitSchema = {
   date: Date,
   latest: boolean,
   url: string,
-  variantType: "stable"|"snapshot"|"testing"|"alpha"
+  variantType: "stable"|"snapshot"
 };
 
 export const powernukkit = connection.model<powernukkitSchema>("powernukkit", new mongoose.Schema<powernukkitSchema>({

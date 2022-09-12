@@ -31,7 +31,9 @@ export async function findVersion(bdsPlaform: BdsCorePlatforms, version?: string
     }
     const res = await httpRequests.fetchBuffer(url).catch(() => false);
     if (res === false) continue;
-    return JSON.parse(res.toString("utf8"), (key, value) => key === "datePublish" ? new Date(value):value);
+    const data = JSON.parse(res.toString("utf8"), (key, value) => key === "date" ? new Date(value):value);
+    if (!data) throw new Error("Failed to get data");
+    return data;
   }
   throw new Error("Failed to exec API request!");
 }
@@ -42,6 +44,7 @@ export const getBedrockZip = (version: string|boolean, options: {platform?: stri
   if (res.url[plaftorm] === undefined) throw new Error("Platform not avaible");
   return httpRequests.fetchBuffer(res.url[plaftorm]);
 });
+
 export const findPocketmine = (version: string|boolean) => findVersion("pocketmine", version).then((res: pocketminemmpSchema) => res);
 export const getPocketminePhar = (version: string|boolean) => findPocketmine(version).then(res => httpRequests.fetchBuffer(res.url));
 

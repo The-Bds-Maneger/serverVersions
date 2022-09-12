@@ -1,65 +1,162 @@
-import { powernukkit } from "../db/powernukkit";
-import chromium from "chromium";
-import { Browser, launch } from "puppeteer";
-// import log from "../lib/logging";
-import jsdom from "jsdom";
+import { powernukkit, powernukkitSchema } from "../db/powernukkit";
+import { getJson } from "../lib/HTTP_Request";
+import log from "../lib/logging";
+export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
+export type Release = {
+  version: string,
+  releaseTime: number,
+  minecraftVersion: string,
+  artefacts: string[],
+  commitId:  string,
+  snapshotBuild?: number
+}
+export type PowernukkitVersions = {
+  releases: Release[],
+  snapshots: Release[]
+}
 
-// Original author of this file: https://github.com/karelkryda
-// Original File url: https://github.com/karelkryda/universal-speedtest/blob/master/src/Utils.ts
-async function ChromiumLauch(executablePath?: string) {
-  //Launches Puppeteer browser for Windows and MacOS
-  return launch({ executablePath: chromium.path, args: ["--no-sandbox"] })
-  //Launches the Puppeteer browser for Linux systems based on ARM processors
-  .catch(() => launch({ executablePath: "/usr/bin/chromium-browser", args: ["--no-sandbox"] }))
-  //Launches the Puppeteer browser using a user-specified path
-  .catch(() =>launch({ executablePath, args: ["--no-sandbox"]}));
+function buildVersion(data: Release): powernukkitSchema|void {
+  let artefacts: {[key: string]: any} = {};
+  data.artefacts.forEach(function(artefactId) {
+    artefacts[artefactId] = buildArtefactUrl(data, artefactId);
+  });
+  if (data.commitId) {
+    artefacts["GIT_SOURCE"] = buildArtefactUrl(data, "GIT_SOURCE");
+  }
+  if (!data.snapshotBuild) {
+    artefacts["ONLINE_DOC"] = buildArtefactUrl(data, "ONLINE_DOC");
+  }
+
+  const releaseTime = new Date(data.releaseTime);
+  let url = getBestDownloadUrl(artefacts);
+  if (!url) return;
+  const schema: powernukkitSchema = {
+    version: data.version,
+    mcpeVersion: data.minecraftVersion,
+    date: releaseTime,
+    latest: false,
+    variantType: data.snapshotBuild === undefined ? "stable":"snapshot",
+    url
+  };
+
+  return schema;
+}
+
+function getBestDownloadUrl(artefacts): string {
+  if (artefacts.SHADED_JAR) {
+    return artefacts.SHADED_JAR;
+  } else {
+    return artefacts.REDUCED_JAR;
+  }
+}
+
+function buildArtefactUrl(data: any, artefactId?: string): string|void {
+  if (artefactId == "GIT_SOURCE") {
+    return buildGitSourceUrl(data);
+  } else if (artefactId == "ONLINE_DOC") {
+    return buildOnlineDocUrl(data);
+  } else if (data.snapshotBuild) {
+    return buildSnapshotArtefactUrl(data, artefactId);
+  } else {
+    return buildReleaseArtefactUrl(data, artefactId);
+  }
+}
+
+function buildOnlineDocUrl(data: any) {
+  if (data.snapshotBuild) {
+    if (data.artefacts.includes("JAVADOC_JAR")) {
+      return buildSnapshotArtefactUrl(data, "JAVADOC_JAR");
+    }
+  }
+  return "https://devs.powernukkit.org/#javadoc";
+}
+
+function buildGitSourceUrl(data) {
+  if (data.commitId) {
+    return "https://github.com/PowerNukkit/PowerNukkit/tree/" + data.commitId;
+  } else if (data.snapshotBuild) {
+    if (data.artefacts.includes("SHADED_SOURCES_JAR")) {
+      return buildSnapshotArtefactUrl(data, "SHADED_SOURCES_JAR");
+    } else if (data.artefacts.includes("REDUCED_SOURCES_JAR")) {
+      return buildSnapshotArtefactUrl(data, "REDUCED_SOURCES_JAR");
+    }
+  } else {
+    if (data.artefacts.includes("SHADED_SOURCES_JAR")) {
+      return buildReleaseArtefactUrl(data, "SHADED_SOURCES_JAR");
+    } else if (data.artefacts.includes("REDUCED_SOURCES_JAR")) {
+      return buildReleaseArtefactUrl(data, "REDUCED_SOURCES_JAR");
+    }
+  }
+}
+
+function buildReleaseArtefactUrl(data: any, artefactId?: string): string|void {
+  if (!data.artefacts.includes(artefactId)) {
+    return;
+  }
+  return "https://search.maven.org/remotecontent?filepath=org/powernukkit/powernukkit/" +
+    data.version +
+    "/powernukkit-" +
+    data.version +
+    getArtefactExtension(artefactId);
+}
+
+function buildSnapshotArtefactUrl(data: any, artefactId?: string): string|void {
+  if (!data.artefacts.includes(artefactId)) {
+    return;
+  }
+  let dt = new Date(data.releaseTime);
+  let snapshotCode = dt.getUTCFullYear().toString().padStart(4, "0") +
+      (dt.getUTCMonth() + 1).toString().padStart(2, "0") +
+      dt.getUTCDate().toString().padStart(2, "0") +
+      "." +
+      dt.getUTCHours().toString().padStart(2, "0") +
+      dt.getUTCMinutes().toString().padStart(2, "0") +
+      dt.getUTCSeconds().toString().padStart(2, "0") +
+      "-" +
+      data.snapshotBuild;
+  let snapshotIndex = data.version.indexOf("-SNAPSHOT");
+  let version =  data.version.substring(0, snapshotIndex);
+  let extension = getArtefactExtension(artefactId);
+  return "https://oss.sonatype.org/content/repositories/snapshots/org/powernukkit/powernukkit" +
+    "/" +
+    version + "-SNAPSHOT" +
+    "/" +
+    "powernukkit-" + version +
+    "-" +
+    snapshotCode +
+    extension
+}
+
+function getArtefactExtension(artefactId) {
+  let extension = ".unknown";
+  switch (artefactId) {
+    case "REDUCED_JAR": extension = ".jar"; break;
+    case "REDUCED_SOURCES_JAR": extension = "-sources.jar"; break;
+    case "SHADED_JAR": extension = "-shaded.jar"; break;
+    case "SHADED_SOURCES_JAR": extension = "-shaded-sources.jar"; break;
+    case "JAVADOC_JAR": extension = "-javadoc.jar"; break;
+  }
+  return extension;
 }
 
 export default async function find() {
-  const browser = await ChromiumLauch() as Browser;
-  const page = await browser.newPage();
-  await page.goto("https://powernukkit.org/");
-
-  // Get Html
-  await page.waitForSelector("body > div.site-wrap > section:nth-child(7) > div.container-fluid > div", {/*timeout: 0*/});
-  const htmlString: string|undefined = await page.evaluate(() => document.querySelector("body > div.site-wrap > section:nth-child(7) > div.container-fluid > div")?.outerHTML||undefined);
-  await browser.close();
-  const {document} = new jsdom.JSDOM(htmlString).window;
-  // Stable
-  const versionList: {version: string, mcpeVersion: string, date: Date, url: string}[] = [];
-  document.querySelectorAll("#stable-releases > div").forEach(doc => {
-    versionList.push({
-      version: doc.querySelector("div.col.text-left.align-bottom.mt-auto.mb-auto.text-nowrap.pn-version").innerHTML,
-      mcpeVersion: doc.querySelector("div:nth-child(3) > a.btn.btn-primary.download-jar-button > span.minecraft-version").innerHTML,
-      date: new Date(([doc.querySelector("div:nth-child(2) > span:nth-child(1)").textContent, doc.querySelector("div:nth-child(2) > span:nth-child(2)").textContent]).join(" ")),
-      url: doc.querySelector("div:nth-child(3) > a:nth-child(1)")["href"] as string
-    });
-  });
-  // Testing
-  document.querySelectorAll("#unstable-versions > div").forEach(doc => {
-    versionList.push({
-      version: doc.querySelector("div.col.text-left.align-bottom.mt-auto.mb-auto.text-nowrap.pn-version").innerHTML,
-      // div:nth-child(3) > a.btn.download-jar-button.btn-outline-secondary > span.minecraft-version
-      mcpeVersion: doc.querySelector("div:nth-child(3) > a.btn.download-jar-button.btn-outline-secondary > span.minecraft-version").innerHTML,
-      date: new Date(([doc.querySelector("div:nth-child(2) > span:nth-child(1)").textContent, doc.querySelector("div:nth-child(2) > span:nth-child(2)").textContent]).join(" ")),
-      url: doc.querySelector("div:nth-child(3) > a:nth-child(1)")["href"] as string
-    });
-  });
-  if (versionList.length === 0) throw new Error("No versions");
-  const res = await Promise.all(versionList.sort((a, b) => a.date.getTime() - b.date.getTime()).reverse().map(async data => {
-    if (await powernukkit.findOne({version: data.version}).lean().then(data => !!data).catch(() => true)) return Promise.resolve(null);
-    return powernukkit.create({
-      version: data.version,
-      mcpeVersion: data.mcpeVersion,
-      date: data.date,
-      url: data.url,
-      variantType: data.version.includes("SNAPSHOT")?"snapshot":data.version.includes("ALPHA")?"alpha":"stable",
-      latest: false
-    }).then(() => null).catch(err => err);
-  }));
-  if (res.filter(a => a).length > 0) throw res.filter(a => a);
-  const latestVersion = versionList.sort((a, b) => a.date.getTime() - b.date.getTime()).filter(data => (data.version.includes("SNAPSHOT")?"snapshot":data.version.includes("ALPHA")?"alpha":"stable") === "stable").reverse()[0];
+  const releases_version = await getJson(exportUrl) as PowernukkitVersions;
+  for (const stable of releases_version.releases) {
+    const data = buildVersion(stable);
+    if (!data) continue
+    if (await powernukkit.findOne({version: data.version}).lean()) continue;
+    await powernukkit.create(data);
+    log("alter", "Powernukkit stable add %s version to minecraft bedrock %s version", data.version, data.mcpeVersion);
+  }
+  for (const snapshot of releases_version.snapshots) {
+    const data = buildVersion(snapshot);
+    if (!data) continue
+    if (await powernukkit.findOne({version: data.version}).lean()) continue;
+    await powernukkit.create(data);
+    log("alter", "Powernukkit snapshort add %s version to minecraft bedrock %s version", data.version, data.mcpeVersion);
+  }
   const oldLatest = await powernukkit.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
+  const latestVersion = (await powernukkit.find({variantType: "stable"}).lean()).sort((b, a) => a.date.getTime()-b.date.getTime())[0];
   await powernukkit.findOneAndUpdate({version: latestVersion.version, variant: {variantType: "stable"}}, {$set: {latest: true}}).lean().catch(err => powernukkit.findOneAndUpdate({version: oldLatest.version}, {$set: {latest: true}}).lean().then(() => Promise.reject(err)));
   return;
 }

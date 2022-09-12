@@ -30,7 +30,6 @@ async function Find() {
   await spigot.findByIdAndUpdate(latestVersion._id, {$set: {latest: true}});
 }
 
-Find();
 export default async function UpdateDatabase() {
   await Find();
 }
