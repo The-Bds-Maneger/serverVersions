@@ -61,13 +61,13 @@ export const platformManeger = {
     async getPhar(version: string|boolean){
       return platformManeger.pocketmine.find(version).then(res => httpRequests.fetchBuffer(res.url));
     },
-    async getPhp(query: {os?: string, arch?: string}){
-      let os = RegExp((query.os as string)||"(win32|windows|linux|macos|mac)");
-      let arch = RegExp((query.arch as string)||".*");
+    async getPhp(query?: {os?: string, arch?: string}){
+      let os = RegExp(query?.os||"(win32|windows|linux|macos|mac)");
+      let arch = RegExp(query?.arch||".*");
       const rele = await httpRequests.GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
       for (const release of rele) {
         for (const asset of release.assets) {
-          if (os.test(asset.name) && arch.test(asset.name)) return httpRequests.fetchBuffer(asset.browser_download_url);
+          if (os.test(asset.name) && arch.test(asset.name)) return {buffer: await httpRequests.fetchBuffer(asset.browser_download_url), name: asset.name};
         }
       }
       throw new Error("No bin found");
