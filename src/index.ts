@@ -5,7 +5,7 @@ import type { paperSchema } from "./db/paper";
 import type { powernukkitSchema } from "./db/powernukkit";
 import type { pocketminemmpSchema } from "./db/pocketmine";
 import type { spigotSchema } from "./db/spigot";
-export const versionURLs = ["https://mcpeversion-static.sirherobrine23.org/", "https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org"];
+const versionURLs = ["https://mcpeversion-static.sirherobrine23.org/", "https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org"];
 
 export type BdsCorePlatforms = "bedrock"|"java"|"paper"|"powernukkit"|"pocketmine"|"spigot";
 export type all = bedrockSchema|javaSchema|powernukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
@@ -27,7 +27,7 @@ export async function findVersion<PlatformSchema = all|all[]>(bdsPlaform: BdsCor
       if (version === undefined) url += "/all.json";
       else if (typeof version === "boolean") url += "/latest.json";
       else url += `/${version}.json`;
-      
+
     } else {
       if (typeof version !== "undefined") {
         if (typeof version === "boolean"||version === "latest") url += "/latest";
@@ -60,6 +60,17 @@ export const platformManeger = {
     async find(version: string|boolean){return findVersion<pocketminemmpSchema>("pocketmine", version);},
     async getPhar(version: string|boolean){
       return platformManeger.pocketmine.find(version).then(res => httpRequests.fetchBuffer(res.url));
+    },
+    async getPhp(query: {os?: string, arch?: string}){
+      let os = RegExp((query.os as string)||"(win32|windows|linux|macos|mac)");
+      let arch = RegExp((query.arch as string)||".*");
+      const rele = await httpRequests.GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
+      for (const release of rele) {
+        for (const asset of release.assets) {
+          if (os.test(asset.name) && arch.test(asset.name)) return httpRequests.fetchBuffer(asset.browser_download_url);
+        }
+      }
+      throw new Error("No bin found");
     }
   },
   powernukkit: {
