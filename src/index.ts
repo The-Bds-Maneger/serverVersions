@@ -5,7 +5,7 @@ import type { paperSchema } from "./db/paper";
 import type { powernukkitSchema } from "./db/powernukkit";
 import type { pocketminemmpSchema } from "./db/pocketmine";
 import type { spigotSchema } from "./db/spigot";
-export const versionURLs = ["https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org", "http://168.138.140.152"];
+export const versionURLs = ["https://mcpeversion-static.sirherobrine23.org/", "https://mcpeversions.sirherobrine23.org", "https://mcpeversions_backup.sirherobrine23.org"];
 
 export type BdsCorePlatforms = "bedrock"|"java"|"paper"|"powernukkit"|"pocketmine"|"spigot";
 export type all = bedrockSchema|javaSchema|powernukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema
@@ -23,9 +23,16 @@ export async function findVersion<PlatformSchema = all>(bdsPlaform: BdsCorePlatf
 export async function findVersion<PlatformSchema = all|all[]>(bdsPlaform: BdsCorePlatforms, version?: string|boolean): Promise<PlatformSchema> {
   for (let url of versionURLs) {
     url += "/"+bdsPlaform;
-    if (typeof version !== "undefined") {
-      if (typeof version === "boolean"||version === "latest") url += "/latest";
-      else url += `/search?version=${version}`;
+    if (/static/.test(url)) {
+      if (version === undefined) url += "/all.json";
+      else if (typeof version === "boolean") url += "/latest.json";
+      else url += `/${version}.json`;
+      
+    } else {
+      if (typeof version !== "undefined") {
+        if (typeof version === "boolean"||version === "latest") url += "/latest";
+        else url += `/search?version=${version}`;
+      }
     }
     const res = await httpRequests.fetchBuffer(url).catch(() => false);
     if (res === false) continue;
