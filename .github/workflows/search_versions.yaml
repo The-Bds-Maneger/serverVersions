@@ -57,17 +57,14 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Update files
-        run: node static_version.mjs
-
       - name: Install Index-pages
         run: sudo npm i -g index-pages@latest
 
+      - name: Update files
+        run: node static_version.mjs
+
       - name: Create index.html
-        run: |
-          mkdir versions
-          cd versions
-          apindex .
+        run: apindex versions/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
