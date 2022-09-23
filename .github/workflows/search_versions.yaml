@@ -60,11 +60,21 @@ jobs:
       - name: Update files
         run: node static_version.mjs
 
+      - name: Install Index-pages
+        run: |
+          cd /tmp
+          git clone https://github.com/Sirherobrine23/Index-pages page_index
+          cd page_index
+          cmake . -DCMAKE_INSTALL_PREFIX=/usr
+          sudo make install
+
+      - name: Create index.html
+        run: cd versions && rm index.html && apindex .
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
-          path: 'versions'
+          path: "versions"
 
       - name: Deploy to GitHub Pages
         id: deployment
