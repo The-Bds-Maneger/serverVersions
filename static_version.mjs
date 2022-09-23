@@ -24,7 +24,7 @@ export async function getVersions(bdsPlaform, version) {
       if (typeof version === "boolean"||version === "latest") url += "/latest";
       else url += `/search?version=${version}`;
     }
-    const res = await (await fetch("https://mcpeversions.sirherobrine23.org/bedrock")).json().catch(() => false);
+    const res = await (await fetch(url)).json().catch(() => false);
     if (res === false) continue;
     const data = JSON.parse(res.toString("utf8"), (key, value) => key === "date" ? new Date(value):value);
     if (!data) throw new Error("Failed to get data");
