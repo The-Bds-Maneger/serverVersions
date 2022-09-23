@@ -26,9 +26,8 @@ export async function getVersions(bdsPlaform, version) {
     }
     const res = await (await fetch(url)).json().catch(() => false);
     if (res === false) continue;
-    const data = JSON.parse(res.toString("utf8"), (key, value) => key === "date" ? new Date(value):value);
-    if (!data) throw new Error("Failed to get data");
-    return data;
+    if (!res) throw new Error("Failed to get data");
+    return res;
   }
   throw new Error("Failed to exec API request!");
 }
