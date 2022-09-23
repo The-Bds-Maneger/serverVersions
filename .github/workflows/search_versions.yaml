@@ -64,7 +64,10 @@ jobs:
         run: sudo npm i -g index-pages@latest
 
       - name: Create index.html
-        run: mkdir versions && apindex .
+        run: |
+          mkdir versions
+          cd versions
+          apindex .
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
