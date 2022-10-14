@@ -21,7 +21,7 @@ jobs:
           fetch-depth: "0"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3.5.0
+        uses: actions/setup-node@v3.5.1
         with:
           node-version: "16.x"
           registry-url: ${{ matrix.npm_registry == 'NPM' && 'https://registry.npmjs.org/'|| 'https://npm.pkg.github.com/' }}
