@@ -1,6 +1,6 @@
 import { powernukkit, powernukkitSchema } from "../db/powernukkit";
-import { getJson } from "../lib/HTTP_Request";
-import log from "../lib/logging";
+import { getJson } from "../request/simples";
+import log from "../request/logging";
 export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
 export type Release = {
   version: string,

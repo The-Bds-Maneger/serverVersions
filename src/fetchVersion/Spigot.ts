@@ -1,5 +1,5 @@
 import jsdom from "jsdom";
-import * as httpRequest from "../lib/HTTP_Request";
+import * as httpRequest from "../request/simples";
 import {spigot} from "../db/spigot";
 export const urlRegex = /http[s]:\/\/.*/;
 async function Find() {

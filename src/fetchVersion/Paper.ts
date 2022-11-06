@@ -1,6 +1,6 @@
-import { getJson } from "../lib/HTTP_Request";
+import { getJson } from "../request/simples";
 import { paper } from "../db/paper";
-import log from "../lib/logging";
+import log from "../request/logging";
 
 type paperVersions = {
   project_id: string,

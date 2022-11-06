@@ -1,5 +1,5 @@
-import log from "../lib/logging";
-import * as httpRequest from "../lib/HTTP_Request";
+import log from "../request/logging";
+import * as httpRequest from "../request/simples";
 import {java} from "../db/java";
 import { javaRelease } from "./types/Java";
 

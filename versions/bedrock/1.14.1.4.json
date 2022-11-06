@@ -1,0 +1,13 @@
+{
+  "bdsPlatform": "bedrock",
+  "version": "1.14.1.4",
+  "date": "2019-12-12T23:37:36.000Z",
+  "url": {
+    "linux": {
+      "x64": "https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.1.4.zip"
+    },
+    "win32": {
+      "x64": "https://minecraft.azureedge.net/bin-win/bedrock-server-1.14.1.4.zip"
+    }
+  }
+}

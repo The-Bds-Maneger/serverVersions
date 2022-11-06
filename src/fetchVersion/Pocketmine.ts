@@ -1,5 +1,5 @@
-import log from "../lib/logging";
-import * as httpRequest from "../lib/HTTP_Request";
+import log from "../request/logging";
+import * as httpRequest from "../request/simples";
 import { pocketmine as pocketminemmp} from "../db/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {

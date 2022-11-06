@@ -4,8 +4,3 @@ dist/
 *.tgz
 CHANGELOG.md
 *.env
-versions.json
-
-# Static files
-versions/
-!versions/index.html

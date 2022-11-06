@@ -1,42 +1,40 @@
-import adm_zip from "adm-zip";
-import * as httpRequest from "../lib/HTTP_Request";
-import { bedrock, bedrockSchema } from "../db/bedrock";
+import * as httpRequest from "../request/simples";
+import * as httpRequestLarge from "../request/large";
+import { registerNew } from "../localRegister";
 
 export default async function UpdateDatabase() {
-  const minecraftUrls = (await httpRequest.HTML_URLS("https://minecraft.net/en-us/download/server/bedrock")).filter(Link => /bin-.*\.zip/.test(Link));
-  const objURLs: {linux: string, win32: string} = {linux: undefined, win32: undefined};
-  minecraftUrls.forEach(url => {
-    if (/darwin|macos|mac/.test(url)) console.log("Macos Are now supported: %s", url);
-    else if (/win/.test(url)) objURLs.win32 = url;
-    else if (/linux/.test(url)) objURLs.linux = url;
-  });
-  const anyZip = objURLs.win32||objURLs.linux;
-  if (!anyZip) throw new Error("cannot get url");
-  const [, mcpeVersion] = anyZip.match(/\/[a-zA-Z-_]+([0-9\.]+).zip$/)||[];
+  const minecraftUrls = (await httpRequest.urls("https://minecraft.net/en-us/download/server/bedrock")).filter(link => /bin-.*\.zip/.test(link));
+  const linuxArm64 = minecraftUrls.find(link => /linux/.test(link) && /arm64|aarch64/.test(link)), linux = minecraftUrls.find(link => /linux/.test(link) && !/arm64|aarch64/.test(link));
+  const darwinArm64 = minecraftUrls.find(link => (/darwin/.test(link)) && /arm64|aarch64/.test(link)), darwin = minecraftUrls.find(link => (/darwin/.test(link)) && !/arm64|aarch64/.test(link));
+  const windowsArm64 = minecraftUrls.find(link => (/win/.test(link) && !/darwin/.test(link)) && /arm64|aarch64/.test(link)), windows = minecraftUrls.find(link => (/win/.test(link) && !/darwin/.test(link)) && !/arm64|aarch64/.test(link));
+  const [, version] = minecraftUrls[0].match(/\/[a-zA-Z-_]+([0-9\.]+).zip$/);
   const mcpeDate = await new Promise<Date>(async resolve => {
-    const zip = new adm_zip(await httpRequest.fetchBuffer(objURLs.linux));
+    const zip = await httpRequestLarge.zip({url: minecraftUrls[0]});
     for (const entry of zip.getEntries()) {
-      if (entry.entryName === "bedrock_server") return resolve(entry.header.time);
+      if (entry.entryName.startsWith("bedrock_server")) return resolve(entry.header.time);
     };
     return resolve(new Date());
   });
-  if (!mcpeVersion) return;
-  const version: bedrockSchema = {
-    version: mcpeVersion,
+
+  return registerNew<"bedrock">({
+    bdsPlatform: "bedrock",
+    version: version,
     date: mcpeDate,
-    latest: false,
     url: {
-      linux: objURLs.linux,
-      win32: objURLs.win32
+      linux: {
+        x64: linux,
+        arm64: linuxArm64
+      },
+      win32: {
+        x64: windows,
+        arm64: windowsArm64
+      },
+      darwin: {
+        x64: darwin,
+        arm64: darwinArm64
+      },
     }
-  };
-  if (await bedrock.findOne({version: version.version}).lean()) {
-    console.log("Bedrock version %s are exists", version.version);
-    return;
-  }
-  await bedrock.create(version);
-  console.log("Bedrock adding new version %s", version.version);
-  await bedrock.findOneAndUpdate({latest: true}, {$set: {latest: false}});
-  const latest = (await bedrock.find().lean()).sort((a, b) => b.date.getTime() - a.date.getTime())[0];
-  await bedrock.findByIdAndUpdate(latest._id, {$set: {latest: true}});
+  })
 }
+
+UpdateDatabase()

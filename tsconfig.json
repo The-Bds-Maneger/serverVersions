@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "strict": false,

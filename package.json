@@ -6,19 +6,14 @@
   "private": false,
   "author": "sirherobrine23",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "src/index.js",
+  "types": "./src/index.d.ts",
   "type": "commonjs",
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "minecraft_version": "./dist/bin.js"
-  },
   "scripts": {
-    "dev": "nodemon -e ts,js -w src/**/* src/api.ts",
     "search": "ts-node src/fetchVersion/index.ts",
-    "export": "ts-node src/exports.ts && apindex versions/",
     "build": "tsc"
   },
   "repository": {
@@ -35,24 +30,16 @@
     "url": "https://github.com/The-Bds-Maneger/serverVersions/issues"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.1",
+    "got": "^12.5.2",
     "jsdom": "^20.0.0",
-    "mongoose": "^6.5.2",
-    "yaml": "^2.1.1",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.0",
-    "@types/cli-color": "^2.0.2",
-    "@types/express": "^4.17.13",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^18.7.8",
     "@types/yargs": "^17.0.11",
     "adm-zip": "^0.5.9",
-    "cli-color": "^2.0.3",
-    "index-pages": "^1.0.4",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
