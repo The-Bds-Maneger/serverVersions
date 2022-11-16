@@ -21,7 +21,7 @@ const Paper = path.join(rootVersions, "paper");
   if (!fsOld.existsSync(Paper)) await fs.mkdir(Paper, {recursive: true});
 
   const bedrockData = await getVersions<bedrock[]>("bedrock", "all", true);
-  fs.writeFile(path.join(Bedrock, "latest.json"), JSON.stringify(bedrockData.find(release => release.latest), null, 2));
+  fs.writeFile(path.join(Bedrock, "latest.json"), JSON.stringify(bedrockData.at(-1), null, 2));
   fs.writeFile(path.join(Bedrock, "all.json"), JSON.stringify(bedrockData, null, 2));
   await Promise.all(bedrockData.map(async releases => {
     const version = path.join(Bedrock, `${releases.version}.json`);

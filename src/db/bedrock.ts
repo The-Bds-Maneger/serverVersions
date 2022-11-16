@@ -1,38 +1,27 @@
-import mongoose from "mongoose";
-import connection from "./connect";
+import { httpRequest } from "@the-bds-maneger/core-utils";
 import { Router } from "express";
 export const app = Router();
 
 export type bedrockSchema = {
   version: string,
   date: Date,
-  latest: boolean,
   url: {
-    win32: string,
-    linux: string
+    [platform in NodeJS.Platform]?: {
+      [arch in NodeJS.Architecture]?: string
+    }
   }
 };
 
-export const bedrock = connection.model<bedrockSchema>("bedrock", new mongoose.Schema<bedrockSchema>({
-  version: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  date: Date,
-  latest: Boolean,
-  url: {
-    win32: String,
-    linux: String
-  }
-}));
+export async function getAll() {
+  return httpRequest.getJSON<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json");
+}
 
-app.get("/", ({res}) => bedrock.find().lean().then(data => res.json(data)));
-app.get("/latest", async ({res}) => res.json(await bedrock.findOne({latest: true}).lean()));
+app.get("/", ({res}) => getAll().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json((await getAll()).at(-1)));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});
-  const versionFinded = await bedrock.findOne({version}).lean();
+  const versionFinded = (await getAll()).find(rel => rel.version === version);
   if (!versionFinded) return res.status(404).json({error: "Version not found"});
   return res.json(versionFinded);
 });

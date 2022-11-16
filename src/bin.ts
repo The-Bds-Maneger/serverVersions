@@ -30,11 +30,11 @@ yargs(process.argv.slice(2)).help().version(false).alias("h", "help").wrap(yargs
       for (const version of options.version) {
         const data = await platformManeger.bedrock.find(version).catch(() => null);
         if (!data) continue;
-        consolePrint += stringReplace("Version: %s\n\trelease date: %s\n\tUrl: %s\n", data.version, prettyDate(data.date), data.url[process.platform]||"Current Platform not Avaible");
+        consolePrint += stringReplace("Version: %s\n\trelease date: %s\n\tUrl: %s\n", data.version, prettyDate(data.date), data.url[process.platform][process.arch]||"Current Platform not Avaible");
       }
     } else {
       for (const version of await platformManeger.bedrock.all()) {
-        consolePrint += stringReplace("Version: %s\n\trelease date: %s\n\tUrl: %s\n", version.version, prettyDate(version.date), version.url[process.platform]||"Current Platform not Avaible");
+        consolePrint += stringReplace("Version: %s\n\trelease date: %s\n\tUrl: %s\n", version.version, prettyDate(version.date), version.url[process.platform][process.arch]||"Current Platform not Avaible");
       }
     }
     if (!consolePrint.trim()) {

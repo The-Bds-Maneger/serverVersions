@@ -1,22 +1,18 @@
-import log from "../lib/logging";
-import * as httpRequest from "../lib/HTTP_Request";
+import { httpRequestGithub } from "@the-bds-maneger/core-utils";
 import { pocketmine as pocketminemmp} from "../db/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {
-  if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) log("alter", "Pocketmine: version (%s) already exists", Version);
-  else {
-    await pocketminemmp.create({
-      version: Version,
-      date: versionDate,
-      latest: false,
-      url: url
-    });
-    log("alter", "Pocketmine PMMP: Version %s, url %s", Version, url);
-  }
+  if (await pocketminemmp.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) return;
+  await pocketminemmp.create({
+    version: Version,
+    date: versionDate,
+    latest: false,
+    url: url
+  });
 }
 
 async function Find() {
-  return await Promise.all((await httpRequest.GithubRelease("pmmp/PocketMine-MP")).filter(Release => !/beta|alpha/gi.test(Release.tag_name.toLowerCase())).map(Release => {
+  return await Promise.all((await httpRequestGithub.GithubRelease("pmmp/PocketMine-MP")).filter(Release => !/beta|alpha/gi.test(Release.tag_name.toLowerCase())).map(Release => {
     Release.assets = Release.assets.filter(asset => asset.name.endsWith(".phar"));
     return Release;
   }).filter(a => a.assets.length > 0).map(release => {

@@ -6,7 +6,7 @@ import cors from "cors";
 
 // Db And routes
 import dbConnect from "./db/connect";
-import {bedrock, app as bedrockExpress} from "./db/bedrock";
+import {getAll as bedrock ,app as bedrockExpress} from "./db/bedrock";
 import {java, app as javaExpress} from "./db/java";
 import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine";
 import {spigot, app as spigotExpress} from "./db/spigot";
@@ -52,7 +52,7 @@ app.use((req, _res, next) => {
 
 // Global version
 const getAllLatest = () => Promise.all([
-  bedrock.findOne({latest: true}).lean(),
+  bedrock().then(res => res.at(-1)),
   java.findOne({latest: true}).lean(),
   pocketminemmp.findOne({latest: true}).lean(),
   spigot.findOne({latest: true}).lean(),
