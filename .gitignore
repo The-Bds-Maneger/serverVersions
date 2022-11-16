@@ -1,11 +1,7 @@
+/*.log
 node_modules/
-GitMessage.txt
 dist/
-*.tgz
-CHANGELOG.md
-*.env
-versions.json
-
-# Static files
-versions/
-!versions/index.html
+src/**/*.d.ts
+src/**/*.d.js
+src/**/*.js
+docs/
