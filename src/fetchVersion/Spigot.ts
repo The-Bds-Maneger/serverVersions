@@ -5,7 +5,8 @@ export const urlRegex = /http[s]:\/\/.*/;
 
 async function Find() {
   const { document } = (new jsdom.JSDOM(await httpRequest.bufferFetch("https://getbukkit.org/download/spigot").then(res => res.data.toString("utf8")).catch(err => {console.log(err); return "<html></html>"}))).window;
-  const Versions = await Promise.all(([...document.querySelectorAll("#download > div > div > div > div")]).map(async DOM => {
+  const dooms = document.querySelectorAll("#download > div > div > div > div") as any;
+  const Versions = await Promise.all(([...dooms]).map(async DOM => {
     const download = (new jsdom.JSDOM(await httpRequest.bufferFetch(DOM.querySelector("div > div.col-sm-4 > div.btn-group > a")["href"]).then(res => res.data.toString("utf8"))));
     const serverInfo = {
       version: String(DOM.querySelector("div:nth-child(1) > h2").textContent),
