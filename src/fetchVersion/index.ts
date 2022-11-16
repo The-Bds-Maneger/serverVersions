@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import bedrock from "./Bedrock";
 import pocketmine from "./Pocketmine";
 import java from "./Java";
 import spigot from "./Spigot";
@@ -9,9 +8,6 @@ import powernukkit from "./Powernukkit"
 
 const options = yargs(process.argv.slice(2)).help().version(false).alias("h", "help").wrap(yargs.terminalWidth()).options("all", {
   description: "Fetch all plaftorms",
-  type: "boolean"
-}).option("bedrock", {
-  description: "Fetch Bedrock versions",
   type: "boolean"
 }).option("java", {
   description: "Fetch Java versions",
@@ -32,7 +28,6 @@ const options = yargs(process.argv.slice(2)).help().version(false).alias("h", "h
 .parseSync();
 
 async function all() {
-  await bedrock()
   await java();
   await pocketmine();
   await spigot();
@@ -40,8 +35,7 @@ async function all() {
   await powernukkit();
 }
 
-if (options.bedrock) bedrock().then(() => {console.log("Bedrock sucess update"); process.exit(0)}).catch(err => {console.log("Bedrock catch Error: %s", String(err)); process.exit(1)});
-else if (options.java) java().then(() => {console.log("Java sucess update"); process.exit(0)}).catch(err => {console.log("Java catch Error: %s", String(err)); process.exit(1)});
+if (options.java) java().then(() => {console.log("Java sucess update"); process.exit(0)}).catch(err => {console.log("Java catch Error: %s", String(err)); process.exit(1)});
 else if (options.spigot) spigot().then(() => {console.log("Spigot sucess update"); process.exit(0)}).catch(err => {console.log("Spigot catch Error: %s", String(err)); process.exit(1)});
 else if (options.pocketmine) pocketmine().then(() => {console.log("Pocketmine sucess update"); process.exit(0)}).catch(err => {console.log("Pocketmine catch Error: %s", String(err)); process.exit(1)});
 else if (options.paper) paper().then(() => {console.log("Paper sucess update"); process.exit(0)}).catch(err => {console.log("Paper catch Error: %s", String(err)); process.exit(1)});

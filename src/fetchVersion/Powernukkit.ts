@@ -1,6 +1,6 @@
 import { powernukkit, powernukkitSchema } from "../db/powernukkit";
-import { getJson } from "../request/simples";
-import log from "../request/logging";
+import { httpRequest } from "@the-bds-maneger/core-utils";
+
 export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
 export type Release = {
   version: string,
@@ -140,20 +140,18 @@ function getArtefactExtension(artefactId) {
 }
 
 export default async function find() {
-  const releases_version = await getJson(exportUrl) as PowernukkitVersions;
+  const releases_version = await httpRequest.getJSON<PowernukkitVersions>(exportUrl);
   for (const stable of releases_version.releases) {
     const data = buildVersion(stable);
     if (!data) continue
     if (await powernukkit.findOne({version: data.version}).lean()) continue;
     await powernukkit.create(data);
-    log("alter", "Powernukkit stable add %s version to minecraft bedrock %s version", data.version, data.mcpeVersion);
   }
   for (const snapshot of releases_version.snapshots) {
     const data = buildVersion(snapshot);
     if (!data) continue
     if (await powernukkit.findOne({version: data.version}).lean()) continue;
     await powernukkit.create(data);
-    log("alter", "Powernukkit snapshort add %s version to minecraft bedrock %s version", data.version, data.mcpeVersion);
   }
   const oldLatest = await powernukkit.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
   const latestVersion = (await powernukkit.find({variantType: "stable"}).lean()).sort((b, a) => a.date.getTime()-b.date.getTime())[0];

@@ -1,6 +1,5 @@
-import { getJson } from "../request/simples";
+import { httpRequest } from "@the-bds-maneger/core-utils";
 import { paper } from "../db/paper";
-import log from "../request/logging";
 
 type paperVersions = {
   project_id: string,
@@ -27,9 +26,9 @@ type paperBuilds = {
 };
 
 export default async function find() {
-  const versions = (await getJson<paperVersions>("https://api.papermc.io/v2/projects/paper")).versions;
+  const versions = (await httpRequest.getJSON<paperVersions>("https://api.papermc.io/v2/projects/paper")).versions;
   for (const version of versions) {
-    const builds = await getJson<paperBuilds>(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds`);
+    const builds = await httpRequest.getJSON<paperBuilds>(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds`);
     await Promise.all(builds.builds.map(async function(build){
       const downloadUrl = `https://api.papermc.io/v2/projects/paper/versions/${builds.version}/builds/${build.build}/downloads/${build.downloads.application.name}`;
       if (await paper.findOne({url: downloadUrl}).lean()) return;
@@ -40,7 +39,6 @@ export default async function find() {
         url: downloadUrl,
         latest: false
       });
-      return log("alter", "Paper add %s version, build %s", builds.version, build.build);
     }));
   }
   await paper.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
