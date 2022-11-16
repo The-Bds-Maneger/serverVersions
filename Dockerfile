@@ -8,6 +8,6 @@ ENV KEY="" CERT="" RUNNINGON="railway"
 RUN apt update && apt install -y wget curl chromium-browser && wget -qO- https://raw.githubusercontent.com/Sirherobrine23/DebianNodejsFiles/main/debianInstall.sh | bash
 ENTRYPOINT [ "node", "dist/api.js" ]
 COPY ./package*.json ./
-RUN npm install
+RUN npm ci
 COPY ./ ./
 RUN npm run build
