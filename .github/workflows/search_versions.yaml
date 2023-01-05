@@ -37,6 +37,7 @@ jobs:
 
       - name: Find and Update database
         run: npm run search -- --${{ matrix.platform }}
+        continue-on-error: true
         env:
           MONGO_USER: "${{ secrets.MONGO_USER }}"
           MONGO_PASSWORD: "${{ secrets.MONGO_PASSWORD }}"
