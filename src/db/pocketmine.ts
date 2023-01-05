@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import connection from "./connect";
 import { Router } from "express";
-import { httpRequestGithub } from "@the-bds-maneger/core-utils";
+import { httpRequestGithub } from "@sirherobrine23/coreutils";
 export const app = Router();
 
 export type pocketminemmpSchema = {
@@ -28,7 +28,10 @@ app.get("/bin", async (req, res) => {
   let os = RegExp((req.query.os as string)||"(win32|windows|linux|macos|mac)");
   let arch = RegExp((req.query.arch as string)||".*");
   const redirect = req.query.redirect === "true";
-  const rele = await httpRequestGithub.GithubRelease("The-Bds-Maneger/Build-PHP-Bins");
+  const rele = await httpRequestGithub.getRelease({
+    owner: "The-Bds-Maneger",
+    repository: "Build-PHP-Bins"
+  });
   const Files = [];
   for (const release of rele) {
     for (const asset of release.assets) {

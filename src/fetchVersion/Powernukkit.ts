@@ -1,5 +1,5 @@
 import { powernukkit, powernukkitSchema } from "../db/powernukkit";
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
 export type Release = {
   version: string,

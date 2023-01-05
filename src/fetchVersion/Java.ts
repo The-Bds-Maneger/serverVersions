@@ -1,4 +1,4 @@
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 import {java} from "../db/java";
 import { javaRelease } from "./types/Java";
 

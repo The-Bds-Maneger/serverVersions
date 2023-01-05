@@ -1,4 +1,4 @@
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 import { Router } from "express";
 export const app = Router();
 

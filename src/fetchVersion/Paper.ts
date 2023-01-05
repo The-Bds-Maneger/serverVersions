@@ -1,4 +1,4 @@
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 import { paper } from "../db/paper";
 
 type paperVersions = {

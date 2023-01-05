@@ -1,4 +1,4 @@
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 import type { bedrockSchema } from "./db/bedrock";
 import type { javaSchema } from "./db/java";
 import type { paperSchema } from "./db/paper";

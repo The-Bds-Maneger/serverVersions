@@ -1,5 +1,5 @@
 import jsdom from "jsdom";
-import { httpRequest } from "@the-bds-maneger/core-utils";
+import { httpRequest } from "@sirherobrine23/coreutils";
 import { spigot } from "../db/spigot";
 export const urlRegex = /http[s]:\/\/.*/;
 

@@ -1,4 +1,4 @@
-import { httpRequestGithub } from "@the-bds-maneger/core-utils";
+import { httpRequestGithub } from "@sirherobrine23/coreutils";
 import { pocketmine as pocketminemmp} from "../db/pocketmine";
 
 async function Add(Version: string, versionDate: Date, url: string) {
@@ -12,7 +12,7 @@ async function Add(Version: string, versionDate: Date, url: string) {
 }
 
 async function Find() {
-  return await Promise.all((await httpRequestGithub.GithubRelease("pmmp/PocketMine-MP")).filter(Release => !/beta|alpha/gi.test(Release.tag_name.toLowerCase())).map(Release => {
+  return await Promise.all((await httpRequestGithub.getRelease({owner: "pmmp", repository: "PocketMine-MP"})).filter(Release => !/beta|alpha/gi.test(Release.tag_name.toLowerCase())).map(Release => {
     Release.assets = Release.assets.filter(asset => asset.name.endsWith(".phar"));
     return Release;
   }).filter(a => a.assets.length > 0).map(release => {
