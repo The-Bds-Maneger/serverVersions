@@ -1,6 +1,6 @@
 import { httpRequest } from "@sirherobrine23/coreutils";
-import {java} from "../db/java";
-import { javaRelease } from "./types/Java";
+import {java} from "../db/java.js";
+import { javaRelease } from "./types/Java.js";
 
 async function Add(Version: string, versionDate: Date, url: string) {
   if (await java.findOne({ version: Version }).lean().then(data => !!data).catch(() => true)) return;

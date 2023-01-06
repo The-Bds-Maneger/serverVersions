@@ -1,10 +1,10 @@
 import { httpRequest } from "@sirherobrine23/coreutils";
-import type { bedrockSchema } from "./db/bedrock";
-import type { javaSchema } from "./db/java";
-import type { paperSchema } from "./db/paper";
-import type { powernukkitSchema } from "./db/powernukkit";
-import type { pocketminemmpSchema } from "./db/pocketmine";
-import type { spigotSchema } from "./db/spigot";
+import type { bedrockSchema } from "./db/bedrock.js";
+import type { javaSchema } from "./db/java.js";
+import type { paperSchema } from "./db/paper.js";
+import type { powernukkitSchema } from "./db/powernukkit.js";
+import type { pocketminemmpSchema } from "./db/pocketmine.js";
+import type { spigotSchema } from "./db/spigot.js";
 
 export type BdsCorePlatforms = "bedrock"|"java"|"paper"|"powernukkit"|"pocketmine"|"spigot";
 export type all = bedrockSchema|javaSchema|powernukkitSchema|paperSchema|pocketminemmpSchema|spigotSchema

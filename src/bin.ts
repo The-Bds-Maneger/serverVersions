@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { platformManeger } from "./index";
+import { platformManeger } from "./index.js";
 
-function prettyDate(date: Date): string {
+function prettyDate(date: Date|string): string {
+  if (typeof date === "string") date = new Date(date);
   const day = date.getDay();
   const month = date.getMonth()+1;
   const Year = date.getFullYear();
@@ -20,7 +21,7 @@ function stringReplace(messeage: string, ...args: string[]): string {
   return messeage;
 }
 
-yargs(process.argv.slice(2)).help().version(false).alias("h", "help").wrap(yargs.terminalWidth()).command("bedrock", "Bedrock Platform", yarg => yarg.option("version", {alias: "v"}), async options => {
+yargs(process.argv.slice(2)).help(true).version(false).alias("h", "help").strict().strictCommands().command("bedrock", "Bedrock Platform", yarg => yarg.option("version", {alias: "v"}), async options => {
   if (options.version && typeof options.version === "string") {
     const data = await platformManeger.bedrock.find(options.version);
     console.log("Version: %s\n\trelease date: %s\n\tUrl: %s", data.version, prettyDate(data.date), data.url[process.platform]||"Current Platform not Avaible")

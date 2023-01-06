@@ -1,5 +1,5 @@
 import { httpRequest } from "@sirherobrine23/coreutils";
-import { paper } from "../db/paper";
+import { paper } from "../db/paper.js";
 
 type paperVersions = {
   project_id: string,
@@ -43,6 +43,6 @@ export default async function find() {
     }));
   }
   await paper.findOneAndUpdate({latest: true}, {$set: {latest: false}}).lean();
-  const latestVersionByDate = (await paper.find().lean()).sort((a, b) => b.date.getTime()-a.date.getTime())[0];
+  const latestVersionByDate = await paper.findOne({version: versions.at(-1)}).lean();
   await paper.findByIdAndUpdate(latestVersionByDate._id, {$set: {latest: true}}).lean();
 }

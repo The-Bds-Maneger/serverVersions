@@ -1,7 +1,7 @@
 import fsOld from "node:fs";
 import path from "node:path";
 import fs from "node:fs/promises";
-import { findVersion as getVersions, bedrock, java, paper, pocketmine, powernukkit, spigot } from "./index";
+import { findVersion as getVersions, bedrock, java, paper, pocketmine, powernukkit, spigot } from "./index.js";
 
 const rootVersions = path.join(process.cwd(), "versions");
 const Bedrock = path.join(rootVersions, "bedrock");

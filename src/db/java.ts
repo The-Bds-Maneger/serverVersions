@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import connection from "./connect";
+import connection from "./connect.js";
 import { Router } from "express";
 export const app = Router();
 
@@ -23,7 +23,7 @@ export const java = connection.model<javaSchema>("java", new mongoose.Schema<jav
 export default java;
 
 app.get("/", ({res}) => java.find().lean().then(data => res.json(data)));
-app.get("/latest", async ({res}) => res.json(await java.findOne({latest: true}).lean()));
+app.get("/latest", async ({res}) => res.json(await java.findOne({latest: true}).lean() ?? await java.findOne().sort({version: -1}).lean()));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});

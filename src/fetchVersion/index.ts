@@ -1,19 +1,15 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import pocketmine from "./Pocketmine";
-import java from "./Java";
-import spigot from "./Spigot";
-import paper from "./Paper";
-import powernukkit from "./Powernukkit"
+import java from "./Java.js";
+import spigot from "./Spigot.js";
+import paper from "./Paper.js";
+import powernukkit from "./Powernukkit.js";
 
-const options = yargs(process.argv.slice(2)).help().version(false).alias("h", "help").wrap(yargs.terminalWidth()).options("all", {
+const options = yargs(process.argv.slice(2)).help().version(false).alias("h", "help").options("all", {
   description: "Fetch all plaftorms",
   type: "boolean"
 }).option("java", {
   description: "Fetch Java versions",
-  type: "boolean"
-}).option("pocketmine", {
-  description: "Fetch Pocketmine-MP versions",
   type: "boolean"
 }).option("spigot", {
   description: "Fetch Spigot versions",
@@ -29,7 +25,6 @@ const options = yargs(process.argv.slice(2)).help().version(false).alias("h", "h
 
 async function all() {
   await java();
-  await pocketmine();
   await spigot();
   await paper();
   await powernukkit();
@@ -37,7 +32,6 @@ async function all() {
 
 if (options.java) java().then(() => {console.log("Java sucess update"); process.exit(0)}).catch(err => {console.log("Java catch Error: %s", String(err)); process.exit(1)});
 else if (options.spigot) spigot().then(() => {console.log("Spigot sucess update"); process.exit(0)}).catch(err => {console.log("Spigot catch Error: %s", String(err)); process.exit(1)});
-else if (options.pocketmine) pocketmine().then(() => {console.log("Pocketmine sucess update"); process.exit(0)}).catch(err => {console.log("Pocketmine catch Error: %s", String(err)); process.exit(1)});
 else if (options.paper) paper().then(() => {console.log("Paper sucess update"); process.exit(0)}).catch(err => {console.log("Paper catch Error: %s", String(err)); process.exit(1)});
 else if (options.powernukkit) powernukkit().then(() => {console.log("Powernukkit sucess update"); process.exit(0)}).catch(err => {console.log("Powernukkit catch Error: %s", String(err)); process.exit(1)});
 else if (options.all) all().then(() => process.exit(0)).catch(err => {console.trace(err); process.exit(1)});

@@ -1,4 +1,4 @@
-import { powernukkit, powernukkitSchema } from "../db/powernukkit";
+import { powernukkit, powernukkitSchema } from "../db/powernukkit.js";
 import { httpRequest } from "@sirherobrine23/coreutils";
 export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
 export type Release = {

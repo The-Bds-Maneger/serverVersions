@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import connection from "./connect";
+import connection from "./connect.js";
 import { Router } from "express";
 export const app = Router();
 

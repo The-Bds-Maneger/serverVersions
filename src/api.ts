@@ -5,13 +5,13 @@ import express from "express";
 import cors from "cors";
 
 // Db And routes
-import dbConnect from "./db/connect";
-import {getAll as bedrock ,app as bedrockExpress} from "./db/bedrock";
-import {java, app as javaExpress} from "./db/java";
-import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine";
-import {spigot, app as spigotExpress} from "./db/spigot";
-import { powernukkit, app as powernukkitExpress } from "./db/powernukkit";
-import { paper, app as paperExpress } from "./db/paper";
+import dbConnect from "./db/connect.js";
+import {getAll as bedrock ,app as bedrockExpress} from "./db/bedrock.js";
+import {java, app as javaExpress} from "./db/java.js";
+import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine.js";
+import {spigot, app as spigotExpress} from "./db/spigot.js";
+import { powernukkit, app as powernukkitExpress } from "./db/powernukkit.js";
+import { paper, app as paperExpress } from "./db/paper.js";
 
 const app = express();
 app.disable("x-powered-by");
@@ -53,11 +53,11 @@ app.use((req, _res, next) => {
 // Global version
 const getAllLatest = () => Promise.all([
   bedrock().then(res => res.at(-1)),
-  java.findOne({latest: true}).lean(),
-  pocketminemmp.findOne({latest: true}).lean(),
-  spigot.findOne({latest: true}).lean(),
-  paper.findOne({latest: true}).lean(),
-  powernukkit.findOne({latest: true}).lean(),
+  java.findOne({latest: true}).lean().then(res => res ?? java.findOne().sort({version: -1}).lean()),
+  pocketminemmp.findOne({latest: true}).lean().then(res => res ?? pocketminemmp.findOne().sort({date: -1}).lean()),
+  spigot.findOne({latest: true}).lean().then(res => res ?? spigot.findOne().sort({date: -1}).lean()),
+  paper.findOne({latest: true}).lean().then(res => res ?? paper.findOne().sort({date: -1}).lean()),
+  powernukkit.findOne({latest: true}).lean().then(res => res ?? powernukkit.findOne().sort({date: -1}).lean()),
 ]);
 app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, paperVersions, powerNukkitVersions]) => {
   const data = {};
