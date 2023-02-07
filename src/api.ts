@@ -69,7 +69,7 @@ app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, 
   if (paperVersions) data["paper"] = {version: paperVersions.version, search: `${host}/paper/search?version=${paperVersions.version}`};
   if (powerNukkitVersions) data["powernukkit"] = {version: powerNukkitVersions.version, search: `${host}/powernukkit/search?version=${powerNukkitVersions.version}`};
   return res.json(data);
-}).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: String(err).replace("Error: ", "")})));
+}).catch(err => res.status(500).json({message: "Sorry for error on our part", Error: JSON.stringify(err)})));
 
 // Routes
 app.use("/bedrock", bedrockExpress);
