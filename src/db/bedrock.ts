@@ -14,7 +14,7 @@ export type bedrockSchema = {
 };
 
 export async function getAll() {
-  return httpRequest.getJSON<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json");
+  return httpRequest.getJSON<bedrockSchema[]>("https://sirherobrine23.github.io/BedrockFetch/all.json");
 }
 
 app.get("/", ({res}) => getAll().then(data => res.json(data)));
