@@ -35,7 +35,8 @@
     "url": "https://github.com/The-Bds-Maneger/serverVersions/issues"
   },
   "dependencies": {
-    "@sirherobrine23/coreutils": "^3.1.2",
+    "@sirherobrine23/cloud": "^3.1.2",
+    "@sirherobrine23/http": "^3.1.2",
     "axios": "^1.2.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",

@@ -1,5 +1,5 @@
 import { powernukkit, powernukkitSchema } from "../db/powernukkit.js";
-import { httpRequest } from "@sirherobrine23/coreutils";
+import * as httpRequest from "@sirherobrine23/http";
 export const exportUrl = "https://raw.githubusercontent.com/PowerNukkit/powernukkit-version-aggregator/master/powernukkit-versions.json";
 export type Release = {
   version: string,
@@ -139,7 +139,7 @@ function getArtefactExtension(artefactId) {
 }
 
 export default async function find() {
-  const releases_version = await httpRequest.getJSON<PowernukkitVersions>(exportUrl);
+  const releases_version = (await httpRequest.jsonRequest<PowernukkitVersions>(exportUrl)).body;
   for (const stable of releases_version.releases) {
     const data = buildVersion(stable);
     if (!data) continue

@@ -1,4 +1,4 @@
-import { httpRequest } from "@sirherobrine23/coreutils";
+import * as httpRequest from "@sirherobrine23/http";
 import { Router } from "express";
 export const app = Router();
 
@@ -14,7 +14,7 @@ export type bedrockSchema = {
 };
 
 export async function getAll() {
-  return httpRequest.getJSON<bedrockSchema[]>("https://sirherobrine23.github.io/BedrockFetch/all.json");
+  return httpRequest.jsonRequest<bedrockSchema[]>("https://sirherobrine23.github.io/BedrockFetch/all.json").then(r => r.body);
 }
 
 app.get("/", ({res}) => getAll().then(data => res.json(data)));

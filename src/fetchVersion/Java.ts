@@ -1,4 +1,4 @@
-import { httpRequest } from "@sirherobrine23/coreutils";
+import * as httpRequest from "@sirherobrine23/http";
 import {java} from "../db/java.js";
 import { javaRelease } from "./types/Java.js";
 
@@ -13,9 +13,9 @@ async function Add(Version: string, versionDate: Date, url: string) {
 }
 
 async function Find() {
-  const Versions = await httpRequest.getJSON("https://launchermeta.mojang.com/mc/game/version_manifest_v2.json") as {latest: {release: string, snapshot: string, }, versions: Array<{id: string, type: "snapshot"|"release", url: string, time: string, releaseTime: string, sha1: string, complianceLevel: number}>}
+  const Versions = await httpRequest.jsonRequest<{latest: {release: string, snapshot: string, }, versions: Array<{id: string, type: "snapshot"|"release", url: string, time: string, releaseTime: string, sha1: string, complianceLevel: number}>}>("https://launchermeta.mojang.com/mc/game/version_manifest_v2.json").then(r => r.body);
   for (const ver of Versions.versions.filter(a => a.type === "release")) {
-    const Release = await httpRequest.getJSON(ver.url) as javaRelease;
+    const Release = await httpRequest.jsonRequest<javaRelease>(ver.url).then(r => r.body);
     if (!!Release?.downloads?.server?.url) await Add(ver.id, new Date(ver.releaseTime), Release?.downloads?.server?.url);
   }
   return await java.findOneAndUpdate({version: Versions.latest.release}, {$set: {latest: true}}).lean();

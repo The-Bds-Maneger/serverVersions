@@ -1,4 +1,4 @@
-import { httpRequest } from "@sirherobrine23/coreutils";
+import * as httpRequest from "@sirherobrine23/http";
 import type { bedrockSchema } from "./db/bedrock.js";
 import type { javaSchema } from "./db/java.js";
 import type { paperSchema } from "./db/paper.js";
@@ -36,7 +36,7 @@ export async function findVersion<PlatformSchema = all|all[]>(bdsPlaform: BdsCor
         else url += `/search?version=${version}`;
       }
     }
-    const res = await httpRequest.bufferFetch(url).then(({data}) => data).catch(() => false);
+    const res = await httpRequest.bufferRequest(url).then(({body}) => body).catch(() => false);
     if (res === false) continue;
     const data = JSON.parse(res.toString("utf8"), (key, value) => key === "date" ? new Date(value):value);
     if (!data) throw new Error("Failed to get data");
@@ -47,9 +47,9 @@ export async function findVersion<PlatformSchema = all|all[]>(bdsPlaform: BdsCor
 
 export const platformManeger = {
   bedrock: {
-    async all(){return httpRequest.getJSON<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json")},
+    async all(){return httpRequest.jsonRequest<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json").then(r => r.body)},
     async find(version: string|boolean){
-      const all = await httpRequest.getJSON<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json");
+      const all = await httpRequest.jsonRequest<bedrockSchema[]>("https://the-bds-maneger.github.io/BedrockFetch/all.json").then(r => r.body);
       if (typeof version === "boolean"||version.toLowerCase().trim() === "latest") return all.at(-1);
       const rel = all.find(rel => rel.version === version);
       if (!rel) throw new Error("Version not found");

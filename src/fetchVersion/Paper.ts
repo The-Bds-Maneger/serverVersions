@@ -1,4 +1,4 @@
-import { httpRequest } from "@sirherobrine23/coreutils";
+import * as httpRequest from "@sirherobrine23/http";
 import { paper } from "../db/paper.js";
 
 type paperVersions = {
@@ -26,9 +26,9 @@ type paperBuilds = {
 };
 
 export default async function find() {
-  const versions = (await httpRequest.getJSON<paperVersions>("https://api.papermc.io/v2/projects/paper")).versions;
+  const versions = (await httpRequest.jsonRequest<paperVersions>("https://api.papermc.io/v2/projects/paper")).body.versions;
   for (const version of versions) {
-    const builds = await httpRequest.getJSON<paperBuilds>(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds`);
+    const builds = (await httpRequest.jsonRequest<paperBuilds>(`https://api.papermc.io/v2/projects/paper/versions/${version}/builds`)).body;
     await Promise.all(builds.builds.map(async function(build){
       const downloadUrl = `https://api.papermc.io/v2/projects/paper/versions/${builds.version}/builds/${build.build}/downloads/${build.downloads.application.name}`;
       if (await paper.findOne({url: downloadUrl}).lean()) return;
