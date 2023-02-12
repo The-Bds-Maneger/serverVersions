@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import connection from "./connect.js";
 import { Router } from "express";
+import semver from "semver";
 export const app = Router();
 
 export type paperSchema = {
@@ -18,9 +19,10 @@ export const paper = connection.model<paperSchema>("paper", new mongoose.Schema<
   latest: Boolean,
   url: String
 }));
+export const getAll = () => paper.find().lean().then(data => data.sort((b, a) => semver.compare(semver.valid(semver.coerce(a.version)), semver.valid(semver.coerce(b.version)))));
 
-app.get("/", ({res}) => paper.find().lean().then(data => res.json(data)));
-app.get("/latest", ({res}) => paper.findOne({latest: true}).lean().then(data => res.json(data)));
+app.get("/", ({res}) => getAll().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json((await getAll()).at(0)));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({erro: "Not allowd blank version"});

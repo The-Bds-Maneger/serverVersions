@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-import connection from "./connect.js";
 import { Router } from "express";
+import connection from "./connect.js";
+import mongoose from "mongoose";
+import semver from "semver";
 export const app = Router();
 
 // Type to represent the spigot model
@@ -21,9 +22,10 @@ export const spigot = connection.model<spigotSchema>("spigot", new mongoose.Sche
   latest: Boolean,
   url: String
 }));
+export const getAll = () => spigot.find().lean().then(data => data.sort((b, a) => semver.compare(semver.valid(semver.coerce(a.version)), semver.valid(semver.coerce(b.version)))));
 
-app.get("/", ({res}) => spigot.find().lean().then(data => res.json(data)));
-app.get("/latest", async ({res}) => res.json(await spigot.findOne({latest: true}).lean() ?? await spigot.findOne().sort({date: -1}).lean()));
+app.get("/", ({res}) => getAll().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json((await getAll()).at(0)));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   if (!version) return res.status(400).json({error: "No version specified"});

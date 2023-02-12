@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-import connection from "./connect.js";
 import { Router } from "express";
+import connection from "./connect.js";
+import mongoose from "mongoose";
+import semver from "semver";
 export const app = Router();
 
 export type powernukkitSchema = {
@@ -24,9 +25,10 @@ export const powernukkit = connection.model<powernukkitSchema>("powernukkit", ne
   variantType: String,
   latest: Boolean
 }));
+export const getAll = () => powernukkit.find().lean().then(data => data.sort((b, a) => semver.compare(semver.valid(semver.coerce(a.mcpeVersion)), semver.valid(semver.coerce(b.mcpeVersion)))));
 
-app.get("/", ({res}) => powernukkit.find().lean().then(data => res.json(data)));
-app.get("/latest", ({res}) => powernukkit.findOne({latest: true}).lean().then(data => res.json(data)));
+app.get("/", ({res}) => getAll().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json((await getAll()).at(0)));
 app.get("/search", async (req, res) => {
   let version = req.query.version as string;
   let variant = (req.query.variant as string)||undefined;

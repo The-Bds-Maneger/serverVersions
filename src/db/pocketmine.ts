@@ -1,7 +1,8 @@
 import { oracleBucket } from "@sirherobrine23/cloud";
+import { Router } from "express";
 import mongoose from "mongoose";
 import connection from "./connect.js";
-import { Router } from "express";
+import semver from "semver";
 export const app = Router();
 
 export type pocketminemmpSchema = {
@@ -31,9 +32,10 @@ const bucket = await oracleBucket({
     PreAuthenticatedKey: "0IKM-5KFpAF8PuWoVe86QFsF4sipU2rXfojpaOMEdf4QgFQLcLlDWgMSPHWmjf5W"
   }
 });
+export const getAll = () => pocketmine.find().lean().then(data => data.sort((b, a) => semver.compare(semver.valid(semver.coerce(a.version)), semver.valid(semver.coerce(b.version)))));
 
-app.get("/", ({res}) => pocketmine.find().lean().then(data => res.json(data)));
-app.get("/latest", async ({res}) => res.json(await pocketmine.findOne({latest: true}).lean() ?? await pocketmine.findOne().sort({version: -1}).lean()));
+app.get("/", ({res}) => getAll().then(data => res.json(data)));
+app.get("/latest", async ({res}) => res.json((await getAll()).at(0)));
 app.get("/bin", async (req, res) => {
   let os = RegExp((req.query.os as string)||"(win32|windows|linux|macos|mac)");
   let arch = RegExp((req.query.arch as string)||".*");

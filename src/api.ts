@@ -3,32 +3,42 @@ import http from "node:http";
 import yaml from "yaml";
 import express from "express";
 import cors from "cors";
-
-// Db And routes
 import dbConnect from "./db/connect.js";
-import {getAll as bedrock ,app as bedrockExpress} from "./db/bedrock.js";
-import {java, app as javaExpress} from "./db/java.js";
-import {pocketmine as pocketminemmp, app as pocketmineExpress} from "./db/pocketmine.js";
-import {spigot, app as spigotExpress} from "./db/spigot.js";
-import { powernukkit, app as powernukkitExpress } from "./db/powernukkit.js";
-import { paper, app as paperExpress } from "./db/paper.js";
+import {
+  app as bedrockExpress,
+  getAll as bedrock
+} from "./db/bedrock.js";
+import {
+  getAll as java,
+  app as javaExpress
+} from "./db/java.js";
+import {
+  getAll as pocketminemmp,
+  app as pocketmineExpress
+} from "./db/pocketmine.js";
+import {
+  getAll as spigot,
+  app as spigotExpress
+} from "./db/spigot.js";
+import {
+  getAll as powernukkit,
+  app as powernukkitExpress
+} from "./db/powernukkit.js";
+import {
+  getAll as paper,
+  app as paperExpress
+} from "./db/paper.js";
 
 const app = express();
-app.disable("x-powered-by");
-app.disable("etag");
-app.use(cors());
-app.use((req, res, next) => {
+app.disable("x-powered-by").disable("etag").use(cors()).use((req, res, next) => {
   res.json = (body) => {
     const deleteKeys = ["__v", "_id"];
-    if (body instanceof Array) {
-      if (body[0] instanceof Object) {
-        if (body[0]?.date instanceof Date) body = body.sort((b, a) => a.date?.getTime() - b.date?.getTime());
-      }
-    }
     body = JSON.parse(JSON.stringify(body, (key, value)=>deleteKeys.includes(key)?undefined:value));
     if (req.query.type === "yaml"||req.query.type === "yml") return res.setHeader("Content-Type", "text/yaml").send(yaml.stringify(body));
     return res.set("Content-Type", "application/json").send(JSON.stringify(body, (_, value) => typeof value === "bigint" ? value.toString():value, 2));
   }
+  console.log("%s (%s %s): %s %s", new Date(), req.protocol, req.ip, req.method, req.originalUrl);
+  res.once("close", () => console.log("%s (%s %s): %s %s %s", new Date(), req.protocol, req.ip, req.method, req.originalUrl, res.statusCode));
   return next();
 });
 
@@ -44,20 +54,14 @@ dbConnect.once("connected", () => {
   if (process.env.KEY && process.env.CERT) https.createServer({key: process.env.KEY, cert: process.env.CERT}, app).listen(portsListen.https, () => console.log("(HTTPS) Listening on port %o", portsListen.https));
 });
 
-// Print user request api
-app.use((req, _res, next) => {
-  next();
-  console.log("(%s %s): %s %s", req.protocol, req.ip, req.method, req.originalUrl);
-});
-
 // Global version
 const getAllLatest = () => Promise.all([
   bedrock().then(res => res.at(-1)),
-  java.findOne({latest: true}).lean().then(res => res ?? java.findOne().sort({version: -1}).lean()),
-  pocketminemmp.findOne({latest: true}).lean().then(res => res ?? pocketminemmp.findOne().sort({date: -1}).lean()),
-  spigot.findOne({latest: true}).lean().then(res => res ?? spigot.findOne().sort({date: -1}).lean()),
-  paper.findOne({latest: true}).lean().then(res => res ?? paper.findOne().sort({date: -1}).lean()),
-  powernukkit.findOne({latest: true}).lean().then(res => res ?? powernukkit.findOne().sort({date: -1}).lean()),
+  java().then(res => res.at(0)),
+  pocketminemmp().then(res => res.at(0)),
+  spigot().then(res => res.at(0)),
+  paper().then(res => res.at(0)),
+  powernukkit().then(res => res.at(0))
 ]);
 app.get("/", (req, res) => getAllLatest().then(([bedrockVersions, javaVersions, pocketmineVersions, spigotVersions, paperVersions, powerNukkitVersions]) => {
   const data = {};

@@ -1,5 +1,6 @@
 import * as httpRequest from "@sirherobrine23/http";
 import { Router } from "express";
+import semver from "semver";
 export const app = Router();
 
 export type bedrockSchema = {
@@ -14,7 +15,9 @@ export type bedrockSchema = {
 };
 
 export async function getAll() {
-  return httpRequest.jsonRequest<bedrockSchema[]>("https://sirherobrine23.github.io/BedrockFetch/all.json").then(r => r.body);
+  return httpRequest.jsonRequest<bedrockSchema[]>("https://sirherobrine23.github.io/BedrockFetch/all.json").then(r => r.body.sort((a, b) => {
+    return semver.compare(semver.valid(semver.coerce(a.version)), semver.valid(semver.coerce(b.version)));
+  }));
 }
 
 app.get("/", ({res}) => getAll().then(data => res.json(data)));
