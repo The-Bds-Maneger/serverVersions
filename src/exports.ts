@@ -19,56 +19,63 @@ if (!fsOld.existsSync(Java)) await fs.mkdir(Java, {recursive: true});
 if (!fsOld.existsSync(Spigot)) await fs.mkdir(Spigot, {recursive: true});
 if (!fsOld.existsSync(Paper)) await fs.mkdir(Paper, {recursive: true});
 
-const bedrockData = await getVersions<bedrock[]>("bedrock", "all", true);
-fs.writeFile(path.join(Bedrock, "latest.json"), JSON.stringify(bedrockData.at(-1), null, 2));
-fs.writeFile(path.join(Bedrock, "all.json"), JSON.stringify(bedrockData, null, 2));
-await Promise.all(bedrockData.map(async releases => {
-  const version = path.join(Bedrock, `${releases.version}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+await getVersions<bedrock[]>("bedrock", "all", true).then(async bedrockData => {
+  await fs.writeFile(path.join(Bedrock, "latest.json"), JSON.stringify(bedrockData.at(-1), null, 2));
+  await fs.writeFile(path.join(Bedrock, "all.json"), JSON.stringify(bedrockData, null, 2));
+  await Promise.all(bedrockData.map(async releases => {
+    const version = path.join(Bedrock, `${releases.version}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
 
-const PocketmineData = await getVersions<pocketmine[]>("pocketmine", "all", true);
-fs.writeFile(path.join(Pocketmine, "latest.json"), JSON.stringify(PocketmineData.find(release => release.latest), null, 2));
-fs.writeFile(path.join(Pocketmine, "all.json"), JSON.stringify(PocketmineData, null, 2));
-await Promise.all(PocketmineData.map(async releases => {
-  const version = path.join(Pocketmine, `${releases.version}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+await getVersions<pocketmine[]>("pocketmine", "all", true).then(async PocketmineData => {
+  await fs.writeFile(path.join(Pocketmine, "latest.json"), JSON.stringify(PocketmineData.find(release => release.latest), null, 2));
+  await fs.writeFile(path.join(Pocketmine, "all.json"), JSON.stringify(PocketmineData, null, 2));
+  await Promise.all(PocketmineData.map(async releases => {
+    const version = path.join(Pocketmine, `${releases.version}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
 
-const PowernukkitData = await getVersions<powernukkit[]>("powernukkit", "all", true);
-fs.writeFile(path.join(Powernukkit, "latest.json"), JSON.stringify(PowernukkitData.find(release => release.latest), null, 2));
-fs.writeFile(path.join(Powernukkit, "all.json"), JSON.stringify(PowernukkitData, null, 2));
-await Promise.all(PowernukkitData.map(async releases => {
-  const version = path.join(Powernukkit, `${releases.version}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+await getVersions<powernukkit[]>("powernukkit", "all", true).then(async PowernukkitData => {
+  await fs.writeFile(path.join(Powernukkit, "latest.json"), JSON.stringify(PowernukkitData.find(release => release.latest), null, 2));
+  await fs.writeFile(path.join(Powernukkit, "all.json"), JSON.stringify(PowernukkitData, null, 2));
+  await Promise.all(PowernukkitData.map(async releases => {
+    const version = path.join(Powernukkit, `${releases.version}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
 
-const JavaData = await getVersions<java[]>("java", "all", true);
-fs.writeFile(path.join(Java, "latest.json"), JSON.stringify(JavaData.find(release => release.latest), null, 2));
-fs.writeFile(path.join(Java, "all.json"), JSON.stringify(JavaData, null, 2));
-await Promise.all(JavaData.map(async releases => {
-  const version = path.join(Java, `${releases.version}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+await getVersions<java[]>("java", "all", true).then(async JavaData => {
+  await fs.writeFile(path.join(Java, "latest.json"), JSON.stringify(JavaData.find(release => release.latest), null, 2));
+  await fs.writeFile(path.join(Java, "all.json"), JSON.stringify(JavaData, null, 2));
+  await Promise.all(JavaData.map(async releases => {
+    const version = path.join(Java, `${releases.version}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
 
-const SpigotData = await getVersions<spigot[]>("spigot", "all", true);
-fs.writeFile(path.join(Spigot, "latest.json"), JSON.stringify(SpigotData.find(release => release.latest), null, 2));
-fs.writeFile(path.join(Spigot, "all.json"), JSON.stringify(SpigotData, null, 2));
-await Promise.all(SpigotData.map(async releases => {
-  const version = path.join(Spigot, `${releases.version}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+await getVersions<spigot[]>("spigot", "all", true).then(async SpigotData => {
+  await fs.writeFile(path.join(Spigot, "latest.json"), JSON.stringify(SpigotData.find(release => release.latest), null, 2));
+  await fs.writeFile(path.join(Spigot, "all.json"), JSON.stringify(SpigotData, null, 2));
+  await Promise.all(SpigotData.map(async releases => {
+    const version = path.join(Spigot, `${releases.version}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
 
-const PaperData = await getVersions<paper[]>("paper", "all", true);
-fs.writeFile(path.join(Paper, "latest.json"), JSON.stringify(PaperData.find(release => release.latest), null, 2));
-fs.writeFile(path.join(Paper, "all.json"), JSON.stringify(PaperData, null, 2));
-await Promise.all(PaperData.map(async releases => {
-  const version = path.join(Paper, `${releases.version}_${releases.build}.json`);
-  await fs.writeFile(version, JSON.stringify(releases, null, 2));
-  await fs.utimes(version, new Date(releases.date), new Date(releases.date));
-}));
+
+await getVersions<paper[]>("paper", "all", true).then(async PaperData => {
+  await fs.writeFile(path.join(Paper, "latest.json"), JSON.stringify(PaperData.find(release => release.latest), null, 2));
+  await fs.writeFile(path.join(Paper, "all.json"), JSON.stringify(PaperData, null, 2));
+  await Promise.all(PaperData.map(async releases => {
+    const version = path.join(Paper, `${releases.version}_${releases.build}.json`);
+    await fs.writeFile(version, JSON.stringify(releases, null, 2));
+    await fs.utimes(version, new Date(releases.date), new Date(releases.date));
+  }));
+}).catch(err => console.log(err));
